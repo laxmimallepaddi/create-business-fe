@@ -1,0 +1,44 @@
+.card-signin .card-body {
+    padding: 3rem;
+}
+.card-title {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+.form-signin {
+    width: 100%;
+}
+.form-signin .btn {
+    font-size: 90%;
+    border-radius: 5rem;
+    
+    font-weight: bold;
+    padding: 1rem;
+}
+.form-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.form-group input {
+    height: auto;
+    border-radius: 2rem;
+}
+.btn-google {
+    color: white;
+    background-color: #ea4335;
+    border-radius: 5rem;
+    font-size: 90%;
+}
+  
+.btn-facebook {
+    color: white;
+    background-color: #3b5998;
+    border-radius: 5rem;
+    font-size: 90%;
+}
+a, a:active, a:focus{
+    outline: none;
+    text-decoration: none;
+}
