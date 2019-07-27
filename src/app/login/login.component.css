@@ -20,7 +20,6 @@
     position: relative;
     margin-bottom: 1rem;
 }
-
 .form-group input {
     height: auto;
     border-radius: 2rem;
@@ -31,7 +30,6 @@
     border-radius: 5rem;
     font-size: 90%;
 }
-  
 .btn-facebook {
     color: white;
     background-color: #3b5998;
