@@ -10,17 +10,11 @@
     background-color: #fff;
     background-image: none;
     border: 1px solid #ccc;
-    height: calc(3rem + 2px) !important;
     border-radius:0;
 }
 .wrn-btn{
-    width: 100%;
-    font-size: 16px;
-    font-weight: 400;
-    text-transform: capitalize;
-    height: calc(3rem + 2px) !important;
+    width: 70%;
     border-radius:0;
-
 }
 
 
@@ -40,9 +34,9 @@ select.round {
         linear-gradient(45deg, transparent 50%, black 50%),
         linear-gradient(to right, #ccc, #ccc);
     background-position:
-        calc(100% - 15px) 1.5em,
-        calc(100% - 20px) 1.5em,
-        calc(100% - 3em) 1em;
+        calc(100% - 15px) 1em,
+        calc(100% - 20px) 1em,
+        calc(100% - 1em) 1em;
     background-size:
         5px 5px,
         5px 5px,
@@ -51,7 +45,9 @@ select.round {
     
     outline: 0;
 }
-
+.row,.col-sm-4{
+    padding: 5px;
+}
   
   
   

@@ -1,39 +1,64 @@
-.card-signin .card-body {
-    padding: 3rem;
+.row {
+  padding: 3%;
 }
-.card-title {
-    margin-bottom: 2rem;
-    font-weight: 300;
-    font-size: 1.5rem;
+.card {
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+padding: 30px;
+text-align: center;
 }
-.form-signin {
-    width: 100%;
+.btn{
+  border-radius: 5rem;
+  font-size: 90%;
+  padding:2%;
+  width:40%;
 }
-.form-signin .btn {
-    font-size: 80%;
-    border-radius: 5rem;
-    letter-spacing: .1rem;
-    font-weight: bold;
-    padding: 1rem;
+.p{
+  padding: 5%;
 }
-.form-group {
-    position: relative;
-    margin-bottom: 1rem;
+.vertical-divider {
+  position: absolute;
+  z-index: 10;
+  top: 40%;
+  left: 50%;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: 100%;
+  line-height: 0;
+  text-align:center;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+.vertical-divider:before, 
+.vertical-divider:after {
+  position: absolute;
+  left: 50%;
+  content: '';
+  z-index: 9;
+  border-left: 1px solid rgba(34,36,38,.15);
+  border-right: 1px solid rgba(255,255,255,.1);
+  width: 0;
+  height: calc(100% - 1rem);
+}
+.row-divided > .vertical-divider {
+  height: calc(50% - 1rem);    
+}
+.vertical-divider:before {
+  top: -100%;
+}
+.vertical-divider:after {
+  top: auto;
+  bottom: 0;
 }
 
-.form-group input {
-    height: auto;
-    border-radius: 2rem;
+.row-divided {
+  position:relative;
 }
-.btn-google {
-    color: white;
-    background-color: #ea4335;
+.row-divided > [class^="col-"],
+.row-divided > [class*=" col-"] {
+  padding-left: 30px; 
+  padding-right: 30px; 
 }
-.btn-facebook {
-    color: white;
-    background-color: #3b5998;
-}
-a, a:active, a:focus{
-    outline: none;
-    text-decoration: none;
+.column-one,.column-two{
+height: 300px;
 }
