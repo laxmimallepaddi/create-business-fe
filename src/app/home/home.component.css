@@ -19,11 +19,11 @@ button{
     padding-top:0%;
     padding-bottom:0%;
 }
-h3 {
+h2 {
     font-weight: bolder;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000000;
-    text-shadow: 5px -5px 5px #000000;
+    
 }
 .btn{
     border-radius: 5rem;

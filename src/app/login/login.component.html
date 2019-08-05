@@ -1,32 +1,44 @@
 <div class="container">
+        <div class="card">
                 <div class="row">
-                        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                        <div class="card card-signin my-5">
-                        <div class="card-body">
-                        <h5 class="card-title text-center">Log into Your Account</h5>
-                        <form class="form-signin">
-                                <div class="form-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email ID or Username" required autofocus>
-                                </div>
-                                <div class="form-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                                </div>
-                                <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">Remember password</label>
-                                </div>
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log In</button>
-                        </form>        
-                        <hr class="my-4">
-                        <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><em class="fab fa-google mr-2"></em> Sign in with Google</button>
-                        <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><em class="fab fa-facebook-f mr-2"></em> Sign in with Facebook</button>
-                        <hr class="my-4">
-                        <div class="text-center">
-                                Don't have an account? <a  [routerLink]="'/register/business'">Sign Up</a>        
-                        </div>
-                        <hr class="my-4">
-                        </div>
-                        </div>
+                        <div class="col-sm-12">
+                                <h5 class="card-title text-center font-weight-bold ">Log In</h5>
                         </div>
                 </div>
-                </div>
+                <div class="row row-divided">
+                <div class="col-sm-6 column-one">
+                        <div class="row">
+                                <div  class="col-sm-12">
+                                <h5 class="card-title text-center font-weight-bold ">Business</h5>
+                        </div>
+                        </div>
+                        <div class="row">
+                                <div  class="col-sm-12">
+                                <p>Login and find your next Celebration job.</p>
+                        </div>
+                        </div>
+                        <button type="button" class="btn btn-outline-info btn-sm font-weight-bold " 
+                                [routerLink]="'/login/business'">Log In</button>
+                        </div>
+                        <div class="vertical-divider">or</div>
+                        <div class="col-sm-6 column-two">
+                                <div class="row">
+                                <div  class="col-sm-12">
+                                <h5 class="card-title text-center font-weight-bold ">Customer</h5>
+                                </div>
+                                </div>
+                                <div class="row">    
+                                <div  class="col-sm-12">     
+                                <p>Login to post a celebration need and find Business or Vendors.</p>
+                                </div>
+                                </div>
+                                <button type="button" class="btn btn-outline-info btn-sm font-weight-bold " 
+                                        [routerLink]="'/login/customer'">Log In</button>
+                        </div>
+                </div>   
+                <hr class="my-4">
+                <div class="text-center">
+                        Don't have an account? <a  [routerLink]="'/register'">Sign Up</a>        
+                </div> 
+        </div>
+</div>

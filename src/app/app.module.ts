@@ -9,8 +9,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { FindBusinessComponent } from './find-business/find-business.component';
-import { RegistercustomerRegisterComponent } from './register/registercustomer-register/registercustomer-register.component';
-import { RegisterbusinessRegisterComponent } from './register/registerbusiness-register/registerbusiness-register.component';
+import { CustomerRegisterComponent } from './register/customer-register/customer-register.component';
+import { BusinessRegisterComponent } from './register/business-register/business-register.component';
+import { BusinessLoginComponent } from './login/business-login/business-login.component';
+import { CustomerLoginComponent } from './login/customer-login/customer-login.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,10 @@ import { RegisterbusinessRegisterComponent } from './register/registerbusiness-r
     FooterComponent,
     HomeComponent,
     FindBusinessComponent,
-    RegistercustomerRegisterComponent,
-    RegisterbusinessRegisterComponent
+    CustomerRegisterComponent,
+    BusinessRegisterComponent,
+    BusinessLoginComponent,
+    CustomerLoginComponent
   ],
   imports: [
     BrowserModule,

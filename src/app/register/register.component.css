@@ -1,5 +1,5 @@
 .row {
-  padding: 3%;
+  padding: 2%;
 }
 .card {
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -56,9 +56,9 @@ text-align: center;
 }
 .row-divided > [class^="col-"],
 .row-divided > [class*=" col-"] {
-  padding-left: 30px; 
-  padding-right: 30px; 
+  padding-left: 15px; 
+  padding-right: 15px; 
 }
 .column-one,.column-two{
-height: 300px;
+height: 230px;
 }

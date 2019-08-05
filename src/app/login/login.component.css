@@ -1,41 +1,64 @@
-.card-signin .card-body {
-  padding: 3rem;
-}
-.card-title {
-  margin-bottom: 2rem;
-  font-weight: 300;
-  font-size: 1.5rem;
-}
-.form-signin {
-  width: 100%;
-}
-.form-signin .btn {
-  font-size: 90%;
-  border-radius: 5rem;
-  font-weight: bold;
-  padding: 1rem;
-}
-.form-group {
-  position: relative;
-  margin-bottom: 1rem;
-}
-.form-group input {
-  height: auto;
-  border-radius: 2rem;
-}
-.btn-google {
-  color: white;
-  background-color: #ea4335;
-  border-radius: 5rem;
-  font-size: 90%;
-}
-.btn-facebook {
-  color: white;
-  background-color: #3b5998;
-  border-radius: 5rem;
-  font-size: 90%;
-}
-a, a:active, a:focus{
-  outline: none;
-  text-decoration: none;
-}
+.row {
+    padding: 2%;
+  }
+  .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  text-align: center;
+  }
+  .btn{
+    border-radius: 5rem;
+    font-size: 90%;
+    padding:2%;
+    width:40%;
+  }
+  .p{
+    padding: 5%;
+  }
+  .vertical-divider {
+    position: absolute;
+    z-index: 10;
+    top: 40%;
+    left: 50%;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 100%;
+    line-height: 0;
+    text-align:center;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+  }
+  .vertical-divider:before, 
+  .vertical-divider:after {
+    position: absolute;
+    left: 50%;
+    content: '';
+    z-index: 9;
+    border-left: 1px solid rgba(34,36,38,.15);
+    border-right: 1px solid rgba(255,255,255,.1);
+    width: 0;
+    height: calc(100% - 1rem);
+  }
+  .row-divided > .vertical-divider {
+    height: calc(50% - 1rem);    
+  }
+  .vertical-divider:before {
+    top: -100%;
+  }
+  .vertical-divider:after {
+    top: auto;
+    bottom: 0;
+  }
+  
+  .row-divided {
+    position:relative;
+  }
+  .row-divided > [class^="col-"],
+  .row-divided > [class*=" col-"] {
+    padding-left: 15px; 
+    padding-right: 15px; 
+  }
+  .column-one,.column-two{
+  height: 230px;
+  }
