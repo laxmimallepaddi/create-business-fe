@@ -13,6 +13,8 @@ import { CustomerRegisterComponent } from './register/customer-register/customer
 import { BusinessRegisterComponent } from './register/business-register/business-register.component';
 import { BusinessLoginComponent } from './login/business-login/business-login.component';
 import { CustomerLoginComponent } from './login/customer-login/customer-login.component';
+import { RegistercustomerRegisterComponent } from './register/registercustomer-register/registercustomer-register.component';
+import { RegisterbusinessRegisterComponent } from './register/registerbusiness-register/registerbusiness-register.component';
 
 @NgModule({
   declarations: [

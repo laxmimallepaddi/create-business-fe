@@ -9,7 +9,6 @@ import { BusinessRegisterComponent } from './register/business-register/business
 import { BusinessLoginComponent } from './login/business-login/business-login.component';
 import { CustomerLoginComponent } from './login/customer-login/customer-login.component';
 
-
 const routes: Routes = [
   { path:'', component:HomeComponent },
   { path:'login', component:LoginComponent },
