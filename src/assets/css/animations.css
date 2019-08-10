@@ -1,0 +1,250 @@
+.animated {
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+  }
+  
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100px, 0, 0);
+    transform: translate3d(100px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100px, 0, 0);
+    transform: translate3d(100px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+}
+@-webkit-keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(-100px, 0, 0);
+      transform: translate3d(-100px, 0, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(-100px, 0, 0);
+      transform: translate3d(-100px, 0, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+.fadeInLeft {
+    -webkit-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100px, 0);
+      transform: translate3d(0, -100px, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100px, 0);
+      transform: translate3d(0, -100px, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}  
+
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100px, 0);
+    transform: translate3d(0, 100px, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100px, 0);
+    transform: translate3d(0, 100px, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+}  
+
+.bounceInAnimation{
+  animation: bounceIn 5s;
+}
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bounceOutAnimation{
+  animation: bounceOut 5s;
+}
+@keyframes bounceOut {
+  0% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+}
+
+@keyframes color-me-in0 {
+  0% {
+    background: rgb(231, 90, 125);
+  }
+  50% {
+    background: rgb(73, 158, 173);
+    color: black;
+  }
+  100% {
+    background: rgb(231, 90, 125);
+  }
+}
+@keyframes color-me-in1 {
+  0% {
+    background: rgb(153, 209, 116);
+  }
+  50% {
+    background: rgb(212, 87, 87);
+    color: black;
+  }
+  100% {
+    background: rgb(153, 209, 116);
+  }
+}
+@keyframes color-me-in2 {
+  0% {
+    background: rgb(245, 121, 204);
+  }
+  50% {
+    background: rgb(228, 144, 148);
+    color: black;
+  }
+  100% {
+    background: rgb(245, 121, 204);
+  }
+}
+@keyframes color-me-in3 {
+  0% {
+    background: rgb(7, 161, 123);
+  }
+  50% {
+    background: rgb(222, 198, 224);
+    color: black;
+  }
+  100% {
+    background: rgb(7, 161, 123);
+  }
+}
+@keyframes color-me-in3 {
+  0% {
+    background: rgb(7, 161, 123);
+  }
+  50% {
+    background: rgb(222, 198, 224);
+    color: black;
+  }
+  100% {
+    background: rgb(7, 161, 123);
+  }
+}
+@keyframes color-me-in4 {
+  0% {
+    background: rgb(226, 233, 233);
+  }
+  50% {
+    background: rgb(101, 96, 102);
+    
+  }
+  100% {
+    background: rgb(226, 233, 233);
+  }
+}
+@keyframes color-me-in5 {
+  0% {
+    color:black;
+  }
+  50% {
+    color: white;
+    
+  }
+  100% {
+    color:black;
+  }
+}

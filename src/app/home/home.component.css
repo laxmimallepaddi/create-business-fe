@@ -1,34 +1,59 @@
-.carousel-caption {
-    top: 35%;
-    bottom: 10%;
-}
-.carousel-element {
-    top: 40%;
-    bottom: 10%;
-    padding: 5%;
-}
-button{
-    padding: 5%;
-    margin: 3%;
-}
-.carousel-inner img {
+.carousel-inner{
+    
     width: 100%;
     height: 550px;
     padding-left: 5%;
     padding-right: 5%;
-    padding-top:0%;
-    padding-bottom:0%;
 }
-h2 {
-    font-weight: bolder;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #000000;
+
+.carousel-caption{padding-bottom:80px;}
+h2{font-size:40px; padding-bottom:100px;}
+p{padding:10px}
+/* Background images are set within the HTML using inline CSS, not here */
+
+.fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    opacity:0.8;
 }
-.btn{
-    border-radius: 5rem;
-    font-size: 90%;
+
+/**
+ * Button
+*/
+.btn-transparent {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+.btn-transparent:hover {
+  background-color: rgb(13, 14, 14);
+}
+.btn-rounded {
+  border-radius: 70px;
+}
+.btn-sm{
+  padding: 10px 10px;
+  font-size: 16px;
+  font-weight: bolder;
+  width:90%;
 }
 .col-sm-4{
-    padding-left:5%;
-    padding-right: 5%;
+    padding: 5%;
+}
+.para-vision{
+  padding:20%;
+  padding-top: 3%;
+  padding-bottom: 8%;
+}  
+.vision-title{
+font-family: 'Arial';
+}
+.ds-card{
+  padding-left: 5%;
+  padding-right: 5%;
 }

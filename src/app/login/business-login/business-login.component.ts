@@ -11,5 +11,5 @@ export class BusinessLoginComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
 }

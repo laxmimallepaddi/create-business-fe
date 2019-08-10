@@ -14,7 +14,7 @@
 }
 .wrn-btn{
     width: 70%;
-    border-radius:0;
+    border-radius: 5rem;
 }
 
 
@@ -48,7 +48,21 @@ select.round {
 .row,.col-sm-4{
     padding: 5px;
 }
-  
-  
+.form-control {
+    height: auto;
+    border-radius: 0.5rem;
+}
+a, a:active, a:focus{
+    outline: none;
+    text-decoration: none;
+}  
+.search-filter{
+    height: 320px;
+}
+@media only screen and (max-width: 600px) {
+    .search-filter{
+        height: 90%;
+    }
+}  
   
   
