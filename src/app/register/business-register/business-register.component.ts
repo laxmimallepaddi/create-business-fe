@@ -1,6 +1,5 @@
 import { Component, OnInit ,ElementRef} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { $ } from 'protractor';
 
 
 export enum BusinessType{
@@ -37,6 +36,7 @@ export enum BusinessType{
         WEDDINGVENUES="Wedding Venues",
         WEDDINGSEVENTFLORISTS="Wedding Event Florists"
 }
+
 @Component({
   selector: 'app-business-register',
   templateUrl: './business-register.component.html',
