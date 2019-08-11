@@ -1,15 +1,18 @@
-.carousel-inner{
-    
+.carousel-inner img{
     width: 100%;
     height: 550px;
     padding-left: 5%;
     padding-right: 5%;
 }
-.carousel-caption{padding-bottom:80px;}
-h2{font-size:40px; padding-bottom:100px;}
-p{padding:10px}
-/* Background images are set within the HTML using inline CSS, not here */
-
+.carousel-caption{
+  padding-bottom:80px
+}
+h2{
+  font-size:40px; padding-top:100px;
+}
+p{
+  padding:10px
+}
 .fill {
     width: 100%;
     height: 100%;
@@ -20,10 +23,6 @@ p{padding:10px}
     -o-background-size: cover;
     opacity:0.8;
 }
-
-/**
- * Button
-*/
 .btn-transparent {
   background: transparent;
   color: #fff;
