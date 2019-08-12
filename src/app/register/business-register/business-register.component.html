@@ -49,13 +49,13 @@
         <hr class="my-4">
         <div class="row">
                 <div class=" col-sm-12 form-group">
-                <label>Address Line 1</label>  
+                <label>Home Address Line 1</label>  
                 <input type="text" class="form-control" required>
                 </div>
        </div>  
         <div class="row">
                 <div class=" col-sm-12 form-group">
-                        <label>Address Line 2</label>
+                        <label>Home Address Line 2</label>
                 <input type="text" class="form-control" >
                 </div>
         </div>
@@ -67,47 +67,82 @@
                 
         </div>  
         <div class="row">
-                        <div class=" col-sm-6 form-group ">
-                        <label>Pin Code</label>
-                        <input type="text" class="form-control"  max="6" min="6" required>
-                        </div>
-                        <div class=" col-sm-6 form-group ">
-                        <label>Country</label>
-                        <input type="text" class="form-control"  required>
-                        </div>
+                <div class=" col-sm-6 form-group ">
+                <label>Pin Code</label>
+                <input type="text" class="form-control"  max="6" min="6" required>
+                </div>
+                <div class=" col-sm-6 form-group ">
+                <label>Country</label>
+                <input type="text" class="form-control"  required>
+                </div>
         </div>                
         <div class="row">
                 <div class=" col-sm-6 form-group ">
                 <label>State</label>
                 <input type="text" class="form-control"  required>
                 </div>
-                <div class=" col-sm-6 form-group ">
+                <div class=" col-sm-5 form-group ">
                 <label>City</label>
                 <input type="text" class="form-control"  required>
                 </div>
-        </div>
-        <div class="row">
-        <div class=" col-sm-11 form-group ">
-                <label>Address Type</label>
-                <select type="text" class="form-control"  required>
-                <option value="HOME">HOME</option>
-                <option value="OFFICE">OFFICE</option>
-                </select>
-        </div>  
-        <div class=" col-sm-1 form-group "> 
-                <button type="button" class="add-btn" (click)="addAnotherAddress();">
-                        <span class="fa fa-plus"></span>
-                </button> 
-        </div>
+                <div class=" col-sm-1 form-group "> 
+                        <button type="button" class="add-btn" (click)="addAnotherAddress();">
+                                <span class="fa fa-plus"></span>
+                        </button> 
+                </div>
         </div>
         <div class="add_address" [innerHtml]="htmlToAddAddress" > </div>
         <br>
-        <div class="row mr-auto">
+        <div class="row mr-auto" *ngIf="replicateAddressCheckbox==true">
         <div class="col-sm-1 form-group"> <input type="checkbox"></div>
         <div class="col-sm-11 form-group">
         <label > Check if Office Address same as Home Address</label>
         </div>
         </div>      
+        <hr class="my-4" *ngIf="officeAddress1==true">
+        <div class="row" *ngIf="officeAddress1==true">
+                <div class=" col-sm-12 form-group">
+                <label>Office Address Line 1</label>  
+                <input type="text" class="form-control" required>
+        </div>
+       </div>  
+        <div class="row" *ngIf="officeAddress1==true">
+                <div class=" col-sm-12 form-group">
+                        <label>Office Address Line 2</label>
+                <input type="text" class="form-control" >
+        </div>
+        </div>
+        <div class="row" *ngIf="officeAddress1==true">        
+                <div class=" col-sm-12 form-group ">
+                <label>Landmark</label>
+                <input type="text" class="form-control" required>
+        </div>
+        </div>  
+        <div class="row" *ngIf="officeAddress1==true">
+                <div class=" col-sm-6 form-group ">
+                <label>Pin Code</label>
+                <input type="text" class="form-control"  max="6" min="6" required>
+                </div>
+                <div class=" col-sm-6 form-group ">
+                <label>Country</label>
+                <input type="text" class="form-control"  required>
+                </div>
+        </div>                
+        <div class="row" *ngIf="officeAddress1==true">
+                <div class=" col-sm-6 form-group ">
+                <label>State</label>
+                <input type="text" class="form-control"  required>
+                </div>
+                <div class=" col-sm-5 form-group ">
+                <label>City</label>
+                <input type="text" class="form-control"  required>
+                </div>
+                <div class=" col-sm-1 form-group "> 
+                        <button type="button" class="add-btn" (click)="removeAddress();">
+                                <span class="fa fa-remove"></span>
+                        </button> 
+                </div>
+        </div>
         <hr class="my-4">
         <div class="row">
         <div class=" col-sm-6 form-group">
@@ -126,9 +161,46 @@
                 <button type="button" class="add-btn" (click)="addAnotherPhoneNumber();">
                         <span class="fa fa-plus"></span>
                 </button> 
-                </div>
         </div>
-        <div  class="add_phone_number" [innerHtml]="htmlToAddPhoneNumber"> </div>  
+        </div>
+        <div class="row" *ngIf="phoneNumber1==true">
+        <div class=" col-sm-6 form-group">
+        <label>Phone Number</label>  
+        <input type="text" class="form-control" max="10" min="10"  required>
+        </div>
+        <div class=" col-sm-5 form-group "> 
+                <label>Phone Type</label>
+                <select type="text" class="form-control"  required>
+                <option value="HOME">HOME</option>
+                <option value="MOBILE" selected>MOBILE</option>
+                <option value="OFFICE">OFFICE</option>
+                </select>
+                </div>
+                <div class=" col-sm-1 form-group "> 
+                <button type="button" class="add-btn" (click)="removePhoneNumber1();">
+                        <span class="fa fa-remove"></span>
+                </button> 
+        </div>
+        </div>
+        <div class="row" *ngIf="phoneNumber2==true">
+        <div class=" col-sm-6 form-group">
+        <label>Phone Number</label>  
+        <input type="text" class="form-control" max="10" min="10"  required>
+        </div>
+        <div class=" col-sm-5 form-group "> 
+                <label>Phone Type</label>
+                <select type="text" class="form-control"  required>
+                <option value="HOME">HOME</option>
+                <option value="MOBILE">MOBILE</option>
+                <option value="OFFICE" selected>OFFICE</option>
+                </select>
+                </div>
+                <div class=" col-sm-1 form-group "> 
+                <button type="button" class="add-btn" (click)="removePhoneNumber2();">
+                        <span class="fa fa-remove"></span>
+                </button> 
+        </div>
+        </div>
         <hr class="my-4">
         <div class="row">
                 <div class="col-sm-12 form-group">

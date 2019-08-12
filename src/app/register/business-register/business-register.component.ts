@@ -46,6 +46,12 @@ export class BusinessRegisterComponent implements OnInit {
   htmlToAddPhoneNumber='';
   businesstypes=BusinessType;
   phoneNumberCounter=1;
+  addressCounter=1;
+  replicateAddressCheckbox=true;
+  phoneNumber1=false;
+  phoneNumber2=false;
+  officeAddress1=false;
+  
   b_type_keys() : Array<string> {
     var keys = Object.keys(this.businesstypes);
     return keys;
@@ -61,70 +67,36 @@ export class BusinessRegisterComponent implements OnInit {
   }
 
   addAnotherPhoneNumber(){
-    this.phoneNumberCounter=this.phoneNumberCounter+1;
-    var html_phone_number = '<div class="phone_number'+this.phoneNumberCounter+'" ><hr class="my-4"> <div class="row">'+
-    '<div class=" col-sm-6 form-group">'+
-    '<label>Phone Number</label>  '+
-    '<input type="text" class="form-control" max="10" min="10" required>'+
-    '</div>'+
-    '<div class=" col-sm-5 form-group "> '+
-    '<label>Phone Type</label>'+
-    '<select type="text" class="form-control"  required>'+
-    '<option value="HOME">HOME</option>'+
-    '<option value="MOBILE">MOBILE</option>'+
-    '<option value="OFFICE">OFFICE</option>'+
-    '</select>'+
-    '</div>'+
-    '<div class=" col-sm-1 form-group "> '+
-    '<button type="button" class="add-btn" (click)="removePhoneNumber()" style="margin-top: 35px;border-radius: 5rem;color: white;background-color: #67c2ec;box-shadow: 0em;">'+
-    '<span class="fa fa-remove"></span>'+
-    '</button> '+
-    '</div>'+
-    '</div></div>';
-    this.elementRef.nativeElement.querySelector('.add_phone_number').insertAdjacentHTML('beforeend', html_phone_number);
-    
+    this.phoneNumberCounter+=1;
+    if(this.phoneNumberCounter==2){
+      this.phoneNumber1=true;
+    }
+    if(this.phoneNumberCounter==3){
+      this.phoneNumber2=true;
+    }
   }
-  removePhoneNumber(){
-    console.log('Remove this element' +'.phone_number');
+  removePhoneNumber1(){
+    this.phoneNumberCounter-=1;
+    this.phoneNumber1=false;
+  }
+  removePhoneNumber2(){
+    this.phoneNumberCounter-=1;
+    this.phoneNumber2=false;
   }
 
   addAnotherAddress(){
-    
-    var html_address = '<hr class="my-4"><div class="row">'+
-    '<div class=" col-sm-12 form-group">'+
-    '<label>Address Line 1</label>  '+
-    '<input type="text" class="form-control" required>'+
-    '</div>'+
-    '</div>  '+
-    '<div class="row">'+
-    '<div class=" col-sm-12 form-group">'+
-    '<label>Address Line 2</label>'+
-    '<input type="text" class="form-control" >'+
-    '</div>'+
-    '</div>'+
-    '<div class="row">        '+
-    '<div class=" col-sm-6 form-group ">'+
-    '<label>Landmark</label>'+
-    '<input type="text" class="form-control"  max="10" min="10" required>'+
-    '</div>'+
-    '<div class=" col-sm-6 form-group ">'+
-    '<label>Zip Code</label>'+
-    '<input type="text" class="form-control"  max="6" min="6" required>'+
-    '</div>'+
-    '</div>  '+
-    '<div class="row">        '+
-    '<div class=" col-sm-6 form-group ">'+
-    '<label>State</label>'+
-    '<select type="text" class="form-control"  required>'+
-    '</select>'+
-    '</div>'+
-    '<div class=" col-sm-6 form-group ">'+
-    '<label>City</label>'+
-    '<select type="text" class="form-control"  required>'+
-    '</select>'+
-    '</div>'+
-    '</div>';
-    this.elementRef.nativeElement.querySelector('.add_address').insertAdjacentHTML('beforeend', html_address);
-
+    console.log('reached');
+    this.addressCounter+=1;
+    if(this.addressCounter==2){
+      this.replicateAddressCheckbox=false;  
+      console.log(this.officeAddress1);
+      this.officeAddress1=true;
+      console.log(this.officeAddress1);
+    }
+  }
+  removeAddress(){
+    this.replicateAddressCheckbox=true;
+    this.addressCounter -= 1;
+    this.officeAddress1 = false;
   }
 }
