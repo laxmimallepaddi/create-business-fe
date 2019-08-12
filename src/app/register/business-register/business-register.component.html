@@ -2,7 +2,7 @@
         <div class="card mx-auto">
         <div class="card-signin mx-auto">
         <div class="card-body">
-        <h5 class="card-title text-center">Sign Up Business Account</h5>
+        <h5 class="card-title text-center font-weight-bold">Sign Up Business Account</h5>
         <form class="form-signin">
         <div class="row">
                 <div class="col-sm-6 form-group">
@@ -25,6 +25,7 @@
                 <div class=" col-sm-6 form-group ">
                         <label>Business Type</label>
                         <select class="form-control custom-select" required >
+                                <option>Select Business Type</option>
                                 <option *ngFor="let b_type of b_type_keys();let i=index" [value]="b_type">{{b_type_values()[i]}}</option>
                         </select>
                 </div>
@@ -67,7 +68,7 @@
         </div>  
         <div class="row">
                         <div class=" col-sm-6 form-group ">
-                        <label>Zip Code</label>
+                        <label>Pin Code</label>
                         <input type="text" class="form-control"  max="6" min="6" required>
                         </div>
                         <div class=" col-sm-6 form-group ">

@@ -222,9 +222,6 @@
 }
 @keyframes color-me-in4 {
   0% {
-    color:black;
-  }
-  50% {
     color: white;
   }
   100% {
