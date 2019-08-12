@@ -186,10 +186,10 @@
 }
 @keyframes color-me-in2 {
   0% {
-    background: rgb(245, 121, 204);
+    background: rgb(233, 164, 210);
   }
   50% {
-    background: rgb(228, 144, 148);
+    background: rgb(82, 98, 150);
     color: black;
   }
   100% {
