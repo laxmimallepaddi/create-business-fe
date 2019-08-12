@@ -56,7 +56,19 @@ h2 {
 .vision-title{
 font-family: 'Arial';
 }
-.ds-card{
-  padding-left: 5%;
-  padding-right: 5%;
+
+.block-cards{
+  margin: 2%;
+  padding: 2%;
+  height: 250px;
+  width:90%;
+  text-align: center;
+  border-radius: 2em;
+}
+.block-cards h4{
+  font-weight: bold;
+  font-size: 20px;
+}
+.block-cards-body{
+  padding: 15%;
 }
