@@ -51,6 +51,14 @@ export class BusinessRegisterComponent implements OnInit {
   phoneNumber1=false;
   phoneNumber2=false;
   officeAddress1=false;
+  sameAddress=false;
+  copyaddressline1='';
+  copyaddressline2='';
+  copylandmark='';
+  copypincode='';
+  copycountry='';
+  copystate='';
+  copycity='';
   
   b_type_keys() : Array<string> {
     var keys = Object.keys(this.businesstypes);
@@ -67,11 +75,12 @@ export class BusinessRegisterComponent implements OnInit {
   }
 
   addAnotherPhoneNumber(){
-    this.phoneNumberCounter+=1;
-    if(this.phoneNumberCounter==2){
+    if(this.phoneNumberCounter==1 || this.phoneNumberCounter==3){
+      this.phoneNumberCounter+=1;
       this.phoneNumber1=true;
     }
-    if(this.phoneNumberCounter==3){
+    else if(this.phoneNumberCounter==2){
+      this.phoneNumberCounter+=2;
       this.phoneNumber2=true;
     }
   }
@@ -80,23 +89,42 @@ export class BusinessRegisterComponent implements OnInit {
     this.phoneNumber1=false;
   }
   removePhoneNumber2(){
-    this.phoneNumberCounter-=1;
+    this.phoneNumberCounter-=2;
     this.phoneNumber2=false;
   }
 
   addAnotherAddress(){
-    console.log('reached');
-    this.addressCounter+=1;
-    if(this.addressCounter==2){
+    if(this.addressCounter==1){
+      this.addressCounter+=1;
       this.replicateAddressCheckbox=false;  
-      console.log(this.officeAddress1);
       this.officeAddress1=true;
-      console.log(this.officeAddress1);
     }
   }
   removeAddress(){
     this.replicateAddressCheckbox=true;
     this.addressCounter -= 1;
     this.officeAddress1 = false;
+  }
+  onChangeCheckbox(event,addressline1:string,addressline2:string,landmark:string,pincode:string,country:string,state:string,city:string){
+    if(event.target.checked){
+      this.sameAddress=true;
+      this.copyaddressline1=addressline1;
+      this.copyaddressline2=addressline2;
+      this.copylandmark=landmark;
+      this.copycountry=country;
+      this.copystate=state;
+      this.copycity=city;
+      this.copypincode=pincode;
+    }
+    else{
+      this.sameAddress=false;
+      this.copyaddressline1='';
+      this.copyaddressline2='';
+      this.copylandmark='';
+      this.copycountry='';
+      this.copystate='';
+      this.copycity='';
+      this.copypincode='';
+    }
   }
 }

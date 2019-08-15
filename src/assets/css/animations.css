@@ -163,13 +163,15 @@
 @keyframes color-me-in0 {
   0% {
     background: rgb(231, 90, 125);
+    color:black;
   }
   50% {
     background: rgb(73, 158, 173);
-    color: black;
+    color:black;
   }
   100% {
     background: rgb(231, 90, 125);
+    color:black;
   }
 }
 @keyframes color-me-in1 {
@@ -199,25 +201,15 @@
 @keyframes color-me-in3 {
   0% {
     background: rgb(7, 161, 123);
+    color:black;
   }
   50% {
     background: rgb(222, 198, 224);
-    color: black;
+    color:black;
   }
   100% {
     background: rgb(7, 161, 123);
-  }
-}
-@keyframes color-me-in3 {
-  0% {
-    background: rgb(7, 161, 123);
-  }
-  50% {
-    background: rgb(222, 198, 224);
-    color: black;
-  }
-  100% {
-    background: rgb(7, 161, 123);
+    color:black;
   }
 }
 @keyframes color-me-in4 {

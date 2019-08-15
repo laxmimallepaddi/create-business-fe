@@ -1,6 +1,7 @@
 a, a:active, a:focus{
     outline: none;
     text-decoration: none;
+    color: antiquewhite;
 }
 .nav-item{
     padding-top:5px;
@@ -11,4 +12,8 @@ a, a:active, a:focus{
 }
 input,button{
    border-radius: 0.5rem;
+}
+.navbar{
+    background-color: #000316;
+    color: antiquewhite;
 }

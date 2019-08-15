@@ -60,10 +60,6 @@ font-family: 'Arial';
 .block-cards{
   margin: 2%;
   padding: 2%;
-  height: 250px;
-  width:90%;
-  text-align: center;
-  border-radius: 2em;
 }
 .block-cards h4{
   font-weight: bold;
@@ -71,4 +67,9 @@ font-family: 'Arial';
 }
 .block-cards-body{
   padding: 15%;
+  padding-top: 20%;
+  border-radius: 2em;
+  height: 280px;
+  text-align: center;
+  border-radius: 2em;
 }

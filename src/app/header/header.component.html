@@ -1,5 +1,5 @@
-<div id="app" class="container">
-    <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top ">
+<div class="container">
+    <nav class="navbar navbar-expand-sm fixed-top ">
         <a class="navbar-brand" href="#">
           <img src="#" alt="book the event" style="width:120px;">
         </a>
@@ -11,7 +11,7 @@
                 <li class="nav-item dropdown">
                 <div class="input-group ml-6 " *ngIf="router.url == '/'">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-dark" type="button" (click)="onSearch(searchValue.value)">
+                        <button class="btn btn-outline-light" type="button" (click)="onSearch(searchValue.value)">
                             <em class="fa fa-search"></em>
                         </button>
                     </div>

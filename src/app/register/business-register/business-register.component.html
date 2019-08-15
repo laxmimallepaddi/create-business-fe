@@ -2,7 +2,7 @@
         <div class="card mx-auto">
         <div class="card-signin mx-auto">
         <div class="card-body">
-        <h5 class="card-title text-center font-weight-bold">Sign Up Business Account</h5>
+        <h5 class="card-title text-center font-weight-bold">SIGN UP BUSINESS ACCOUNT</h5>
         <form class="form-signin">
         <div class="row">
                 <div class="col-sm-6 form-group">
@@ -17,12 +17,6 @@
         <div class="row">  
                 <div class="col-sm-12 form-group">
                         <label>Email ID</label>  
-                <input type="text" class="form-control" required>
-                </div>
-        </div>
-        <div class="row">  
-                <div class="col-sm-12 form-group">
-                        <label>Username</label>  
                 <input type="text" class="form-control" required>
                 </div>
         </div>
@@ -55,43 +49,52 @@
         <hr class="my-4">
         <div class="row">
                 <div class=" col-sm-12 form-group">
-                <label>Home Address Line 1</label>  
-                <input type="text" class="form-control" required>
+                <label>Address Type</label>  
+                <select class="form-control" required>
+                <option value="HOME" selected>Home</option>
+                <option value="OFFICE">Office</option>
+                </select>
+                </div>
+       </div>
+        <div class="row">
+                <div class=" col-sm-12 form-group">
+                <label>Address Line 1</label>  
+                <input type="text" class="form-control" required #addressline1>
                 </div>
        </div>  
         <div class="row">
                 <div class=" col-sm-12 form-group">
-                        <label>Home Address Line 2</label>
-                <input type="text" class="form-control" >
+                        <label>Address Line 2</label>
+                <input type="text" class="form-control"  #addressline2>
                 </div>
         </div>
         <div class="row">        
                 <div class=" col-sm-12 form-group ">
                 <label>Landmark</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" #landmark>
                 </div>
                 
         </div>  
         <div class="row">
                 <div class=" col-sm-6 form-group ">
                 <label>Pin Code</label>
-                <input type="text" class="form-control"  max="6" min="6" required>
+                <input type="text" class="form-control"  max="6" min="6" required #pincode>
                 </div>
                 <div class=" col-sm-6 form-group ">
                 <label>Country</label>
-                <input type="text" class="form-control"  required>
+                <input type="text" class="form-control"  required #country>
                 </div>
         </div>                
         <div class="row">
                 <div class=" col-sm-6 form-group ">
                 <label>State</label>
-                <input type="text" class="form-control"  required>
+                <input type="text" class="form-control"  required #state>
                 </div>
                 <div class=" col-sm-5 form-group ">
                 <label>City</label>
-                <input type="text" class="form-control"  required>
+                <input type="text" class="form-control"  required #city>
                 </div>
-                <div class=" col-sm-1 form-group "> 
+                <div class=" col-sm-1 form-group " *ngIf="sameAddress!=true"> 
                         <button type="button" class="add-btn" (click)="addAnotherAddress();">
                                 <span class="fa fa-plus"></span>
                         </button> 
@@ -100,7 +103,7 @@
         <div class="add_address" [innerHtml]="htmlToAddAddress" > </div>
         <br>
         <div class="row mr-auto" *ngIf="replicateAddressCheckbox==true">
-        <div class="col-sm-1 form-group"> <input type="checkbox"></div>
+        <div class="col-sm-1 form-group"> <input type="checkbox" (click)="onChangeCheckbox($event,addressline1.value,addressline2.value,landmark.value,pincode.value,country.value,state.value,city.value);"></div>
         <div class="col-sm-11 form-group">
         <label > Check if Office Address same as Home Address</label>
         </div>
@@ -108,42 +111,55 @@
         <hr class="my-4" *ngIf="officeAddress1==true">
         <div class="row" *ngIf="officeAddress1==true">
                 <div class=" col-sm-12 form-group">
-                <label>Office Address Line 1</label>  
-                <input type="text" class="form-control" required>
+                <label>Address Type</label>  
+                <select class="form-control" required>
+                <option value="HOME">Home</option>
+                <option value="OFFICE" selected>Office</option>
+                </select>
+                </div>
+        </div>
+        <div class="row" *ngIf="officeAddress1==true || sameAddress==true">
+                <div class=" col-sm-12 form-group">
+                <label>Address Line 1</label>  
+                <input type="text" class="form-control" required value="{{copyaddressline1}}">
         </div>
        </div>  
-        <div class="row" *ngIf="officeAddress1==true">
+        <div class="row" *ngIf="officeAddress1==true || sameAddress==true">
                 <div class=" col-sm-12 form-group">
-                        <label>Office Address Line 2</label>
-                <input type="text" class="form-control" >
+                        <label>Address Line 2</label>
+                <input type="text" class="form-control" value="{{copyaddressline2}}">
         </div>
         </div>
-        <div class="row" *ngIf="officeAddress1==true">        
+        <div class="row" *ngIf="officeAddress1==true || sameAddress==true">        
                 <div class=" col-sm-12 form-group ">
                 <label>Landmark</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" value="{{copylandmark}}">
         </div>
         </div>  
-        <div class="row" *ngIf="officeAddress1==true">
+        <div class="row" *ngIf="officeAddress1==true || sameAddress==true">
                 <div class=" col-sm-6 form-group ">
                 <label>Pin Code</label>
-                <input type="text" class="form-control"  max="6" min="6" required>
+                <input type="text" class="form-control"  max="6" min="6" required value="{{copypincode}}">
                 </div>
                 <div class=" col-sm-6 form-group ">
                 <label>Country</label>
-                <input type="text" class="form-control"  required>
+                <input type="text" class="form-control"  required value="{{copycountry}}">
                 </div>
         </div>                
-        <div class="row" *ngIf="officeAddress1==true">
+        <div class="row" *ngIf="officeAddress1==true || sameAddress==true">
                 <div class=" col-sm-6 form-group ">
                 <label>State</label>
-                <input type="text" class="form-control"  required>
+                <input type="text" class="form-control"  required value="{{copystate}}">
                 </div>
-                <div class=" col-sm-5 form-group ">
+                <div class=" col-sm-6 form-group " *ngIf="sameAddress==true">
                 <label>City</label>
-                <input type="text" class="form-control"  required>
+                <input type="text" class="form-control"  required value="{{copycity}}">
                 </div>
-                <div class=" col-sm-1 form-group "> 
+                <div class=" col-sm-5 form-group " *ngIf="sameAddress!=true">
+                <label>City</label>
+                <input type="text" class="form-control"  required value="{{copycity}}">
+                </div>
+                <div class=" col-sm-1 form-group " *ngIf="sameAddress!=true"> 
                         <button type="button" class="add-btn" (click)="removeAddress();">
                                 <span class="fa fa-remove"></span>
                         </button> 
@@ -208,6 +224,12 @@
         </div>
         </div>
         <hr class="my-4">
+        <div class="row">  
+                <div class="col-sm-12 form-group">
+                        <label>Username</label>  
+                <input type="text" class="form-control" required>
+                </div>
+        </div>       
         <div class="row">
                 <div class="col-sm-12 form-group">
                 <label>Password</label>
