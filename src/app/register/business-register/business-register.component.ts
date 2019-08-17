@@ -59,6 +59,8 @@ export class BusinessRegisterComponent implements OnInit {
   copycountry='';
   copystate='';
   copycity='';
+  addresstype1val='HOME';
+  addresstype2val='OFFICE';
   
   b_type_keys() : Array<string> {
     var keys = Object.keys(this.businesstypes);
@@ -98,14 +100,21 @@ export class BusinessRegisterComponent implements OnInit {
       this.addressCounter+=1;
       this.replicateAddressCheckbox=false;  
       this.officeAddress1=true;
+      document.getElementById('another_address').setAttribute('hidden','hidden');
+      document.getElementById('city_field1').classList.remove('col-sm-5');
+      document.getElementById('city_field1').classList.add('col-sm-6');
     }
   }
   removeAddress(){
     this.replicateAddressCheckbox=true;
     this.addressCounter -= 1;
     this.officeAddress1 = false;
+    document.getElementById('another_address').removeAttribute('hidden',);
+    document.getElementById('city_field1').classList.add('col-sm-5');
+    document.getElementById('city_field1').classList.remove('col-sm-6');
   }
   onChangeCheckbox(event,addressline1:string,addressline2:string,landmark:string,pincode:string,country:string,state:string,city:string){
+    
     if(event.target.checked){
       this.sameAddress=true;
       this.copyaddressline1=addressline1;
@@ -115,6 +124,8 @@ export class BusinessRegisterComponent implements OnInit {
       this.copystate=state;
       this.copycity=city;
       this.copypincode=pincode;
+      document.getElementById('city_field1').classList.remove('col-sm-5');
+      document.getElementById('city_field1').classList.add('col-sm-6');
     }
     else{
       this.sameAddress=false;
@@ -125,6 +136,26 @@ export class BusinessRegisterComponent implements OnInit {
       this.copystate='';
       this.copycity='';
       this.copypincode='';
+      document.getElementById('city_field1').classList.add('col-sm-5');
+      document.getElementById('city_field1').classList.remove('col-sm-6');
+    }
+  }
+  onAddressTypeChange(event){
+    this.addresstype1val=event.target.value;
+    if(event.target.value=="HOME"){
+      this.addresstype2val="OFFICE";
+    }
+    else{
+      this.addresstype2val="HOME";
+    }
+  }
+  onAddressTypeChange1(event){
+    this.addresstype2val=event.target.value;
+    if(event.target.value=="HOME"){
+      this.addresstype1val="OFFICE";
+    }
+    else{
+      this.addresstype1val="HOME";
     }
   }
 }

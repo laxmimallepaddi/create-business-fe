@@ -50,9 +50,9 @@
         <div class="row">
                 <div class=" col-sm-12 form-group">
                 <label>Address Type</label>  
-                <select class="form-control" required>
-                <option value="HOME" selected>Home</option>
-                <option value="OFFICE">Office</option>
+                <select class="form-control" required (change)="onAddressTypeChange($event)" id="address_type1">
+                <option value="HOME"  [selected]="addresstype1val=='HOME'">Home</option>
+                <option value="OFFICE"  [selected]="addresstype1val=='OFFICE'">Office</option>
                 </select>
                 </div>
        </div>
@@ -90,31 +90,33 @@
                 <label>State</label>
                 <input type="text" class="form-control"  required #state>
                 </div>
-                <div class=" col-sm-5 form-group ">
+                <div class=" col-sm-5 form-group " id="city_field1">
                 <label>City</label>
                 <input type="text" class="form-control"  required #city>
                 </div>
-                <div class=" col-sm-1 form-group " *ngIf="sameAddress!=true"> 
+                <div class=" col-sm-1 form-group " *ngIf="sameAddress!=true" id="another_address"> 
                         <button type="button" class="add-btn" (click)="addAnotherAddress();">
                                 <span class="fa fa-plus"></span>
                         </button> 
                 </div>
         </div>
-        <div class="add_address" [innerHtml]="htmlToAddAddress" > </div>
         <br>
         <div class="row mr-auto" *ngIf="replicateAddressCheckbox==true">
         <div class="col-sm-1 form-group"> <input type="checkbox" (click)="onChangeCheckbox($event,addressline1.value,addressline2.value,landmark.value,pincode.value,country.value,state.value,city.value);"></div>
-        <div class="col-sm-11 form-group">
+        <div class="col-sm-11 form-group"  *ngIf="addresstype1val =='HOME'">
         <label > Check if Office Address same as Home Address</label>
+        </div>
+        <div class="col-sm-11 form-group" *ngIf="addresstype1val=='OFFICE'">
+        <label > Check if Home Address same as Office Address</label>
         </div>
         </div>      
         <hr class="my-4" *ngIf="officeAddress1==true">
         <div class="row" *ngIf="officeAddress1==true">
                 <div class=" col-sm-12 form-group">
                 <label>Address Type</label>  
-                <select class="form-control" required>
-                <option value="HOME">Home</option>
-                <option value="OFFICE" selected>Office</option>
+                <select class="form-control" required  id="address_type2" (change)="onAddressTypeChange1($event)">
+                <option value="HOME" [selected]="addresstype2val=='HOME'">Home</option>
+                <option value="OFFICE" [selected]="addresstype2val=='OFFICE'">Office</option>
                 </select>
                 </div>
         </div>
