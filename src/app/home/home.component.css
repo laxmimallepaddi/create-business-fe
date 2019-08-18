@@ -56,9 +56,9 @@ h2 {
 font-family: 'Arial';
 }
 .vision-block{
-  padding:5%;
+  padding:1%;
   background: 
-   linear-gradient(#84d438 , #84d438)top left/ 10% 5px,
+   linear-gradient(#84d438 , #84d438) top left/ 10% 5px,
    linear-gradient(#84d438, #84d438) bottom right / 10% 5px,
    linear-gradient(#84d438, #84d438) left top/ 5px 15% ,
    linear-gradient(#84d438, #84d438) right bottom / 5px 15%;
@@ -81,8 +81,8 @@ font-family: 'Arial';
   border-radius: 2em;
 }
 .customer-block{
-  padding: 5%;
+  padding: 0%;
 }
 .business-block{
-  padding: 5%;
+  padding: 0%;
 }
