@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,8 @@ import { BusinessRegisterComponent } from './register/business-register/business
 import { BusinessLoginComponent } from './login/business-login/business-login.component';
 import { CustomerLoginComponent } from './login/customer-login/customer-login.component';
 
+import { MustMatchDirective } from './helpers/must-match.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,11 +29,13 @@ import { CustomerLoginComponent } from './login/customer-login/customer-login.co
     CustomerRegisterComponent,
     BusinessRegisterComponent,
     BusinessLoginComponent,
-    CustomerLoginComponent
+    CustomerLoginComponent,
+    MustMatchDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

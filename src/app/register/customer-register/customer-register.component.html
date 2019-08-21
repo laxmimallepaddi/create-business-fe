@@ -3,35 +3,65 @@
         <div class="card-signin mx-auto col-sm-8">
         <div class="card-body col">
             <h5 class="card-title text-center font-weight-bold">SIGN UP CUSTOMER ACCOUNT</h5>
-            <form class="form-signin">
+            <form class="form-signin" #customerForm="ngForm" (ngSubmit)="customerForm.form.valid && onSubmit()" [mustMatch]="['password', 'confirmPassword']" novalidate>
                 <div class="row">
-                    <div class="col-sm-12 form-group">
-                    <input type="text" class="form-control" placeholder="First Name" required>
+                    <div class="col-sm-6 form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" required [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel">
+                        <div *ngIf="customerForm.submitted && firstName.invalid" class="alert alert-danger">
+                        <div *ngIf="firstName.errors.required">First Name is required.</div>
+                        </div>  
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 form-group">
-                    <input type="text" class="form-control" placeholder="Last Name" required>
+                    <div class="col-sm-6 form-group">
+                            <label>Last Name</label>
+                        <input type="text" class="form-control" required [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel">
+                        <div *ngIf="customerForm.submitted  && lastName.invalid" class="alert alert-danger">
+                        <div *ngIf="lastName.errors.required">Last Name is required.</div>
+                        </div> 
                     </div>
                 </div>
                 <div class="row">    
                     <div class="col-sm-12  form-group">
-                    <input type="text" class="form-control" placeholder="Email" required>
+                            <label>Email ID</label>
+                        <input type="text" class="form-control" required [(ngModel)]="model.email" name="email" #email="ngModel" email>
+                        <div *ngIf="customerForm.submitted  && email.invalid" class="alert alert-danger">
+                        <div *ngIf="email.errors.required">Email ID is required.</div>
+                        <div *ngIf="email.errors.email">Email ID is not valid.</div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">    
                         <div class="col-sm-12  form-group">
-                        <input type="text" class="form-control" placeholder="Username" required>
+                            <label>Username</label>
+                            <input type="text" class="form-control" required [(ngModel)]="model.userName" name="userName" #userName="ngModel">
+                            <div *ngIf="customerForm.submitted  && userName.invalid" class="alert alert-danger">
+                            <div *ngIf="userName.errors.required">
+                            User Name is required.
+                            </div>
+                            </div>
                         </div>
                     </div>
                 <div class="row">    
                     <div class=" col-sm-12 form-group">
-                    <input type="password" class="form-control" placeholder="Password" required>
+                        <label>Password</label>
+                        <input type="password" class="form-control" required [(ngModel)]="model.password" name="password" #password="ngModel">
+                        <div *ngIf="customerForm.submitted  && password.invalid" class="alert alert-danger">
+                        <div *ngIf="password.errors.required">
+                        Password is required.
+                        </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">    
                     <div class="col-sm-12 form-group">
-                    <input type="password" class="form-control" placeholder="Confirm Your Password" required>
+                            <label>Confirm Your Password</label>
+                        <input type="password" class="form-control" required [(ngModel)]="model.confirmPassword" name="confirmPassword" #confirmPassword="ngModel">
+                        <div *ngIf="customerForm.submitted  && confirmPassword.invalid" class="alert alert-danger">
+                        <div *ngIf="confirmPassword.errors.required">
+                        Confirm Password is required.
+                        </div>
+                        <div *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div>
+                        </div>
                     </div>
                 </div>    
                 <button class="btn btn-lg btn-primary btn-block text-uppercase mx-auto" type="submit">Sign Up</button>

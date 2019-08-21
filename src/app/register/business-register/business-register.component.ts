@@ -1,6 +1,6 @@
 import { Component, OnInit ,ElementRef} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { Business } from '../../business';
 
 export enum BusinessType{
         STORAGESPACEPROVIDERS= "Storage Space Providers",
@@ -48,19 +48,13 @@ export class BusinessRegisterComponent implements OnInit {
   phoneNumberCounter=1;
   addressCounter=1;
   replicateAddressCheckbox=true;
-  phoneNumber1=false;
-  phoneNumber2=false;
+  phonenumber1=false;
+  phonenumber2=false;
   officeAddress1=false;
   sameAddress=false;
-  copyaddressline1='';
-  copyaddressline2='';
-  copylandmark='';
-  copypincode='';
-  copycountry='';
-  copystate='';
-  copycity='';
-  addresstype1val='HOME';
-  addresstype2val='OFFICE';
+  addresstype1val='';
+  addresstype2val='';
+  submitted = false;
   
   b_type_keys() : Array<string> {
     var keys = Object.keys(this.businesstypes);
@@ -71,7 +65,11 @@ export class BusinessRegisterComponent implements OnInit {
     return values;
   }
 
-  constructor(private router: Router,private activatedroute: ActivatedRoute,private elementRef:ElementRef) { }
+  constructor(
+    private router: Router,
+    private activatedroute: ActivatedRoute,
+    private elementRef:ElementRef
+    ) { }
 
   ngOnInit() {
   }
@@ -79,20 +77,20 @@ export class BusinessRegisterComponent implements OnInit {
   addAnotherPhoneNumber(){
     if(this.phoneNumberCounter==1 || this.phoneNumberCounter==3){
       this.phoneNumberCounter+=1;
-      this.phoneNumber1=true;
+      this.phonenumber1=true;
     }
     else if(this.phoneNumberCounter==2){
       this.phoneNumberCounter+=2;
-      this.phoneNumber2=true;
+      this.phonenumber2=true;
     }
   }
   removePhoneNumber1(){
     this.phoneNumberCounter-=1;
-    this.phoneNumber1=false;
+    this.phonenumber1=false;
   }
   removePhoneNumber2(){
     this.phoneNumberCounter-=2;
-    this.phoneNumber2=false;
+    this.phonenumber2=false;
   }
 
   addAnotherAddress(){
@@ -113,49 +111,106 @@ export class BusinessRegisterComponent implements OnInit {
     document.getElementById('city_field1').classList.add('col-sm-5');
     document.getElementById('city_field1').classList.remove('col-sm-6');
   }
-  onChangeCheckbox(event,addressline1:string,addressline2:string,landmark:string,pincode:string,country:string,state:string,city:string){
-    
+  onChangeCheckbox(event,addressline1:string,addressline2:string,landmark:string,pincode:number,country:string,state:string,city:string){
     if(event.target.checked){
       this.sameAddress=true;
-      this.copyaddressline1=addressline1;
-      this.copyaddressline2=addressline2;
-      this.copylandmark=landmark;
-      this.copycountry=country;
-      this.copystate=state;
-      this.copycity=city;
-      this.copypincode=pincode;
+      this.model.addressLine21=addressline1;
+      this.model.addressLine22=addressline2;
+      this.model.landmark2=landmark;
+      this.model.country2=country;
+      this.model.state2=state;
+      this.model.city2=city;
+      this.model.pincode2=pincode;
       document.getElementById('city_field1').classList.remove('col-sm-5');
       document.getElementById('city_field1').classList.add('col-sm-6');
+      let address_matches2 = document.getElementsByClassName('address-2');
+      for (let i=0; i<address_matches2.length; i++) {
+        address_matches2[i].removeAttribute('readonly');
+      }
+      if(this.model.addressType1=="HOME") this.model.addressType2="OFFICE";
+      if(this.model.addressType1=="OFFICE") this.model.addressType2="HOME";
+      
     }
     else{
       this.sameAddress=false;
-      this.copyaddressline1='';
-      this.copyaddressline2='';
-      this.copylandmark='';
-      this.copycountry='';
-      this.copystate='';
-      this.copycity='';
-      this.copypincode='';
+      this.model.addressLine21=null;
+      this.model.addressLine22=null;
+      this.model.landmark2=null;
+      this.model.country2=null;
+      this.model.state2=null;
+      this.model.city2=null;
+      this.model.pincode2=null;
       document.getElementById('city_field1').classList.add('col-sm-5');
       document.getElementById('city_field1').classList.remove('col-sm-6');
     }
   }
   onAddressTypeChange(event){
     this.addresstype1val=event.target.value;
-    if(event.target.value=="HOME"){
-      this.addresstype2val="OFFICE";
+    let address_matches1 = document.getElementsByClassName('address-1');
+      for (let i=0; i<address_matches1.length; i++) {
+        address_matches1[i].removeAttribute('readonly');
+      }
+    if(this.addresstype1val=='HOME'){
+      this.addresstype2val='OFFICE';
+      let address_matches2 = document.getElementsByClassName('address-2');
+      for (let i=0; i<address_matches2.length; i++) {
+        address_matches2[i].removeAttribute('readonly');
+      }
     }
+    else if(this.addresstype1val=='OFFICE'){
+      this.addresstype2val='HOME';
+      let address_matches2 = document.getElementsByClassName('address-2');
+      for (let i=0; i<address_matches2.length; i++) {
+        address_matches2[i].removeAttribute('readonly');
+      }
+    } 
     else{
-      this.addresstype2val="HOME";
+      this.addresstype2val='';
+      let address_matches1 = document.getElementsByClassName('address-1');
+      for (let j=0; j<address_matches1.length; j++) {
+        address_matches1[j].setAttribute('readonly','readonly');
+      }
+      let address_matches2 = document.getElementsByClassName('address-2');
+      for (let j=0; j<address_matches2.length; j++) {
+        address_matches2[j].setAttribute('readonly','readonly');
+      }
     }
+    console.log(this.addresstype1val,this.addresstype2val);
   }
   onAddressTypeChange1(event){
     this.addresstype2val=event.target.value;
-    if(event.target.value=="HOME"){
-      this.addresstype1val="OFFICE";
+    let address_matches2 = document.getElementsByClassName('address-2');
+      for (let i=0; i<address_matches2.length; i++) {
+        address_matches2[i].removeAttribute('readonly');
+      }
+    if(this.addresstype2val=='HOME'){
+      this.addresstype1val='OFFICE';
+      let address_matches1 = document.getElementsByClassName('address-1');
+      for (let i=0; i<address_matches1.length; i++) {
+        address_matches1[i].removeAttribute('readonly');
+      }
+    }
+    else if(this.addresstype2val=='OFFICE'){
+      this.addresstype1val='HOME';
+      let address_matches1 = document.getElementsByClassName('address-1');
+      for (let i=0; i<address_matches1.length; i++) {
+        address_matches1[i].removeAttribute('readonly');
+      }
     }
     else{
-      this.addresstype1val="HOME";
+      this.addresstype1val='';
+      let address_matches1 = document.getElementsByClassName('address-1');
+      for (let j=0; j<address_matches1.length; j++) {
+        address_matches1[j].setAttribute('readonly','readonly');
+      }
+      let address_matches2 = document.getElementsByClassName('address-2');
+      for (let j=0; j<address_matches2.length; j++) {
+        address_matches2[j].setAttribute('readonly','readonly');
+      }
     }
   }
+  model = new Business(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+  
+  onSubmit() { this.submitted = true; }
+
 }
