@@ -73,9 +73,8 @@
                 <div class=" col-sm-12 form-group">
                         <label>Address Type</label>  
                         <select class="form-control" required (change)="onAddressTypeChange($event)" [(ngModel)]="model.addressType1" name="addressType1" #addressType1="ngModel">
-                        <option [ngValue]="null" [selected]="addresstype1val!='HOME' && addresstype1val!='OFFICE'">Select Address Type</option>
-                        <option value="HOME" [ngValue]="HOME"  [selected]="addresstype1val=='HOME'">Home</option>
-                        <option value="OFFICE" [ngValue]="OFFICE"  [selected]="addresstype1val=='OFFICE'">Office</option>
+                        <option value="HOME" [ngValue]="HOME"  >Home</option>
+                        <option value="OFFICE" [ngValue]="OFFICE">Office</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && addressType1.invalid" class="alert alert-danger">
                         <div *ngIf="addressType1.errors.required">Address Type is required.</div>
@@ -85,7 +84,7 @@
         <div class="row">
                 <div class=" col-sm-12 form-group">
                         <label>Address Line 1</label>  
-                        <input type="text" class="form-control address-1" required #addressline1 [(ngModel)]="model.addressLine11" name="addressLine11" #addressLine11="ngModel" readonly>
+                        <input type="text" class="form-control address-1" required #addressline1 [(ngModel)]="model.addressLine11" name="addressLine11" #addressLine11="ngModel">
                         <div *ngIf="businessForm.submitted  && addressLine11.invalid" class="alert alert-danger">
                         <div *ngIf="addressLine11.errors.required">Address Line 1 is required.</div>
                         </div>        
@@ -94,19 +93,19 @@
         <div class="row">
                 <div class=" col-sm-12 form-group">
                         <label>Address Line 2</label>
-                        <input type="text" class="form-control address-1"  #addressline2 [(ngModel)]="model.addressLine12" name="addressLine12" #addressLine12="ngModel" readonly>
+                        <input type="text" class="form-control address-1"  #addressline2 [(ngModel)]="model.addressLine12" name="addressLine12" #addressLine12="ngModel">
                 </div>
         </div>
         <div class="row">        
                 <div class=" col-sm-12 form-group ">
                         <label>Landmark</label>
-                        <input type="text" class="form-control address-1" #landmark [(ngModel)]="model.landmark1" name="landmark1" #landmark1="ngModel"  readonly>
+                        <input type="text" class="form-control address-1" #landmark [(ngModel)]="model.landmark1" name="landmark1" #landmark1="ngModel" >
                 </div>
         </div>  
         <div class="row">
                 <div class=" col-sm-6 form-group ">
                         <label>Pin Code</label>
-                        <input type="text" class="form-control address-1"  maxlength="6" minlength="6" required #pincode [(ngModel)]="model.pincode1" name="pincode1" #pincode1="ngModel"  readonly>
+                        <input type="text" class="form-control address-1"  maxlength="6" minlength="6" required #pincode [(ngModel)]="model.pincode1" name="pincode1" #pincode1="ngModel" >
                         <div *ngIf="businessForm.submitted  && pincode1.invalid" class="alert alert-danger">
                         <div *ngIf="pincode1.errors.required">Pincode is required.</div>
                         <div *ngIf="pincode1.errors.minlength">Pincode is less than 6 digits.</div>
@@ -114,7 +113,7 @@
                 </div>
                 <div class=" col-sm-6 form-group ">
                         <label>Country</label>
-                        <input type="text" class="form-control address-1"  required #country [(ngModel)]="model.country1" name="country1" #country1="ngModel"  readonly>
+                        <input type="text" class="form-control address-1"  required #country [(ngModel)]="model.country1" name="country1" #country1="ngModel" >
                         <div *ngIf="businessForm.submitted  && country1.invalid" class="alert alert-danger">
                         <div *ngIf="country1.errors.required">Country is required.</div>
                         </div>
@@ -123,14 +122,14 @@
         <div class="row">
                 <div class=" col-sm-6 form-group ">
                         <label>State</label>
-                        <input type="text" class="form-control address-1"  required #state [(ngModel)]="model.state1" name="state1" #state1="ngModel"  readonly>
+                        <input type="text" class="form-control address-1"  required #state [(ngModel)]="model.state1" name="state1" #state1="ngModel" >
                         <div *ngIf="businessForm.submitted  && state1.invalid" class="alert alert-danger">
                         <div *ngIf="state1.errors.required">State is required.</div>
                         </div>
                 </div>
                 <div class=" col-sm-5 form-group " id="city_field1">
                         <label>City</label>
-                        <input type="text" class="form-control address-1"  required #city [(ngModel)]="model.city1" name="city1" #city1="ngModel"  readonly>
+                        <input type="text" class="form-control address-1"  required #city [(ngModel)]="model.city1" name="city1" #city1="ngModel" >
                         <div *ngIf="businessForm.submitted  && city1.invalid" class="alert alert-danger">
                         <div *ngIf="city1.errors.required">City is required.</div>
                 </div>
@@ -142,12 +141,12 @@
                 </div>
         </div>
         <div class="row mr-auto" *ngIf="replicateAddressCheckbox==true">
-                <div class="col-sm-1 form-group" *ngIf="addresstype1val=='HOME' || addresstype1val=='OFFICE'"> 
+                <div class="col-sm-1 form-group"> 
                         <input type="checkbox" (click)="onChangeCheckbox($event,addressline1.value,addressline2.value,landmark.value,pincode.value,country.value,state.value,city.value);"></div>
-                        <div class="col-sm-11 form-group"  *ngIf="addresstype1val =='HOME'">
+                        <div class="col-sm-11 form-group"  *ngIf="model.addressType1 =='HOME'">
                         <label > Check if Office Address same as Home Address</label>
                         </div>
-                <div class="col-sm-11 form-group" *ngIf="addresstype1val=='OFFICE'">
+                <div class="col-sm-11 form-group" *ngIf="model.addressType1=='OFFICE'">
                         <label > Check if Home Address same as Office Address</label>
                 </div>
         </div>      
@@ -156,9 +155,8 @@
                 <div class=" col-sm-12 form-group">
                         <label>Address Type</label>  
                         <select class="form-control" required  id="address_type2" (change)="onAddressTypeChange1($event)" [(ngModel)]="model.addressType2" name="addressType2" #addressType2="ngModel">
-                        <option [ngValue]="null" [selected]="addresstype1val!='HOME' && addresstype1val!='OFFICE'">Select Address Type</option>
-                        <option value="HOME" [ngValue]="HOME" [selected]="addresstype2val=='HOME'">Home</option>
-                        <option value="OFFICE" [ngValue]="OFFICE" [selected]="addresstype2val=='OFFICE'">Office</option>
+                        <option value="HOME" [ngValue]="HOME">Home</option>
+                        <option value="OFFICE" [ngValue]="OFFICE">Office</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && addressType2.invalid" class="alert alert-danger">
                         <div *ngIf="addressType2.errors.required">Address Type is required.</div>
@@ -168,7 +166,7 @@
         <div class="row" *ngIf="officeAddress1==true || sameAddress==true">
                 <div class=" col-sm-12 form-group">
                         <label>Address Line 1</label>
-                        <input type="text" class="form-control address-2" required [(ngModel)]="model.addressLine21" name="addressLine21" #addressLine21="ngModel" readonly>
+                        <input type="text" class="form-control address-2" required [(ngModel)]="model.addressLine21" name="addressLine21" #addressLine21="ngModel">
                         <div *ngIf="businessForm.submitted  && addressLine21.invalid" class="alert alert-danger">
                         <div *ngIf="addressLine21.errors.required">Address Line 1 is required.</div>
                         </div>
@@ -177,19 +175,19 @@
         <div class="row" *ngIf="officeAddress1==true || sameAddress==true">
                 <div class=" col-sm-12 form-group">
                         <label>Address Line 2</label>
-                        <input type="text" class="form-control address-2" [(ngModel)]="model.addressLine22" name="addressLine22" #addressLine22="ngModel" readonly>
+                        <input type="text" class="form-control address-2" [(ngModel)]="model.addressLine22" name="addressLine22" #addressLine22="ngModel">
                 </div>
         </div>
         <div class="row" *ngIf="officeAddress1==true || sameAddress==true">        
                 <div class=" col-sm-12 form-group ">
                         <label>Landmark</label>
-                        <input type="text" class="form-control address-2" [(ngModel)]="model.landmark2" name="landmark2" #landmark2="ngModel" readonly>
+                        <input type="text" class="form-control address-2" [(ngModel)]="model.landmark2" name="landmark2" #landmark2="ngModel">
                 </div>
         </div>  
         <div class="row" *ngIf="officeAddress1==true || sameAddress==true">
                 <div class=" col-sm-6 form-group ">
                         <label>Pin Code</label>
-                        <input type="text" class="form-control address-2"  maxlength="6" minlength="6" required [(ngModel)]="model.pincode2" name="pincode2" #pincode2="ngModel" readonly>
+                        <input type="text" class="form-control address-2"  maxlength="6" minlength="6" required [(ngModel)]="model.pincode2" name="pincode2" #pincode2="ngModel">
                         <div *ngIf="businessForm.submitted  && pincode2.invalid" class="alert alert-danger">
                         <div *ngIf="pincode2.errors.required">Pincode is required.</div>
                         <div *ngIf="pincode2.errors.minlength">Pincode is less than 6 digits.</div>
@@ -197,7 +195,7 @@
                 </div>
                 <div class=" col-sm-6 form-group ">
                         <label>Country</label>
-                        <input type="text" class="form-control address-2"  required [(ngModel)]="model.country2" name="country2" #country2="ngModel" readonly>
+                        <input type="text" class="form-control address-2"  required [(ngModel)]="model.country2" name="country2" #country2="ngModel">
                         <div *ngIf="businessForm.submitted  && country2.invalid" class="alert alert-danger">
                         <div *ngIf="country2.errors.required">Country is required.</div>
                         </div>        
@@ -206,21 +204,21 @@
         <div class="row" *ngIf="officeAddress1==true || sameAddress==true">
                 <div class=" col-sm-6 form-group ">
                         <label>State</label>
-                        <input type="text" class="form-control address-2"  required [(ngModel)]="model.state2" name="state2" #state2="ngModel" readonly>
+                        <input type="text" class="form-control address-2"  required [(ngModel)]="model.state2" name="state2" #state2="ngModel">
                         <div *ngIf="businessForm.submitted  && state2.invalid" class="alert alert-danger">
                         <div *ngIf="state2.errors.required">State is required.</div>
                         </div>
                 </div>  
                 <div class=" col-sm-6 form-group " *ngIf="sameAddress==true">
                         <label>City</label>
-                        <input type="text" class="form-control address-2"  required  [(ngModel)]="model.city2" name="city2" #city2="ngModel" readonly>
+                        <input type="text" class="form-control address-2"  required  [(ngModel)]="model.city2" name="city2" #city2="ngModel">
                         <div *ngIf="businessForm.submitted  && city2.invalid" class="alert alert-danger">
                         <div *ngIf="city2.errors.required">City is required.</div>
                         </div>
                 </div>
                 <div class=" col-sm-5 form-group " *ngIf="sameAddress!=true">
                         <label>City</label>
-                        <input type="text" class="form-control address-2"  required value="{{copycity}}" [(ngModel)]="model.city2" name="city2" #city2="ngModel" readonly>
+                        <input type="text" class="form-control address-2"  required value="{{copycity}}" [(ngModel)]="model.city2" name="city2" #city2="ngModel">
                         <div *ngIf="businessForm.submitted  && city2.invalid" class="alert alert-danger">
                         <div *ngIf="city2.errors.required">City is required.</div>
                         </div>

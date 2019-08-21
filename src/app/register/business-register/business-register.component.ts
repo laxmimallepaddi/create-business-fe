@@ -52,8 +52,6 @@ export class BusinessRegisterComponent implements OnInit {
   phonenumber2=false;
   officeAddress1=false;
   sameAddress=false;
-  addresstype1val='';
-  addresstype2val='';
   submitted = false;
   
   b_type_keys() : Array<string> {
@@ -113,6 +111,7 @@ export class BusinessRegisterComponent implements OnInit {
   }
   onChangeCheckbox(event,addressline1:string,addressline2:string,landmark:string,pincode:number,country:string,state:string,city:string){
     if(event.target.checked){
+      console.log(1110);
       this.sameAddress=true;
       this.model.addressLine21=addressline1;
       this.model.addressLine22=addressline2;
@@ -123,13 +122,8 @@ export class BusinessRegisterComponent implements OnInit {
       this.model.pincode2=pincode;
       document.getElementById('city_field1').classList.remove('col-sm-5');
       document.getElementById('city_field1').classList.add('col-sm-6');
-      let address_matches2 = document.getElementsByClassName('address-2');
-      for (let i=0; i<address_matches2.length; i++) {
-        address_matches2[i].removeAttribute('readonly');
-      }
       if(this.model.addressType1=="HOME") this.model.addressType2="OFFICE";
       if(this.model.addressType1=="OFFICE") this.model.addressType2="HOME";
-      
     }
     else{
       this.sameAddress=false;
@@ -142,74 +136,53 @@ export class BusinessRegisterComponent implements OnInit {
       this.model.pincode2=null;
       document.getElementById('city_field1').classList.add('col-sm-5');
       document.getElementById('city_field1').classList.remove('col-sm-6');
+      
     }
   }
   onAddressTypeChange(event){
-    this.addresstype1val=event.target.value;
+    this.model.addressType1=event.target.value;
     let address_matches1 = document.getElementsByClassName('address-1');
       for (let i=0; i<address_matches1.length; i++) {
         address_matches1[i].removeAttribute('readonly');
       }
-    if(this.addresstype1val=='HOME'){
-      this.addresstype2val='OFFICE';
+    if(this.model.addressType1=='HOME'){
+      this.model.addressType2='OFFICE';
       let address_matches2 = document.getElementsByClassName('address-2');
       for (let i=0; i<address_matches2.length; i++) {
         address_matches2[i].removeAttribute('readonly');
       }
     }
-    else if(this.addresstype1val=='OFFICE'){
-      this.addresstype2val='HOME';
+    else if(this.model.addressType1=='OFFICE'){
+      this.model.addressType2='HOME';
       let address_matches2 = document.getElementsByClassName('address-2');
       for (let i=0; i<address_matches2.length; i++) {
         address_matches2[i].removeAttribute('readonly');
       }
-    } 
-    else{
-      this.addresstype2val='';
-      let address_matches1 = document.getElementsByClassName('address-1');
-      for (let j=0; j<address_matches1.length; j++) {
-        address_matches1[j].setAttribute('readonly','readonly');
-      }
-      let address_matches2 = document.getElementsByClassName('address-2');
-      for (let j=0; j<address_matches2.length; j++) {
-        address_matches2[j].setAttribute('readonly','readonly');
-      }
     }
-    console.log(this.addresstype1val,this.addresstype2val);
   }
   onAddressTypeChange1(event){
-    this.addresstype2val=event.target.value;
+    this.model.addressType2=event.target.value;
     let address_matches2 = document.getElementsByClassName('address-2');
       for (let i=0; i<address_matches2.length; i++) {
         address_matches2[i].removeAttribute('readonly');
       }
-    if(this.addresstype2val=='HOME'){
-      this.addresstype1val='OFFICE';
-      let address_matches1 = document.getElementsByClassName('address-1');
-      for (let i=0; i<address_matches1.length; i++) {
-        address_matches1[i].removeAttribute('readonly');
+      if(this.model.addressType2=='HOME'){
+        this.model.addressType1='OFFICE';
+        let address_matches2 = document.getElementsByClassName('address-2');
+        for (let i=0; i<address_matches2.length; i++) {
+          address_matches2[i].removeAttribute('readonly');
+        }
       }
-    }
-    else if(this.addresstype2val=='OFFICE'){
-      this.addresstype1val='HOME';
-      let address_matches1 = document.getElementsByClassName('address-1');
-      for (let i=0; i<address_matches1.length; i++) {
-        address_matches1[i].removeAttribute('readonly');
+      else if(this.model.addressType2=='OFFICE'){
+        this.model.addressType1='HOME';
+        let address_matches2 = document.getElementsByClassName('address-2');
+        for (let i=0; i<address_matches2.length; i++) {
+          address_matches2[i].removeAttribute('readonly');
+        }
       }
-    }
-    else{
-      this.addresstype1val='';
-      let address_matches1 = document.getElementsByClassName('address-1');
-      for (let j=0; j<address_matches1.length; j++) {
-        address_matches1[j].setAttribute('readonly','readonly');
-      }
-      let address_matches2 = document.getElementsByClassName('address-2');
-      for (let j=0; j<address_matches2.length; j++) {
-        address_matches2[j].setAttribute('readonly','readonly');
-      }
-    }
   }
-  model = new Business(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+    
+  model = new Business(null,null,null,null,null,null,null,'HOME',null,null,null,null,null,'OFFICE',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   
   onSubmit() { this.submitted = true; }
 
