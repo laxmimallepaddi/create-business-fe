@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="router.url == '/register/business'">
         <div class="card mx-auto">
         <div class="card-signin mx-auto">
         <div class="card-body">
@@ -365,4 +365,87 @@
         </div>
         </div>
         </div>
+</div>
+<div class="container emp-profile" *ngIf="router.url == '/business'">
+<form method="post">
+        <div class="row">
+        <div class="col-md-11">
+        </div>
+        <div class="col-md-1">
+                <button type="button" class="profile-edit-btn btn-block">Edit</button>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-3">
+                <div class="profile-work">
+                <div class="row">
+                <h6 class="mt-2">Welcome, </h6><h4>{{business_name}}</h4>
+                </div>
+                <div class="row">
+                <h6><em>{{business_type}}</em></h6>
+                </div>
+                <br>
+                <div class="row">
+                <h6>{{business_city}}, {{business_state}} </h6>
+                </div>
+                <div class="row">
+                <h6>{{business_country}} - {{business_pincode}}</h6>
+                </div>
+                </div>
+        </div>
+        <div class="col-md-7">
+                <div class="tab-content profile-tab" id="myTabContent">
+                <div class="tab-pane fade show active"  role="tabpanel" aria-labelledby="home-tab">
+                        <br>        
+                        <div class="row">
+                        <div class="col-md-4">
+                                <label>Business Name</label>
+                        </div>
+                        <div class="col-md-8">
+                                <p><input type="text" class="form-control no-border" value="{{business_name}}" disabled></p>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-4">
+                                <label>Business Description</label>
+                        </div>
+                        <div class="col-md-8">
+                                <p><textarea type="text" class="form-control no-border" value="{{business_description}}" disabled></textarea></p>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-4">
+                                <label>Business Address</label>
+                        </div>
+                        <div class="col-md-8">
+                                <p>
+                                <input type="text" class="form-control no-border" value="{{business_addressline1}},{{business_addressline2}}" disabled>
+                                <input type="text" class="form-control no-border" value="{{business_landmark}}" disabled>
+                                <input type="text" class="form-control no-border" value="{{business_city}},{{business_state}}" disabled>
+                                <input type="text" class="form-control no-border" value="{{business_country}} - {{business_pincode}}" disabled>
+                                </p>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-4">
+                                <label>Business Phone Number</label>
+                        </div>
+                        <div class="col-md-8">
+                                <p><input type="text" class="form-control no-border" value="{{business_phone_number1}},{{business_phone_number2}}" disabled></p>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-4">
+                                <label>Services Provided</label>
+                        </div>
+                        <div class="col-md-8">
+                                <p><input type="text" class="form-control no-border" value="{{services_provided}}" disabled></p>
+                        </div>
+                        </div>
+                </div>
+                </div>
+        </div>
+        <div class="col-md-2"></div>
+        </div>
+</form>           
 </div>

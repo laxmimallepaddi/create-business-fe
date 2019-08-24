@@ -6,10 +6,13 @@
     padding-right: 5%;
 }
 .carousel-caption{
-  padding-bottom:80px
+  padding-bottom:170px;
 }
 h2{
-  font-size:40px; padding-top:100px;
+  font-size:30px; 
+  font-weight: bolder;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color:  #000316;
 }
 .fill {
     width: 100%;
@@ -25,11 +28,6 @@ h2{
   background: transparent;
   color: #fff;
   border: 2px solid #fff;
-}
-h2 {
-    font-weight: bolder;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color:  #000316;
 }
 .btn-transparent:hover {
   background-color: hsl(232, 100%, 4%,0.6);

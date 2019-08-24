@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./business-login.component.css']
 })
 export class BusinessLoginComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {

@@ -186,4 +186,17 @@ export class BusinessRegisterComponent implements OnInit {
   
   onSubmit() { this.submitted = true; }
 
+  business_name = "Ferns n Petals"
+  business_type = "Wedding Event Florists"
+  business_addressline1 = "3/12, Akshok Avenue"
+  business_addressline2 = "Marks Road"
+  business_landmark = "Near ABC Palace"
+  business_country = "India"
+  business_state = "Hyderabad"
+  business_city = "Telangana"
+  business_pincode = "111111"
+  business_description ="";
+  business_phone_number1=9090909090;
+  business_phone_number2=8080808080;
+  services_provided = "Flower Decoration, Flower Gifts, Flower Vases"
 }
