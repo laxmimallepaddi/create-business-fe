@@ -32,6 +32,7 @@ export class Business {
         public username: string,
         public password: string,
         public confirmPassword: string,
+        public agreeTandC: string,
 
         public addressLine12?: string,
         public landmark1?: string,

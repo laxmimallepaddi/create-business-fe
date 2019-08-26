@@ -73,8 +73,8 @@
                 <div class=" col-sm-12 form-group">
                         <label>Address Type</label>  
                         <select class="form-control" required (change)="onAddressTypeChange($event)" [(ngModel)]="model.addressType1" name="addressType1" #addressType1="ngModel">
-                        <option value="HOME" [ngValue]="HOME"  >Home</option>
-                        <option value="OFFICE" [ngValue]="OFFICE">Office</option>
+                        <option value="HOME">Home</option>
+                        <option value="OFFICE">Office</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && addressType1.invalid" class="alert alert-danger">
                         <div *ngIf="addressType1.errors.required">Address Type is required.</div>
@@ -155,8 +155,8 @@
                 <div class=" col-sm-12 form-group">
                         <label>Address Type</label>  
                         <select class="form-control" required  id="address_type2" (change)="onAddressTypeChange1($event)" [(ngModel)]="model.addressType2" name="addressType2" #addressType2="ngModel">
-                        <option value="HOME" [ngValue]="HOME">Home</option>
-                        <option value="OFFICE" [ngValue]="OFFICE">Office</option>
+                        <option value="HOME">Home</option>
+                        <option value="OFFICE">Office</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && addressType2.invalid" class="alert alert-danger">
                         <div *ngIf="addressType2.errors.required">Address Type is required.</div>
@@ -218,7 +218,7 @@
                 </div>
                 <div class=" col-sm-5 form-group " *ngIf="sameAddress!=true">
                         <label>City</label>
-                        <input type="text" class="form-control address-2"  required value="{{copycity}}" [(ngModel)]="model.city2" name="city2" #city2="ngModel">
+                        <input type="text" class="form-control address-2"  required [(ngModel)]="model.city2" name="city2" #city2="ngModel">
                         <div *ngIf="businessForm.submitted  && city2.invalid" class="alert alert-danger">
                         <div *ngIf="city2.errors.required">City is required.</div>
                         </div>
@@ -241,11 +241,11 @@
                 </div>
                 <div class=" col-sm-5 form-group "> 
                         <label>Phone Type</label>
-                        <select type="text" class="form-control"  required [(ngModel)]="model.phoneNumberType1" name="phoneNumberType1" #phoneNumberType1="ngModel">
-                        <option [ngValue]="null">Select Type</option>
-                        <option [ngValue]="HOME">HOME</option>
-                        <option [ngValue]="MOBILE">MOBILE</option>
-                        <option [ngValue]="OFFICE">OFFICE</option>
+                        <select type="text" class="form-control"  required ngModel name="phoneNumberType1" #phoneNumberType1="ngModel">
+                        <option value="" disabled>Select Type</option>
+                        <option value="HOME">HOME</option>
+                        <option value="MOBILE">MOBILE</option>
+                        <option value="OFFICE">OFFICE</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && phoneNumberType1.invalid" class="alert alert-danger">
                         <div *ngIf="phoneNumberType1.errors.required">
@@ -270,11 +270,11 @@
                 </div>
                 <div class=" col-sm-5 form-group "> 
                         <label>Phone Type</label>
-                        <select type="text" class="form-control"  required [(ngModel)]="model.phoneNumberType2" name="phoneNumberType2" #phoneNumberType2="ngModel">
-                        <option [ngValue]="null">Select Type</option>
-                        <option [ngValue]="HOME">HOME</option>
-                        <option [ngValue]="MOBILE">MOBILE</option>
-                        <option [ngValue]="OFFICE">OFFICE</option>
+                        <select type="text" class="form-control"  required ngModel name="phoneNumberType2" #phoneNumberType2="ngModel">
+                        <option value="" disabled>Select Type</option>
+                        <option value="HOME">HOME</option>
+                        <option value="MOBILE">MOBILE</option>
+                        <option value="OFFICE">OFFICE</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && phoneNumberType2.invalid" class="alert alert-danger">
                         <div *ngIf="phoneNumberType2.errors.required">Phone Number Type is required.</div>
@@ -297,11 +297,11 @@
                 </div>
                 <div class=" col-sm-5 form-group "> 
                         <label>Phone Type</label>
-                        <select type="text" class="form-control"  required [(ngModel)]="model.phoneNumberType3" name="phoneNumberType3" #phoneNumberType3="ngModel">
-                        <option [ngValue]="null">Select Type</option>
-                        <option [ngValue]="HOME">HOME</option>
-                        <option [ngValue]="MOBILE">MOBILE</option>
-                        <option [ngValue]="OFFICE">OFFICE</option>
+                        <select type="text" class="form-control"  required ngModel name="phoneNumberType3" #phoneNumberType3="ngModel">
+                        <option value="" disabled>Select Type</option>
+                        <option value="HOME">HOME</option>
+                        <option value="MOBILE">MOBILE</option>
+                        <option value="OFFICE">OFFICE</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && phoneNumberType3.invalid" class="alert alert-danger">
                         <div *ngIf="phoneNumberType3.errors.required">Phone Number Type is required.</div>
@@ -317,9 +317,9 @@
         <div class="row">  
                 <div class="col-sm-12 form-group">
                         <label>Username</label>  
-                        <input type="text" class="form-control" required [(ngModel)]="model.userName" name="userName" #userName="ngModel">
-                        <div *ngIf="businessForm.submitted  && userName.invalid" class="alert alert-danger">
-                        <div *ngIf="userName.errors.required">
+                        <input type="text" class="form-control" required [(ngModel)]="model.username" name="username" #username="ngModel">
+                        <div *ngIf="businessForm.submitted  && username.invalid" class="alert alert-danger">
+                        <div *ngIf="username.errors.required">
                         User Name is required.
                         </div>
                 </div>

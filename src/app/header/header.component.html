@@ -9,7 +9,7 @@
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
-                <div class="input-group ml-6 " *ngIf="router.url == '/'">
+                <div class="input-group ml-6 " *ngIf="router.url == ''">
                     <div class="input-group-append">
                         <button class="btn btn-outline-light" type="button" (click)="onSearch(searchValue.value)">
                             <em class="fa fa-search"></em>
@@ -42,14 +42,6 @@
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
-                <div class="input-group ml-6 " *ngIf="router.url == '/'">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-light" type="button" (click)="onSearch(searchValue.value)">
-                            <em class="fa fa-search"></em>
-                        </button>
-                    </div>
-                    <input class="form-control border-secondary py-2" type="search" value="search" (change)="onSearch(searchValue.value)" #searchValue value="{{setKeywordValue}}">
-                    </div>
                 </li>
             </ul>
             <ul class="navbar-nav">

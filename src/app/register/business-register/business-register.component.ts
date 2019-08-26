@@ -64,9 +64,9 @@ export class BusinessRegisterComponent implements OnInit {
   }
 
   constructor(
-    private router: Router,
-    private activatedroute: ActivatedRoute,
-    private elementRef:ElementRef
+    public router: Router,
+    public activatedroute: ActivatedRoute,
+    public elementRef:ElementRef
     ) { }
 
   ngOnInit() {
@@ -111,7 +111,6 @@ export class BusinessRegisterComponent implements OnInit {
   }
   onChangeCheckbox(event,addressline1:string,addressline2:string,landmark:string,pincode:number,country:string,state:string,city:string){
     if(event.target.checked){
-      console.log(1110);
       this.sameAddress=true;
       this.model.addressLine21=addressline1;
       this.model.addressLine22=addressline2;
@@ -182,10 +181,11 @@ export class BusinessRegisterComponent implements OnInit {
       }
   }
     
-  model = new Business(null,null,null,null,null,null,null,'HOME',null,null,null,null,null,'OFFICE',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+  model = new Business(null,null,null,null,null,null,null,'HOME',null,null,null,null,null,'OFFICE',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   
   onSubmit() { this.submitted = true; }
 
+  // TODO: Remove after api integration
   business_name = "Ferns n Petals"
   business_type = "Wedding Event Florists"
   business_addressline1 = "3/12, Akshok Avenue"
