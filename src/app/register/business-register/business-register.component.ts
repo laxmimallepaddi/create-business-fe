@@ -184,7 +184,7 @@ export class BusinessRegisterComponent implements OnInit {
   model = new Business(null,null,null,null,null,null,null,'HOME',null,null,null,null,null,'OFFICE',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   
   onSubmit() { this.submitted = true; }
-
+  
   // TODO: Remove after api integration
   business_name = "Ferns n Petals"
   business_type = "Wedding Event Florists"
