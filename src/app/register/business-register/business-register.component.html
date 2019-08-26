@@ -367,86 +367,125 @@
         </div>
 </div>
 <div class="container emp-profile" *ngIf="router.url == '/business'">
-<form method="post">
+<form>
         <div class="row">
-        <div class="col-md-11">
+                <div class="col-sm-6">
+                        <div class="ml-5">
+                        <div class="row mb-5">
+                                <img src="#" alt="book the event" style="width:220px;">
+                        </div>
+                </div>
+                </div>        
+                <div class="col-md-6">
+                        <div class="tab-content">
+                        <div class="tab-pane fade show active">
+                                <div class="row mr-auto">    
+                                        <!-- TODO: Edit button functionality-->
+                                        <button type="button" class="edit-btn btn btn-outline-dark ml-auto " (click)="editBusinessProfile();" >Edit Profile</button>
+                                </div>
+                                
+                        </div>
+                        </div>
+                </div>
         </div>
-        <div class="col-md-1">
-                <!-- TODO: Edit button functionality-->
-                <button type="button" class="profile-edit-btn btn-block">Edit</button>
-        </div>
-        </div>
+        <br>
         <div class="row">
-        <div class="col-md-3">
-                <div class="profile-work">
-                <div class="row">
-                <h6 class="mt-2">Welcome, </h6><h4>{{business_name}}</h4>
+        <div class="col-sm-6">
+                <div class="ml-5">
+                        <div class="row mb-3">
+                                Welcome,
+                        </div> 
+                        <div class="row">
+                                <h4>{{business_name}}</h4>
+                        </div> 
+                        <div class="row">
+                        <h6><strong><em>{{business_type}}</em></strong></h6>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <h6><strong>Address: </strong></h6>
+                        </div>
+                        <div class="row">
+                        <h6>{{business_addressline1}} </h6>
+                        </div>
+                        <div class="row">
+                        <h6>{{business_addressline2}} </h6>
+                        </div>
+                        <div class="row">
+                        <h6>{{business_landmark}} </h6>
+                        </div>
+                        <div class="row">
+                        <h6>{{business_city}}, {{business_state}} </h6>
+                        </div>
+                        <div class="row">
+                        <h6>{{business_country}} - {{business_pincode}}</h6>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <h6><strong>Phone Number: </strong></h6>
+                        </div>
+                        <div class="row">
+                        <h6>{{business_phone_number1}},{{business_phone_number2}}</h6>
+                        </div>
                 </div>
-                <div class="row">
-                <h6><em>{{business_type}}</em></h6>
-                </div>
-                <br>
-                <div class="row">
-                <h6>{{business_city}}, {{business_state}} </h6>
-                </div>
-                <div class="row">
-                <h6>{{business_country}} - {{business_pincode}}</h6>
-                </div>
-                </div>
+                
+                
         </div>
-        <div class="col-md-7">
-                <div class="tab-content profile-tab" id="myTabContent">
-                <div class="tab-pane fade show active"  role="tabpanel" aria-labelledby="home-tab">
+        <div class="col-md-6">
+                <div class="tab-content" *ngIf="editprofile_btn==true">
+                <div class="tab-pane fade show active">
                         <br>        
                         <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                                 <label>Business Name</label>
                         </div>
-                        <div class="col-md-8">
-                                <p><input type="text" class="form-control no-border" value="{{business_name}}" disabled></p>
+                        <div class="col-sm-8">
+                                <input type="text" class="form-control" value="{{business_name}}">
                         </div>
                         </div>
+                        <br>
                         <div class="row">
-                        <div class="col-md-4">
-                                <label>Business Description</label>
+                        <div class="col-sm-4">
+                                <label>Description</label>
                         </div>
-                        <div class="col-md-8">
-                                <p><textarea type="text" class="form-control no-border" value="{{business_description}}" disabled></textarea></p>
+                        <div class="col-sm-8">
+                                <textarea type="text" class="form-control" value="{{business_description}}"></textarea>
                         </div>
                         </div>
+                        <br>
                         <div class="row">
-                        <div class="col-md-4">
-                                <label>Business Address</label>
+                        <div class="col-sm-4">
+                                <label>Address</label>
                         </div>
-                        <div class="col-md-8">
-                                <p>
-                                <input type="text" class="form-control no-border" value="{{business_addressline1}},{{business_addressline2}}" disabled>
-                                <input type="text" class="form-control no-border" value="{{business_landmark}}" disabled>
-                                <input type="text" class="form-control no-border" value="{{business_city}},{{business_state}}" disabled>
-                                <input type="text" class="form-control no-border" value="{{business_country}} - {{business_pincode}}" disabled>
-                                </p>
+                        <div class="col-sm-8">
+                                <input type="text" class="form-control" value="{{business_addressline1}},{{business_addressline2}}">
+                                <input type="text" class="form-control" value="{{business_landmark}}">
+                                <input type="text" class="form-control" value="{{business_city}},{{business_state}}">
+                                <input type="text" class="form-control" value="{{business_country}} - {{business_pincode}}">
                         </div>
                         </div>
+                        <br>
                         <div class="row">
-                        <div class="col-md-4">
-                                <label>Business Phone Number</label>
+                        <div class="col-sm-4">
+                                <label>Phone Number</label>
                         </div>
-                        <div class="col-md-8">
-                                <p><input type="text" class="form-control no-border" value="{{business_phone_number1}},{{business_phone_number2}}" disabled></p>
+                        <div class="col-sm-8">
+                                <input type="text" class="form-control" value="{{business_phone_number1}},{{business_phone_number2}}">
                         </div>
                         </div>
+                        <br>
                         <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                                 <label>Services Provided</label>
                         </div>
-                        <div class="col-md-8">
-                                <p><input type="text" class="form-control no-border" value="{{services_provided}}" disabled></p>
+                        <div class="col-sm-8">
+                                <input type="text" class="form-control" value="{{services_provided}}">
                         </div>
                         </div>
                 </div>
                 </div>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-sm-2"></div>
         </div>
 </form>           
 </div>

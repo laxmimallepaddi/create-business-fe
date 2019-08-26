@@ -198,5 +198,11 @@ export class BusinessRegisterComponent implements OnInit {
   business_description ="";
   business_phone_number1=9090909090;
   business_phone_number2=8080808080;
-  services_provided = "Flower Decoration, Flower Gifts, Flower Vases"
+  services_provided = "Flower Decoration, Flower Gifts, Flower Vases";
+
+  editprofile_btn = false;
+  editBusinessProfile(){
+    if(this.editprofile_btn) this.editprofile_btn=false;
+    else this.editprofile_btn=true;
+  }
 }
