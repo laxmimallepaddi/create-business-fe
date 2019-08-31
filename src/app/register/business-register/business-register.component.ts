@@ -53,7 +53,9 @@ export class BusinessRegisterComponent implements OnInit {
   officeAddress1=false;
   sameAddress=false;
   submitted = false;
-  
+  addresstypevalue = 'HOME';
+  phonetypevalue = 'HOME';
+
   b_type_keys() : Array<string> {
     var keys = Object.keys(this.businesstypes);
     return keys;
@@ -150,6 +152,7 @@ export class BusinessRegisterComponent implements OnInit {
       for (let i=0; i<address_matches2.length; i++) {
         address_matches2[i].removeAttribute('readonly');
       }
+      this.addresstypevalue = 'HOME';
     }
     else if(this.model.addressType1=='OFFICE'){
       this.model.addressType2='HOME';
@@ -157,6 +160,7 @@ export class BusinessRegisterComponent implements OnInit {
       for (let i=0; i<address_matches2.length; i++) {
         address_matches2[i].removeAttribute('readonly');
       }
+      this.addresstypevalue = 'OFFICE';
     }
   }
   onAddressTypeChange1(event){
@@ -188,21 +192,46 @@ export class BusinessRegisterComponent implements OnInit {
   // TODO: Remove after api integration
   business_name = "Ferns n Petals"
   business_type = "Wedding Event Florists"
-  business_addressline1 = "3/12, Akshok Avenue"
-  business_addressline2 = "Marks Road"
-  business_landmark = "Near ABC Palace"
-  business_country = "India"
-  business_state = "Hyderabad"
-  business_city = "Telangana"
-  business_pincode = "111111"
-  business_description ="";
-  business_phone_number1=9090909090;
-  business_phone_number2=8080808080;
-  services_provided = "Flower Decoration, Flower Gifts, Flower Vases";
+  business_address = {
+    OFFICE:{
+    business_addressline1 : "3/12, Akshok Avenue",
+    business_addressline2 : "Marks Road",
+    business_landmark : "Near ABC Palace",
+    business_country : "India",
+    business_state : "Hyderabad",
+    business_city : "Telangana",
+    business_pincode : "111111"
+  },
+  HOME:{
+    business_addressline1 : "3/12, GKS Avenue",
+    business_addressline2 : "Markx Road",
+    business_landmark : "Near XYZ Palace",
+    business_country : "India",
+    business_state : "Hyderabad",
+    business_city : "Telangana",
+    business_pincode : "111112"
+  }
+};
+  
+  business_description = "";
+  business_phone_number = {HOME:9090909090,OFFICE:8080808080,MOBILE:''}
+  services_provided = "Flower Decoration, Flower Gifts, Flower Vases, Flower Supplies, Bouquets";
 
   editprofile_btn = false;
   editBusinessProfile(){
     if(this.editprofile_btn) this.editprofile_btn=false;
     else this.editprofile_btn=true;
+  }
+
+  onPhoneTypeChange(event){
+    if(event.target.value=='HOME'){
+      this.phonetypevalue = 'HOME';
+    }
+    else if(event.target.value=='OFFICE'){
+      this.phonetypevalue = 'OFFICE';
+    }
+    else if(event.target.value=='MOBILE'){
+      this.phonetypevalue = 'MOBILE';
+    }
   }
 }
