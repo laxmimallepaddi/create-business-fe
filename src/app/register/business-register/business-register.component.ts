@@ -217,12 +217,6 @@ export class BusinessRegisterComponent implements OnInit {
   business_phone_number = {HOME:9090909090,OFFICE:8080808080,MOBILE:''}
   services_provided = "Flower Decoration, Flower Gifts, Flower Vases, Flower Supplies, Bouquets";
 
-  editprofile_btn = false;
-  editBusinessProfile(){
-    if(this.editprofile_btn) this.editprofile_btn=false;
-    else this.editprofile_btn=true;
-  }
-
   onPhoneTypeChange(event){
     if(event.target.value=='HOME'){
       this.phonetypevalue = 'HOME';
@@ -234,4 +228,10 @@ export class BusinessRegisterComponent implements OnInit {
       this.phonetypevalue = 'MOBILE';
     }
   }
+
+  passwordsubmitted = false;
+  onChangePasswordForm() { this.passwordsubmitted = true; }
+
+  editformsubmitted = false;
+  onEditForm() { this.editformsubmitted = true; }
 }

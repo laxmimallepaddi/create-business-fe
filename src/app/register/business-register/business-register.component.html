@@ -367,7 +367,7 @@
         </div>
 </div>
 <div class="container emp-profile" *ngIf="router.url == '/business'">
-<form>
+
         <div class="row">
                 <div class="col-sm-4">
                         <div class="row mb-3">
@@ -375,13 +375,6 @@
                         </div>
                 </div>        
                 <div class="col-md-8 mt-5">
-                        <!-- <div class="tab-content">
-                        <div class="tab-pane fade show active">
-                                <div class="row mt-5">    
-                                        <button type="button" class="edit-btn btn btn-outline-dark ml-auto mr-5" (click)="editBusinessProfile();">Edit Profile</button>
-                                </div>
-                        </div>
-                        </div> -->
                         <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
                         <li class="nav-item">
                                 <a class="nav-link active text-dark" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Timeline</a>
@@ -444,6 +437,7 @@
                         
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <form #editBusinessForm (onSubmit)="editformsubmitted()">
                         <br>        
                         <div class="row">
                         <div class="col-sm-4">
@@ -642,51 +636,60 @@
                         <div class="col-sm-8">
                                 <textarea class="form-control" value="{{services_provided}}" ></textarea>
                         </div>
-                        <br>
-                        <div class="row">
-                                <div class="col-sm-6">
-                                <button class="edit-btn btn btn-sm btn-dark btn-block text-uppercase mx-auto" type="submit" >Update</button>
-                                </div>
                         </div>
+                        <br>
                         <br>
                         <div class="row">
                                 <button class="edit-btn btn btn-dark text-uppercase mx-auto p-2" type="submit" >Update</button>
                         </div>
+                </form>        
                 </div>
                 <div class="tab-pane fade" id="change_password" role="tabpanel" aria-labelledby="change_password-tab">
+                <form #changePasswordForm="ngForm" (ngSubmit)="onChangePasswordForm()" [mustMatch]="['new_password', 'confirm_new_password']"  novalidate>
                 <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-5">
                         <label>Current Password</label>
                 </div>
-                <div class="col-sm-8">
-                                <input type="text" class="form-control" required>
-                </div>
+                <div class="col-sm-7">
+                                <input type="password" class="form-control" required [(ngModel)]="model.password" name="password" #password="ngModel">
+                                <div *ngIf="passwordsubmitted &&  password.invalid" class="alert alert-danger">
+                                <div *ngIf="password.errors.required">Password is required.</div>
+                                </div>
+                        </div>
                 </div>
                 <br>
                 <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-5">
                         <label>Change Password</label>
                 </div>
-                <div class="col-sm-8">
-                                <input type="text" class="form-control" required>
+                <div class="col-sm-7">
+                                <input type="password" class="form-control" required [(ngModel)]="model.new_password" name="new_password" #new_password="ngModel">
+                                <div *ngIf="passwordsubmitted &&  new_password.invalid" class="alert alert-danger">
+                                <div *ngIf="new_password.errors.required">Password is required.</div>
+                                </div>
                 </div>
                 </div>
                 <br>
                 <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-5">
                         <label>Confirm Change Password</label>
                 </div>
-                <div class="col-sm-8">
-                                <input type="text" class="form-control" required>
+                <div class="col-sm-7">
+                        <input type="password" class="form-control" required [(ngModel)]="model.confirm_new_password" name="confirm_new_password" #confirm_new_password="ngModel">
+                        <div *ngIf="passwordsubmitted && confirm_new_password.invalid" class="alert alert-danger">
+                        <div *ngIf="confirm_new_password.errors.required">Confirm Password is required.</div>
+                        <div *ngIf="confirm_new_password.errors.mustMatch">Passwords must match</div>
+                        </div>
                 </div>
                 </div>
                 <br>
                 <div class="row">
-                        <button class="edit-btn btn btn-dark text-uppercase p-2 mx-auto" type="submit" >Update</button>
+                        <button class="edit-btn btn btn-dark text-uppercase p-2 mx-auto" type="submit">Update</button>
                 </div>
+                </form>
                 </div>
         </div>
         </div>
        </div>
-</form>           
+         
 </div>
