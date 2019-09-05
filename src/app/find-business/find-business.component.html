@@ -11,26 +11,20 @@
                 </div>
                 <div class="col-sm-4  mr-auto">
                     <label>Type of Service</label>
-                    <select class="form-control search-slt round" >
-                        <option>Select Service</option>
-                        <option></option>
-                        </select>
+                    <select class="form-control custom-select search-slt round" required >
+                                <option value="">Select Business Type</option>
+                                <option *ngFor="let b_type of b_type_keys();let i=index" value="b_type">{{b_type_values()[i]}}</option>
+                    </select>
                 </div>
                 <div class="col-sm-4 mr-auto">
                     <label>State</label>
-                    <select class="form-control search-slt round" >
-                        <option>Select State</option>
-                        <option></option>
-                        </select> 
+                    <input type="text" class="form-control search-slt round" placeholder="Enter State">
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4 mr-auto">
                     <label>City</label>
-                    <select class="form-control search-slt round" >
-                        <option>Select City</option>
-                        <option></option>
-                    </select> 
+                    <input type="text" class="form-control search-slt round" placeholder="Enter City" >
                 </div>
                 <div class="col-sm-4 mr-auto">
                         <label>Postal Code</label>

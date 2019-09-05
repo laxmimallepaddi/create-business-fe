@@ -437,7 +437,7 @@
                         
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <form #editBusinessForm (onSubmit)="editformsubmitted()">
+                        <form #editBusinessForm (onSubmit)="editformsubmitted && editBusinessForm.form.valid">
                         <br>        
                         <div class="row">
                         <div class="col-sm-4">
@@ -640,18 +640,18 @@
                         <br>
                         <br>
                         <div class="row">
-                                <button class="edit-btn btn btn-dark text-uppercase mx-auto p-2" type="submit" >Update</button>
+                                <button class="edit-btn btn btn-dark text-uppercase mx-auto p-2" type="submit" (click)="onEditForm()">Update</button>
                         </div>
                 </form>        
                 </div>
                 <div class="tab-pane fade" id="change_password" role="tabpanel" aria-labelledby="change_password-tab">
-                <form #changePasswordForm="ngForm" (ngSubmit)="onChangePasswordForm()" [mustMatch]="['new_password', 'confirm_new_password']"  novalidate>
+                <form #changePasswordForm="ngForm" (ngSubmit)="passwordsubmitted && changePasswordForm.form.valid" [mustMatch]="['newPassword', 'confirmNewPassword']"  novalidate>
                 <div class="row">
                 <div class="col-sm-5">
                         <label>Current Password</label>
                 </div>
                 <div class="col-sm-7">
-                                <input type="password" class="form-control" required [(ngModel)]="model.password" name="password" #password="ngModel">
+                                <input type="password" class="form-control" required [(ngModel)]="model1.password" name="password" #password="ngModel">
                                 <div *ngIf="passwordsubmitted &&  password.invalid" class="alert alert-danger">
                                 <div *ngIf="password.errors.required">Password is required.</div>
                                 </div>
@@ -663,9 +663,9 @@
                         <label>Change Password</label>
                 </div>
                 <div class="col-sm-7">
-                                <input type="password" class="form-control" required [(ngModel)]="model.new_password" name="new_password" #new_password="ngModel">
-                                <div *ngIf="passwordsubmitted &&  new_password.invalid" class="alert alert-danger">
-                                <div *ngIf="new_password.errors.required">Password is required.</div>
+                                <input type="password" class="form-control" required [(ngModel)]="model1.newPassword" name="newPassword" #newPassword="ngModel">
+                                <div *ngIf="passwordsubmitted &&  newPassword.invalid" class="alert alert-danger">
+                                <div *ngIf="newPassword.errors.required">Password is required.</div>
                                 </div>
                 </div>
                 </div>
@@ -675,16 +675,16 @@
                         <label>Confirm Change Password</label>
                 </div>
                 <div class="col-sm-7">
-                        <input type="password" class="form-control" required [(ngModel)]="model.confirm_new_password" name="confirm_new_password" #confirm_new_password="ngModel">
-                        <div *ngIf="passwordsubmitted && confirm_new_password.invalid" class="alert alert-danger">
-                        <div *ngIf="confirm_new_password.errors.required">Confirm Password is required.</div>
-                        <div *ngIf="confirm_new_password.errors.mustMatch">Passwords must match</div>
+                        <input type="password" class="form-control" required [(ngModel)]="model1.confirmNewPassword" name="confirmNewPassword" #confirmNewPassword="ngModel">
+                        <div *ngIf="passwordsubmitted && confirmNewPassword.invalid" class="alert alert-danger">
+                        <div *ngIf="confirmNewPassword.errors.required">Confirm Password is required.</div>
+                        <div *ngIf="confirmNewPassword.errors.mustMatch">Passwords must match</div>
                         </div>
                 </div>
                 </div>
                 <br>
                 <div class="row">
-                        <button class="edit-btn btn btn-dark text-uppercase p-2 mx-auto" type="submit">Update</button>
+                        <button class="edit-btn btn btn-dark text-uppercase p-2 mx-auto" type="submit" (click)="onChangePasswordForm()">Update</button>
                 </div>
                 </form>
                 </div>
