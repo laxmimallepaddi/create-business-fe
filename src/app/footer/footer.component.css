@@ -3,14 +3,50 @@ footer{
     padding-right:5%;
     padding-top:1%;
     padding-bottom:2%;
-}
-.details a{
-    color: rgb(226, 219, 219);
+    background-color: #212529;
 }
 a, a:active, a:focus{
     outline: none;
     text-decoration: none;
+    color:rgb(226, 219, 219);
 }
 .event-item{
-    padding:1%;
+    padding:2%;
+    font-weight: bolder;
+}
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:10px;
+	right:0.25em;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+    font-size:30px;
+	box-shadow: 2px 2px 2px #999;
+    z-index:100;
+}
+
+.my-float{
+	margin-top:16px;
+}
+.float1{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:10px;
+	right:2.5em;
+	background-color:#6c726c;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+    font-size:30px;
+	box-shadow: 2px 2px 2px #999;
+    z-index:100;
+}
+
+.my-float1{
+	margin-top:16px;
 }

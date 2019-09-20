@@ -16,9 +16,6 @@
     width: 70%;
     border-radius: 5rem;
 }
-
-
-
 select.round {
     /* reset */
 
@@ -66,3 +63,27 @@ a, a:active, a:focus{
 }  
   
   
+span{
+    font-size:15px;
+}
+a{
+  text-decoration:none; 
+  color: rgb(45, 48, 53);
+  border-bottom:2px solid #0062cc;
+}
+.box{
+    padding:60px 0px;
+}
+.box-part{
+    background:rgb(255, 255, 255);
+    border-radius:0;
+    padding:60px 10px;
+    margin:30px 0px;
+    box-shadow: 2px 2px 2px #999;
+}
+.text{
+    margin:20px 0px;
+}
+.fa{
+     color:rgb(45, 48, 53);
+}

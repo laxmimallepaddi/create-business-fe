@@ -7,11 +7,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  setKeywordValue='';
-  constructor(public router: Router,public activatedroute: ActivatedRoute) { }
+ constructor(public router: Router,public activatedroute: ActivatedRoute) { }
   ngOnInit() {}
-  onSearch(searchValue: string){    
-    this.router.navigate(['/findbusiness'], { queryParams: { keyword: searchValue } });
-    this.setKeywordValue=searchValue;
+  onSearch(){    
+    this.router.navigate(['/findbusiness']);
   }
 }

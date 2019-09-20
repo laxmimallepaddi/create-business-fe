@@ -1,18 +1,17 @@
 .carousel-inner img{
     width: 100%;
-    min-height: 550px;
-    max-height: 750px;
+    min-height: 30em;
+    max-height: 45em;
     padding-left: 5%;
     padding-right: 5%;
 }
 .carousel-caption{
-  padding-bottom:170px;
+  padding-bottom:12em;
 }
 h2{
-  font-size:30px; 
-  font-weight: bolder;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color:  #000316;
+  font-size:2.5em; 
+  font-weight: bold;
+  font-family: 'Merienda', cursive;
 }
 .fill {
     width: 100%;
@@ -56,10 +55,10 @@ font-family: 'Arial';
 .vision-block{
   padding:1%;
   background: 
-   linear-gradient(#84d438 , #84d438) top left/ 10% 5px,
-   linear-gradient(#84d438, #84d438) bottom right / 10% 5px,
-   linear-gradient(#84d438, #84d438) left top/ 5px 15% ,
-   linear-gradient(#84d438, #84d438) right bottom / 5px 15%;
+   linear-gradient(#84d438 , #84d438) top left/ 10% 0.25em,
+   linear-gradient(#84d438, #84d438) bottom right / 10% 0.25em,
+   linear-gradient(#84d438, #84d438) left top/ 0.25em 15% ,
+   linear-gradient(#84d438, #84d438) right bottom / 0.25em 15%;
   background-repeat:no-repeat;
 }
 .block-cards{
@@ -83,4 +82,7 @@ font-family: 'Arial';
 }
 .business-block{
   padding: 0%;
+}
+.carousel{
+  padding-bottom: 10em;
 }

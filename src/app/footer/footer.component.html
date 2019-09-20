@@ -1,41 +1,184 @@
 <!-- Footer -->
-<footer class="bg-dark text-white mt-4" >
+<div class="container fixed-bottom mx-auto">
+    <div class="row">
+        <div class="col-sm-12">
+        <h3>
+            <a href="https:\\www.whatsapp.com" class="float1" data-toggle="modal" data-target="#myModal">
+            <i class="fa fa-envelope my-float1"></i>
+            </a>
+        </h3>
+        <h3>
+            <a href="https:\\web.whatsapp.com" class="float ml-5" target="_blank">
+            <i class="fa fa-whatsapp my-float"></i>
+            </a>
+        </h3>
+        </div>
+    </div>
+</div>
+<footer class="text-white mt-4" style="background-color: #000000 " >
     <div class="container-fluid py-3">
         <div class="row">
             <div class="col-md-3">
-                <div class="event-item row"><a href="/findbusiness?keyword=Wedding">Wedding Event</a></div>
-                <div class="event-item row"><a href="/findbusiness?keyword=matrimonial">Matrimonial Services</a></div>
-                <div class="event-item row"><a href="/findbusiness?keyword=security">Event Security</a></div>
+                <div class="event-item row"><a href="/findbusiness/">Wedding Event</a></div>
+                <div class="event-item row"><a href="/findbusiness/">Matrimonial Services</a></div>
+                <div class="event-item row"><a href="/findbusiness/">Event Security</a></div>
                 
             </div>
             <div class="col-md-3">
-                <div class="event-item row"><a href="/findbusiness?keyword=cakes">Cakes and Bakes</a></div>
-                <div class="event-item row"><a href="/findbusiness?keyword=foodtruck">Food Truck</a></div>
-                <div class="event-item row"><a href="/findbusiness?keyword=photography">Event Photography</a></div>
+                <div class="event-item row"><a href="/findbusiness/">Cakes and Bakes</a></div>
+                <div class="event-item row"><a href="/findbusiness/">Food Truck</a></div>
+                <div class="event-item row"><a href="/findbusiness/">Event Photography</a></div>
             </div>
             <div class="col-md-3">
-                <div class="event-item row"><a href="/findbusiness?keyword=birthday">Birthday</a></div>    
-                <div class="event-item row"><a href="/findbusiness?keyword=kids">Kids Party</a></div>
-                <div class="event-item row"><a href="/findbusiness?keyword=catering">Catering</a></div>
+                <div class="event-item row"><a href="/findbusiness/">Birthday</a></div>    
+                <div class="event-item row"><a href="/findbusiness/">Kids Party</a></div>
+                <div class="event-item row"><a href="/findbusiness/">Catering</a></div>
                 </div>
-            <div class="col-md-3 details">
+            <div class="col-md-3">
                 <div class="row">  
-                    <a class="navbar-brand ml-auto" href="#">
-                    <img src="#" alt="book the event" style="width:120px;">
+                    <a class="ml-auto pb-3" href="#">
+                    <img src="/assets/images/logo.png" alt="book the event" style="width:200px;">
                     </a>
                 </div>      
-                <div class="row"><h6 class=" ml-auto"><a href="#">Contact Us</a></h6></div>
-                <div class="row"><h6 class=" ml-auto"><a href="#">Terms & Condition</a></h6></div>
-                <div class="row"><h6 class=" ml-auto"><a href="#">Refund and Cancellation Policy</a></h6></div>
-                <div class="row "><h4 class=" ml-auto">
-                    <a href="#" class="fa fa-facebook ml-2"></a>
-                    <a href="#" class="fa fa-twitter ml-2"></a>
-                    <a href="#" class="fa fa-instagram ml-2"></a>
-                    <a href="#" class="fa fa-linkedin ml-2"></a>
-                    <a href="#" class="fa fa-youtube ml-2"></a>
-                </h4></div>
+                
             </div>
+        </div>
+        <div>
+            <!-- <div class="row mt-5">
+                <h6 class="ml-1">
+                    <a href="#" data-toggle="modal" data-target="#myModal1">Terms & Condition</a>
+                </h6>
+                <h6 class="mx-1">
+            |   <a href="#" data-toggle="modal" data-target="#myModal2">Cancellation Policy</a>
+                </h6>
+                <h4 class="">
+                <a href="https:\\www.facebook.com" class="fa fa-facebook ml-2"></a>
+                <a href="https:\\www.twitter.com" class="fa fa-twitter ml-2"></a>
+                <a href="https:\\www.instagram.com" class="fa fa-instagram ml-2"></a>
+                <a href="https:\\www.linkedin.com" class="fa fa-linkedin ml-2"></a>
+                <a href="https:\\www.youtube.com" class="fa fa-youtube-play ml-2"></a>
+            </h4></div> -->
         </div>
     </div>
 </footer>
+
 <!-- ./Footer -->
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal" >
+        <div class="modal-dialog modal-md" >
+        <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Contact Us</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container-fluid">
+                <div class="row">
+                <div class="col-sm-10 mx-auto">
+                <form role="form" method="post" id="contact_form" >
+                    <p>
+                        Send your message in the form below and we will get back to you as early as possible.
+                    </p>
+            
+                    <div class="form-group">
+                        <label for="name">
+                            Name:</label>
+                        <input type="text" class="form-control"
+                        id="name" name="name"   required maxlength="50">
+            
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            Email:</label>
+                        <input type="email" class="form-control"
+                        id="email" name="email" required maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">
+                            Message:</label>
+                        <textarea class="form-control" type="textarea" name="message"
+                        id="message" placeholder="Your Message Here"
+                        maxlength="6000" rows="7"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-success mx-auto">Submit</button>
+            
+                </form>
+            </div>
+            </div>
+            </div>    
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal1" >
+        <div class="modal-dialog modal-md" >
+        <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Terms & Condition</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container-fluid">
+                <div class="row">
+                <div class="col-sm-10 mx-auto">
+            </div>
+            </div>
+            </div>    
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal2" >
+        <div class="modal-dialog modal-md" >
+        <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Cancellation Policy</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container-fluid">
+                <div class="row">
+                <div class="col-sm-10 mx-auto">
+                
+            </div>
+            </div>
+            </div>    
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+        </div>
+    </div>
+</div>

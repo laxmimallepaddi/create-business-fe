@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ElementRef, NgZone, ɵConsole} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BusinessType } from '../business';
+import { BusinessType,BusinessFilter } from '../business';
+import { HttpClientService } from '../service/http-client.service';
 
 @Component({
   selector: 'app-find-business',
@@ -8,14 +9,27 @@ import { BusinessType } from '../business';
   styleUrls: ['./find-business.component.css']
 })
 export class FindBusinessComponent implements OnInit {
-  setKeywordValue='';
-  constructor(private router: Router,private activatedroute: ActivatedRoute) { }
-
+  constructor(
+    public router: Router,
+    public activatedroute: ActivatedRoute,
+    public elementRef:ElementRef,
+    public httpClientService: HttpClientService,
+    private ngZone: NgZone
+    ) { }
+ 
   ngOnInit() {
-    let param1 = this.activatedroute.snapshot.queryParams["keyword"];
-    this.setKeywordValue=param1;
+    this.httpClientService.getAllBusiness().subscribe(
+      response =>this.handleSuccessfulResponse(response),
+     );
   }
-  
+
+  business: string[];
+  handleSuccessfulResponse(response)
+  {
+      console.log(response);
+      this.business=response;
+  }
+
   businesstypes=BusinessType;
   b_type_keys() : Array<string> {
     var keys = Object.keys(this.businesstypes);
@@ -24,5 +38,13 @@ export class FindBusinessComponent implements OnInit {
   b_type_values(): Array<string> {
     var values = Object.values(this.businesstypes);
     return values;
+  }
+
+    model = new BusinessFilter()
+  filterBusiness(userdata){ 
+    this.httpClientService.SearchFilter(userdata).subscribe(res => {
+      console.log("search successful.")
+      this.handleSuccessfulResponse(res);
+    });
   }
 }

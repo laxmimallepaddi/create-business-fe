@@ -17,3 +17,7 @@ input,button{
     background-color: #000316;
     color: antiquewhite;
 }
+.navbar-light,.bg-light{
+    background-color: antiquewhite;
+    color: antiquewhite;
+}
