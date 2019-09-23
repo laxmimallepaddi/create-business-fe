@@ -10,14 +10,43 @@ export class Business {
         public businessDescription: string,
         
         public servicesProvided: servicesProvided,
-        public address: address,
-        public phone: phoneNumber,
+        // public address: address,
+        // public phone: phoneNumber,
+
+        
+
+        public addressType: string,
+        public addressLine1: string,
+        public pincode: number,
+        public country: string,
+        public state: string,
+        public city: string,
+        public secondary_addressType: string,
+        public secondary_addressLine1: string,
+        public secondary_pincode: number,
+        public secondary_country: string,
+        public secondary_state: string,
+        public secondary_city: string,
+
+        public extension1: number,
+        public phoneType1: string,
+        public phoneNumber1: number,
+        public extension2: number,
+        public phoneType2: string,
+        public phoneNumber2: number,
+        public extension3: number,
+        public phoneType3: string,
+        public phoneNumber3: number,
 
         public userName: string,
         public password: string,
         public confirmPassword: string,
         public agreeTandC: string,
 
+        public addressLine2?: string,
+        public landmark?: string,
+        public secondary_addressLine2?: string,
+        public secondary_landmark?: string
     ){}
     }    
 
@@ -85,8 +114,8 @@ export class address {
 }
 export class servicesProvided {
     constructor(
-        public serviceName: string,
-        public serviceDetails: string,
+        public serviceName: string
+        //public serviceDetails: string,
     ){}
 }
 
@@ -96,8 +125,20 @@ export class BusinessFilter {
         public state?: string,
         public city?: string,
         public businessType?: string,
-        public zipCode?: string,
+        public zipCode?: string
         
 
     ){}
     }    
+
+export enum SubBusinessType{    
+    HOTEL = "Hotel",
+    RESORTS = "Resorts",
+    FARMHOUSE = "Farmhouse",
+    BANQUETS = "Banquets",
+    CONVENTIONCENTER = "Convetion Center",
+    FUNCTIONHALLS = "Function Halls",
+    WEDDING = "Wedding",
+    FUNERAL = "Funeral",
+
+}

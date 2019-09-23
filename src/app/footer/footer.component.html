@@ -3,13 +3,18 @@
     <div class="row">
         <div class="col-sm-12">
         <h3>
-            <a href="https:\\www.whatsapp.com" class="float1" data-toggle="modal" data-target="#myModal">
-            <i class="fa fa-envelope my-float1"></i>
+            <a  class="float1" data-toggle="modal" data-target="#myModal">
+            <em class="fa fa-phone my-float1"></em>
+            </a>
+        </h3>
+        <h3>
+            <a class="float2" data-toggle="modal" data-target="#myModal1">
+            <em class="fa fa-envelope my-float2"></em>
             </a>
         </h3>
         <h3>
             <a href="https:\\web.whatsapp.com" class="float ml-5" target="_blank">
-            <i class="fa fa-whatsapp my-float"></i>
+            <em class="fa fa-whatsapp my-float"></em>
             </a>
         </h3>
         </div>
@@ -19,7 +24,7 @@
     <div class="container-fluid py-3">
         <div class="row">
             <div class="col-md-3">
-                <div class="event-item row"><a href="/findbusiness/">Wedding Event</a></div>
+                <div class="event-item row"><a [routerLink]="['findbusiness']">Wedding Event</a></div>
                 <div class="event-item row"><a href="/findbusiness/">Matrimonial Services</a></div>
                 <div class="event-item row"><a href="/findbusiness/">Event Security</a></div>
                 
@@ -80,7 +85,7 @@
                 <div class="container-fluid">
                 <div class="row">
                 <div class="col-sm-10 mx-auto">
-                <form role="form" method="post" id="contact_form" >
+                <form role="form" method="post" id="contact_form1" >
                     <p>
                         Send your message in the form below and we will get back to you as early as possible.
                     </p>
@@ -103,7 +108,7 @@
                             Message:</label>
                         <textarea class="form-control" type="textarea" name="message"
                         id="message" placeholder="Your Message Here"
-                        maxlength="6000" rows="7"></textarea>
+                        maxlength="6000" rows="4"></textarea>
                     </div>
                     <button type="submit" class="btn btn-sm btn-success mx-auto">Submit</button>
             
@@ -121,7 +126,6 @@
         </div>
     </div>
 </div>
-
 <!-- The Modal -->
 <div class="modal fade" id="myModal1" >
         <div class="modal-dialog modal-md" >
@@ -129,7 +133,7 @@
         
             <!-- Modal Header -->
             <div class="modal-header">
-            <h4 class="modal-title">Terms & Condition</h4>
+            <h4 class="modal-title">Feedback</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             
@@ -138,37 +142,34 @@
                 <div class="container-fluid">
                 <div class="row">
                 <div class="col-sm-10 mx-auto">
-            </div>
-            </div>
-            </div>    
-            </div>
+                <form role="form" method="post" id="contact_form2" >
+                    <p>
+                        Add your feedback in the form below and we will get back to you with our best possible services.
+                    </p>
             
-            <!-- Modal footer -->
-            <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
+                    <div class="form-group">
+                        <label for="name">
+                            Name:</label>
+                        <input type="text" class="form-control"
+                        id="feedback_name" name="name"   required maxlength="50">
             
-        </div>
-    </div>
-</div>
-
-<!-- The Modal -->
-<div class="modal fade" id="myModal2" >
-        <div class="modal-dialog modal-md" >
-        <div class="modal-content">
-        
-            <!-- Modal Header -->
-            <div class="modal-header">
-            <h4 class="modal-title">Cancellation Policy</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            Email:</label>
+                        <input type="email" class="form-control"
+                        id="feedback_email" name="email" required maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">
+                            Message:</label>
+                        <textarea class="form-control" type="textarea" name="message"
+                        id="feedback_message" placeholder="Your Message Here"
+                        maxlength="6000" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-success mx-auto">Submit</button>
             
-            <!-- Modal body -->
-            <div class="modal-body">
-                <div class="container-fluid">
-                <div class="row">
-                <div class="col-sm-10 mx-auto">
-                
+                </form>
             </div>
             </div>
             </div>    

@@ -2,4 +2,9 @@ a, a:active, a:focus{
     outline: none;
     text-decoration: none;
   }
-  
+.uppercase {
+    text-transform: uppercase;
+  }  
+.capitalize {
+  text-transform: capitalize;
+} 

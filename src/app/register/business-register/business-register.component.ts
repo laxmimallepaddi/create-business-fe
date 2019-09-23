@@ -1,6 +1,6 @@
 import { Component, OnInit ,ElementRef, NgZone} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Business,BusinessType,BusinessPasswordChange } from '../../business';
+import { Business,BusinessType,BusinessPasswordChange,SubBusinessType } from '../../business';
 import { HttpClientService } from '../../service/http-client.service';
 
 
@@ -12,6 +12,7 @@ import { HttpClientService } from '../../service/http-client.service';
 export class BusinessRegisterComponent implements OnInit {
   htmlToAddPhoneNumber='';
   businesstypes=BusinessType;
+  subbusinesstypes=SubBusinessType;
   phoneNumberCounter=1;
   addressCounter=1;
   replicateAddressCheckbox=true;
@@ -29,6 +30,14 @@ export class BusinessRegisterComponent implements OnInit {
   }
   b_type_values(): Array<string> {
     var values = Object.values(this.businesstypes);
+    return values;
+  }
+  sub_b_type_keys() : Array<string> {
+    var keys = Object.keys(this.subbusinesstypes);
+    return keys;
+  }
+  sub_b_type_values(): Array<string> {
+    var values = Object.values(this.subbusinesstypes);
     return values;
   }
 
@@ -83,78 +92,78 @@ export class BusinessRegisterComponent implements OnInit {
   onChangeCheckbox(event,addressline1:string,addressline2:string,landmark:string,pincode:number,country:string,state:string,city:string){
     if(event.target.checked){
       this.sameAddress=true;
-      // this.model.addressLine21=addressline1;
-      // this.model.addressLine22=addressline2;
-      // this.model.landmark2=landmark;
-      // this.model.country2=country;
-      // this.model.state2=state;
-      // this.model.city2=city;
-      // this.model.pincode2=pincode;
-      // document.getElementById('city_field1').classList.remove('col-sm-5');
+      this.model.secondary_addressLine1=addressline1;
+      this.model.secondary_addressLine2=addressline2;
+      this.model.secondary_landmark=landmark;
+      this.model.secondary_country=country;
+      this.model.secondary_state=state;
+      this.model.secondary_city=city;
+      this.model.secondary_pincode=pincode;
+      document.getElementById('city_field1').classList.remove('col-sm-5');
       document.getElementById('city_field1').classList.add('col-sm-6');
-      // if(this.model.addressType=="HOME") this.model.addressType2="OFFICE";
-      // if(this.model.addressType=="OFFICE") this.model.addressType2="HOME";
+      if(this.model.addressType=="HOME") this.model.secondary_addressType="OFFICE";
+      if(this.model.addressType=="OFFICE") this.model.secondary_addressType="HOME";
     }
     else{
       this.sameAddress=false;
-      // this.model.addressLine21=null;
-      // this.model.addressLine22=null;
-      // this.model.landmark2=null;
-      // this.model.country2=null;
-      // this.model.state2=null;
-      // this.model.city2=null;
-      // this.model.pincode2=null;
+      this.model.secondary_addressLine1=null;
+      this.model.secondary_addressLine2=null;
+      this.model.secondary_landmark=null;
+      this.model.secondary_country=null;
+      this.model.secondary_state=null;
+      this.model.secondary_city=null;
+      this.model.secondary_pincode=null;
       document.getElementById('city_field1').classList.add('col-sm-5');
       document.getElementById('city_field1').classList.remove('col-sm-6');
       
     }
   }
   onAddressTypeChange(event){
-    // this.model.addressType=event.target.value;
-    // let address_matches1 = document.getElementsByClassName('address-1');
-    //   for (let i=0; i<address_matches1.length; i++) {
-    //     address_matches1[i].removeAttribute('readonly');
-    //   }
-    // if(this.model.addressType=='HOME'){
-    //   this.model.addressType2='OFFICE';
-    //   let address_matches2 = document.getElementsByClassName('address-2');
-    //   for (let i=0; i<address_matches2.length; i++) {
-    //     address_matches2[i].removeAttribute('readonly');
-    //   }
-    //   this.addresstypevalue = 'HOME';
-    // }
-    // else if(this.model.addressType=='OFFICE'){
-    //   this.model.addressType2='HOME';
-    //   let address_matches2 = document.getElementsByClassName('address-2');
-    //   for (let i=0; i<address_matches2.length; i++) {
-    //     address_matches2[i].removeAttribute('readonly');
-    //   }
-    //   this.addresstypevalue = 'OFFICE';
-    // }
+    this.model.addressType=event.target.value;
+    let address_matches1 = document.getElementsByClassName('address-1');
+      for (let i=0; i<address_matches1.length; i++) {
+        address_matches1[i].removeAttribute('readonly');
+      }
+    if(this.model.addressType=='HOME'){
+      this.model.secondary_addressType='OFFICE';
+      let address_matches2 = document.getElementsByClassName('address-2');
+      for (let i=0; i<address_matches2.length; i++) {
+        address_matches2[i].removeAttribute('readonly');
+      }
+      this.addresstypevalue = 'HOME';
+    }
+    else if(this.model.addressType=='OFFICE'){
+      this.model.secondary_addressType='HOME';
+      let address_matches2 = document.getElementsByClassName('address-2');
+      for (let i=0; i<address_matches2.length; i++) {
+        address_matches2[i].removeAttribute('readonly');
+      }
+      this.addresstypevalue = 'OFFICE';
+    }
   }
   onAddressTypeChange1(event){
-    // this.model.addressType2=event.target.value;
-    // let address_matches2 = document.getElementsByClassName('address-2');
-    //   for (let i=0; i<address_matches2.length; i++) {
-    //     address_matches2[i].removeAttribute('readonly');
-    //   }
-    //   if(this.model.addressType2=='HOME'){
-    //     this.model.addressType='OFFICE';
-    //     let address_matches2 = document.getElementsByClassName('address-2');
-    //     for (let i=0; i<address_matches2.length; i++) {
-    //       address_matches2[i].removeAttribute('readonly');
-    //     }
-    //   }
-    //   else if(this.model.addressType2=='OFFICE'){
-    //     this.model.addressType='HOME';
-    //     let address_matches2 = document.getElementsByClassName('address-2');
-    //     for (let i=0; i<address_matches2.length; i++) {
-    //       address_matches2[i].removeAttribute('readonly');
-    //     }
-    //   }
+    this.model.secondary_addressType=event.target.value;
+    let address_matches2 = document.getElementsByClassName('address-2');
+      for (let i=0; i<address_matches2.length; i++) {
+        address_matches2[i].removeAttribute('readonly');
+      }
+      if(this.model.secondary_addressType=='HOME'){
+        this.model.addressType='OFFICE';
+        let address_matches2 = document.getElementsByClassName('address-2');
+        for (let i=0; i<address_matches2.length; i++) {
+          address_matches2[i].removeAttribute('readonly');
+        }
+      }
+      else if(this.model.secondary_addressType=='OFFICE'){
+        this.model.addressType='HOME';
+        let address_matches2 = document.getElementsByClassName('address-2');
+        for (let i=0; i<address_matches2.length; i++) {
+          address_matches2[i].removeAttribute('readonly');
+        }
+      }
   }
     
-  model = new Business(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+  model = new Business(null,null,null,null,null,null,null,null,null,"OFFICE",null,null,null,null,null,null,"HOME",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   
   onSubmit() { this.submitted = true; }
   
@@ -182,7 +191,6 @@ export class BusinessRegisterComponent implements OnInit {
     business_pincode : "111112"
   }
 };
-  
   business_description = "";
   business_phone_number = {HOME:9090909090,OFFICE:8080808080,MOBILE:''}
   services_provided = "Flower Decoration, Flower Gifts, Flower Vases, Flower Supplies, Bouquets";
