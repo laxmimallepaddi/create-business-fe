@@ -62,28 +62,25 @@ a, a:active, a:focus{
     }
 }  
   
-  
-span{
-    font-size:15px;
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+
+.starrating > input {display: none;}  /* Remove radio buttons */
+
+.starrating > label:before { 
+  content: "\f005"; /* Star */
+  margin: 2px;
+  font-family: FontAwesome;
+  display: inline-block; 
 }
-a{
-  text-decoration:none; 
-  color: rgb(45, 48, 53);
-  border-bottom:2px solid #0062cc;
+
+.starrating > label
+{
+  color: #222222; /* Start color when not clicked */
 }
-.box{
-    padding:60px 0px;
-}
-.box-part{
-    background:rgb(255, 255, 255);
-    border-radius:0;
-    padding:60px 10px;
-    margin:30px 0px;
-    box-shadow: 2px 2px 2px #999;
-}
-.text{
-    margin:20px 0px;
-}
-.fa{
-     color:rgb(45, 48, 53);
-}
+
+.starrating > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
+
+.starrating > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */

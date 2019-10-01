@@ -68,3 +68,13 @@ a, a:active, a:focus{
 .my-float2{
 	margin-top:16px;
 }
+.addMore{
+	border: none;
+	background-color: #eee;
+	transition: all ease-in-out 0.2s;
+	cursor: pointer;
+  }
+.addMore:hover{
+	border: 1px solid #888;
+	background-color: #ddd;
+  }

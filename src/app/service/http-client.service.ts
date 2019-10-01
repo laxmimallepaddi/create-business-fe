@@ -44,6 +44,37 @@ SearchFilter(data): Observable<Business> {
   )
 }  
 
+// POST
+LoginBusiness(data): Observable<Business> {
+  console.log(data);
+  return this.httpClient.post<Business>('/api/business/login/', JSON.stringify(data), this.httpOptions)
+  .pipe(
+    retry(1),
+    catchError(this.errorHandl)
+  )
+}  
+
+
+// POST
+CreateCustomer(data): Observable<Customer> {
+  console.log(data);
+  return this.httpClient.post<Customer>('/api/customer/', JSON.stringify(data), this.httpOptions)
+  .pipe(
+    retry(1),
+    catchError(this.errorHandl)
+  )
+}  
+
+// POST
+LoginCustomer(data): Observable<Customer> {
+  console.log(data);
+  return this.httpClient.post<Customer>('/api/customer/login/', JSON.stringify(data), this.httpOptions)
+  .pipe(
+    retry(1),
+    catchError(this.errorHandl)
+  )
+} 
+
 // Error handling
 errorHandl(error) {
   let errorMessage = '';

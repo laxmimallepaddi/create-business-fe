@@ -44,67 +44,89 @@
             </div>
         </div>
         </div>
-        <div class="col-sm-10 col-md-10 col-lg-10 mx-auto">
-        <div class="box">
-                <div class="container">
-                     <div class="row">
-                         
-                        <div class="col-sm-12" *ngFor="let businessi of business;let  i=index">
-                            <div class="box-part">
-                                <!-- <i class="fa fa-joomla fa-3x" aria-hidden="true"></i> -->
-                                <div class="title">
-                                        <h2 class="mb-5 text-light text-center">
-                                            <a href="https:\\{{businessi.websiteUrl}}" target="_blank" class="uppercase">{{businessi.businessName}}</a>
-                                        </h2>
+        <div class="col-sm-10 col-md-10 col-lg-10 mx-auto py-3"  *ngFor="let businessi of business;let i=index">
+            <!-- Card -->
+            <div class="card promoting-card">
+                    <!-- Card content -->
+                    <div class="card-body d-flex flex-row">
+                    <!-- Content -->
+                    <div>
+                    <!-- Title -->
+                    <h4 class="card-title font-weight-bold mb-2">
+                        <a href="https:\\{{businessi.websiteUrl}}" target="_blank" class="uppercase">{{businessi.businessName}}</a></h4>
+                    <!-- Subtitle -->
+                    <!-- <div class="card-text" *ngFor="let b_type of b_type_keys() where b_type == businessi.businessType;let i=index">
+                        {{b_type_values()[i]}}
+                    </div> -->
+                    {{businessi.businessType}}
+                    </div>
+                    </div>
+                    <!-- Card image -->
+                    <div class="view overlay">
+                    <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                    </div>
+                    <div class="row ml-1">
+                        <div class="col-sm-12 capitalize">
+                            {{businessi.businessDescription}}
+                        </div>
+                    </div>
+                    <div class="row ml-1 mx-auto">
+                        <div class="col-sm-6 font-weight-bold">
+                                Rating:
+                        </div>
+                        <div class="col-sm-6 starrating risingstar d-flex justify-content-right flex-row-reverse">
+                            <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star"></label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star"></label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>
+                        </div>
+                    </div>
+                    <!-- Card content -->
+                    <div class="card-body">
+                    <div class="collapse-content">
+                        <!-- Text -->
+                        <div class="card-text collapse" id="collapseContent">
+                            <div class="row ml-4">
+                                <div class="col-sm-4 font-weight-bold">
+                                    Address:
                                 </div>
-                                <div class="row ml-5">
-                                    <div class="col-sm-4 font-weight-bold">
-                                        Business Type:
-                                    </div>
-                                    <div class="col-sm-8 capitalize">
-                                        {{businessi.businessType}}
-                                    </div>
+                                <div class="col-sm-8 capitalize">
+                                    {{businessi.primaryAddressLine1}}, {{businessi.primaryAddressLine2}}
+                                    <br>
+                                    {{businessi.primaryCity}}, {{businessi.primaryState}}
+                                    <br>
+                                    {{businessi.primaryCountry}}, {{businessi.primaryZipCode}}
                                 </div>
-                                <div class="row ml-5">
-                                    <div class="col-sm-4 font-weight-bold">
-                                        Description:
-                                    </div>
-                                    <div class="col-sm-8 capitalize">
-                                        {{businessi.businessDescription}}
-                                    </div>
+                            </div>
+                            <div class="row ml-4">
+                                <div class="col-sm-4 font-weight-bold">
+                                    Phone Number:
                                 </div>
-                                <div class="row ml-5">
-                                    <div class="col-sm-4 font-weight-bold">
-                                        Address:
-                                    </div>
-                                    <div class="col-sm-8 capitalize">
+                                <div class="col-sm-8 capitalize">
+                                    {{businessi.primaryPhoneNumber}}
+                                </div>
+                            </div>
+                            <div class="row ml-4">
+                                <div class="col-sm-4 font-weight-bold">
+                                    Services Provided:
+                                </div>
+                                <div class="col-sm-8 capitalize">
 
-                                    </div>
                                 </div>
-                                <div class="row ml-5">
-                                    <div class="col-sm-4 font-weight-bold">
-                                        Phone Number:
-                                    </div>
-                                    <div class="col-sm-8 capitalize">
-
-                                    </div>
-                                </div>
-                                <div class="row ml-5">
-                                    <div class="col-sm-4 font-weight-bold">
-                                        Services Provided:
-                                    </div>
-                                    <div class="col-sm-8 capitalize">
-
-                                    </div>
-                                </div>
-                                <h6 class="mt-4 text-center"><a href="#" >View Profile</a></h6>
-                                </div>
-                                
-                        </div>	 
-                        
-                    </div>		
+                            </div>
+                        </div>
+                        <!-- Button -->
+                        <a class="btn btn-flat red-text p-1 my-1 mr-0 mml-1 collapsed" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent"></a>
+                        <em class="fa fa-expand text-muted float-right p-1 my-1 mr-0" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent"></em>
+                        <!-- <em class="fa fa-share-alt text-muted float-right p-1 my-1" data-toggle="tooltip" data-placement="top" title="Share this post"></em> -->
+                        <!-- <em class="fa fa-heart text-muted float-right p-1 my-1 mr-3" data-toggle="tooltip" data-placement="top" title="I like it"></em> -->
+                    </div>
+                    </div>
                 </div>
-            </div>
+                <!-- Card -->
         </div>
     </div>
 </div>

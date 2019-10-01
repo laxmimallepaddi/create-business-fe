@@ -3,7 +3,7 @@
         <div class="card-signin mx-auto col-sm-8">
         <div class="card-body col">
             <h5 class="card-title text-center font-weight-bold">SIGN UP CUSTOMER ACCOUNT</h5>
-            <form class="form-signin" #customerForm="ngForm" (ngSubmit)="customerForm.form.valid && onSubmit()" [mustMatch]="['password', 'confirmPassword']" novalidate>
+            <form class="form-signin" #customerForm="ngForm" (ngSubmit)="customerForm.form.valid &&createCustomer(customerForm.value)" [mustMatch]="['password', 'confirmPassword']" novalidate>
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label>First Name</label>
@@ -30,12 +30,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class=" col-sm-4 form-group">
+                            <label>Ext.</label>  
+                            <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control" [(ngModel)]="model.extension" name="extension" #extension="ngModel">
+                    </div>  
+                    <div class=" col-sm-8 form-group">
+                            <label>Phone Number</label>  
+                            <input type="text"  class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.phoneNumber" name="phoneNumber" #phoneNumber="ngModel" >
+                            <div *ngIf="customerForm.submitted  && phoneNumber.invalid" class="alert alert-danger">
+                            <div *ngIf="phoneNumber.errors.required">Phone Number is required.</div>
+                            <div *ngIf="phoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
+                            </div>
+                    </div>
+                </div>
                 <div class="row">    
                         <div class="col-sm-12  form-group">
                             <label>Username</label>
-                            <input type="text" class="form-control" required [(ngModel)]="model.username" name="username" #username="ngModel">
-                            <div *ngIf="customerForm.submitted  && username.invalid" class="alert alert-danger">
-                            <div *ngIf="username.errors.required">
+                            <input type="text" class="form-control" required [(ngModel)]="model.userName" name="userName" #userName="ngModel">
+                            <div *ngIf="customerForm.submitted  && userName.invalid" class="alert alert-danger">
+                            <div *ngIf="userName.errors.required">
                             User Name is required.
                             </div>
                             </div>

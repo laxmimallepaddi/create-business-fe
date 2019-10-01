@@ -15,38 +15,38 @@ export class Business {
 
         
 
-        public addressType: string,
-        public addressLine1: string,
-        public pincode: number,
-        public country: string,
-        public state: string,
-        public city: string,
-        public secondary_addressType: string,
-        public secondary_addressLine1: string,
-        public secondary_pincode: number,
-        public secondary_country: string,
-        public secondary_state: string,
-        public secondary_city: string,
+        public primaryAddressType: string,
+        public primaryAddressLine1: string,
+        public primaryZipCode: number,
+        public primaryCountry: string,
+        public primaryState: string,
+        public primaryCity: string,
+        public secondaryAddressType: string,
+        public secondaryAddressLine1: string,
+        public secondaryZipCode: number,
+        public secondaryCountry: string,
+        public secondaryState: string,
+        public secondaryCity: string,
 
-        public extension1: number,
-        public phoneType1: string,
-        public phoneNumber1: number,
-        public extension2: number,
-        public phoneType2: string,
-        public phoneNumber2: number,
-        public extension3: number,
-        public phoneType3: string,
-        public phoneNumber3: number,
+        public primaryExtension: number,
+        public primaryPhoneType: string,
+        public primaryPhoneNumber: number,
+        public secondaryExtension: number,
+        public secondaryPhoneType: string,
+        public secondaryPhoneNumber: number,
+        public thirdExtension: number,
+        public thirdPhoneType: string,
+        public thirdPhoneNumber: number,
 
         public userName: string,
         public password: string,
         public confirmPassword: string,
         public agreeTandC: string,
 
-        public addressLine2?: string,
-        public landmark?: string,
-        public secondary_addressLine2?: string,
-        public secondary_landmark?: string
+        public primaryAddressLine2?: string,
+        public primaryLandmark?: string,
+        public secondaryAddressLine2?: string,
+        public secondaryLandmark?: string
     ){}
     }    
 
@@ -142,3 +142,10 @@ export enum SubBusinessType{
     FUNERAL = "Funeral",
 
 }
+
+export class BusinessLogin {
+    constructor(
+        public userName: string,
+        public password: string
+    ){}
+    }    
