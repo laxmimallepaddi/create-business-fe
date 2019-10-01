@@ -10,11 +10,7 @@ export class Business {
         public businessDescription: string,
         
         public servicesProvided: servicesProvided,
-        // public address: address,
-        // public phone: phoneNumber,
-
         
-
         public primaryAddressType: string,
         public primaryAddressLine1: string,
         public primaryZipCode: number,
