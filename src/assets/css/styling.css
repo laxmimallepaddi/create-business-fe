@@ -8,6 +8,6 @@ a, a:active, a:focus{
 .capitalize {
   text-transform: capitalize;
 } 
-.fa-window-close-o{
-  color: red;
+.fa-close{
+  color: #808080;
 }
