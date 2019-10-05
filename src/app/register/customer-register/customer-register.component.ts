@@ -2,6 +2,7 @@ import { Component, OnInit ,ElementRef, NgZone} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClientService } from '../../service/http-client.service';
 import { Customer } from '../../customer';
+import { AlertService} from '../../service/alert.service';
 
 @Component({
   selector: 'app-registercustomer-register',
@@ -15,7 +16,8 @@ export class CustomerRegisterComponent implements OnInit {
     public activatedroute: ActivatedRoute,
     public elementRef:ElementRef,
     public httpClientService: HttpClientService,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -25,9 +27,14 @@ export class CustomerRegisterComponent implements OnInit {
   onSubmit() { this.submitted = true; }
 
   createCustomer(userdata){ 
-    this.httpClientService.CreateCustomer(userdata).subscribe(res => {
-      alert("Customer created successfully.")
-      this.ngZone.run(() => this.router.navigateByUrl('/'))
-    });
+    this.httpClientService.CreateCustomer(userdata)
+    .subscribe(res => {
+      this.alertService.success('You are registered successfully.', true);
+      this.ngZone.run(() => this.router.navigateByUrl('/login/customer'))
+    },
+      error => {
+        this.alertService.error('Username already exists.');
+    }
+    );
   }
 }

@@ -2,6 +2,9 @@ import { Component, OnInit ,ElementRef, NgZone, ɵConsole} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BusinessType,BusinessFilter } from '../business';
 import { HttpClientService } from '../service/http-client.service';
+import { Subscription } from 'rxjs';
+import { Customer } from '../customer';
+import { Business } from '../business';
 
 @Component({
   selector: 'app-find-business',
@@ -9,13 +12,27 @@ import { HttpClientService } from '../service/http-client.service';
   styleUrls: ['./find-business.component.css']
 })
 export class FindBusinessComponent implements OnInit {
+  
+  currentCustomer: Customer;
+  currentCustomerSubscription: Subscription;
+  currentBusiness: Business;
+  currentBusinessSubscription: Subscription;
+  
   constructor(
     public router: Router,
     public activatedroute: ActivatedRoute,
     public elementRef:ElementRef,
     public httpClientService: HttpClientService,
     private ngZone: NgZone
-    ) { }
+    ) { 
+
+      this.currentCustomerSubscription = this.httpClientService.currentCustomer.subscribe(user => {
+        this.currentCustomer = user;
+      });
+      this.currentBusinessSubscription = this.httpClientService.currentBusiness.subscribe(user => {
+        this.currentBusiness = user;
+      });
+    }
  
   ngOnInit() {
     this.httpClientService.getAllBusiness().subscribe(
@@ -23,6 +40,11 @@ export class FindBusinessComponent implements OnInit {
      );
   }
 
+  ngOnDestroy() {
+    this.currentCustomerSubscription.unsubscribe();
+    this.currentBusinessSubscription.unsubscribe();
+  }  
+  
   business: string[];
   handleSuccessfulResponse(response)
   {

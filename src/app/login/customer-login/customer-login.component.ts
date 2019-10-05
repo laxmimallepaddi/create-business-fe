@@ -2,6 +2,8 @@ import { Component, OnInit ,ElementRef, NgZone} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CustomerLogin } from '../../customer';
 import { HttpClientService } from '../../service/http-client.service';
+import { AlertService} from '../../service/alert.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-customer-login',
@@ -15,7 +17,8 @@ export class CustomerLoginComponent implements OnInit {
     public activatedroute: ActivatedRoute,
     public elementRef:ElementRef,
     public httpClientService: HttpClientService,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -23,11 +26,15 @@ export class CustomerLoginComponent implements OnInit {
   model= new CustomerLogin(null,null);
   
   loginCustomer(userdata){ 
-    this.httpClientService.LoginCustomer(userdata).subscribe(res => {
-      alert("Customer Logged In successfully.")
-      // localStorage.setItem('currentUser', JSON.stringify(userdata));
-      // console.log('currentUser')
-      this.ngZone.run(() => this.router.navigateByUrl('/'))
-    });
+    this.httpClientService.LoginCustomer(userdata)
+    .pipe(first())
+    .subscribe(
+      res => {
+        this.ngZone.run(() => this.router.navigateByUrl('/'))
+      },
+      error => {
+        this.alertService.error('Username or password is incorrect.');
+      }
+      );
   }
 }
