@@ -18,21 +18,21 @@
                 </div>
                 <div class="col-sm-4  mr-auto ">
                         <label>Country</label>
-                        <input type="text" class="form-control search-slt"  placeholder="Enter Country" [(ngModel)]="model.country" name="country" #country="ngModel" >
+                        <input type="text" class="form-control search-slt"  placeholder="Enter Country" [(ngModel)]="model.primaryCountry" name="primaryCountry" #primaryCountry="ngModel" >
                 </div>
                 <div class="col-sm-4 mr-auto">
                     <label>State</label>
-                    <input type="text" class="form-control search-slt round" placeholder="Enter State" [(ngModel)]="model.state" name="state" #state="ngModel">
+                    <input type="text" class="form-control search-slt round" placeholder="Enter State" [(ngModel)]="model.primaryState" name="primaryState" #primaryState="ngModel">
                 </div>
             </div>
             <div class="row px-4">
                 <div class="col-sm-4 mr-auto">
                     <label>City</label>
-                    <input type="text" class="form-control search-slt round" placeholder="Enter City" [(ngModel)]="model.city" name="city" #city="ngModel">
+                    <input type="text" class="form-control search-slt round" placeholder="Enter City" [(ngModel)]="model.primaryCity" name="primaryCity" #primaryCity="ngModel">
                 </div>
                 <div class="col-sm-4 mr-auto">
                         <label>Postal Code</label>
-                        <input type="text" pattern="\d*" minlength="6" maxlength="6" class="form-control search-slt" placeholder="Enter Postal Code" [(ngModel)]="model.zipCode" name="zipCode" #zipCode="ngModel">
+                        <input type="text" pattern="\d*" minlength="6" maxlength="6" class="form-control search-slt" placeholder="Enter Postal Code" [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel">
                 </div>      
                 <div class="col-sm-4 mr-auto"></div>    
             </div>

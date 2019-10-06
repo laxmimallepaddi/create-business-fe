@@ -117,11 +117,11 @@ export class servicesProvided {
 
 export class BusinessFilter {
     constructor(
-        public country?: string,
-        public state?: string,
-        public city?: string,
+        public primaryCountry?: string,
+        public primaryState?: string,
+        public primaryCity?: string,
         public businessType?: string,
-        public zipCode?: string
+        public primaryZipCode?: string
         
 
     ){}
