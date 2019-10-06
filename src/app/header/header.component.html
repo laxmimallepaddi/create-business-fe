@@ -40,6 +40,13 @@
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
+                <div class="input-group ml-6 " *ngIf="router.url == '/'">
+                    <div class="input-group-append">
+                        <a class="fa fa-search nav-link font-weight-bold" (click)="onSearch()">
+                                Search
+                        </a>
+                    </div>
+                </div>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -64,6 +71,13 @@
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
+                <div class="input-group ml-6 " *ngIf="router.url == '/'">
+                    <div class="input-group-append">
+                        <a class="fa fa-search nav-link font-weight-bold" (click)="onSearch()">
+                                Search
+                        </a>
+                    </div>
+                </div>
                 </li>
             </ul>
             <ul class="navbar-nav">
