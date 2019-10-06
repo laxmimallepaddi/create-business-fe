@@ -1,15 +1,17 @@
-import { Component, OnInit ,ElementRef, NgZone} from '@angular/core';
+import { Component, OnInit ,ElementRef, NgZone, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Business,BusinessType,BusinessPasswordChange,SubBusinessType } from '../../business';
 import { HttpClientService } from '../../service/http-client.service';
+import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { AlertService} from '../../service/alert.service';
 
 @Component({
   selector: 'app-business-register',
   templateUrl: './business-register.component.html',
   styleUrls: ['./business-register.component.css']
 })
-export class BusinessRegisterComponent implements OnInit {
+export class BusinessRegisterComponent implements OnInit,OnDestroy {
   htmlToAddPhoneNumber='';
   businesstypes=BusinessType;
   subbusinesstypes=SubBusinessType;
@@ -23,6 +25,9 @@ export class BusinessRegisterComponent implements OnInit {
   submitted = false;
   addresstypevalue = 'HOME';
   phonetypevalue = 'HOME';
+
+  currentBusiness: Business;
+  currentBusinessSubscription: Subscription;
 
   b_type_keys() : Array<string> {
     var keys = Object.keys(this.businesstypes);
@@ -46,11 +51,19 @@ export class BusinessRegisterComponent implements OnInit {
     public activatedroute: ActivatedRoute,
     public elementRef:ElementRef,
     public httpClientService: HttpClientService,
-    private ngZone: NgZone
-    ) { }
+    private ngZone: NgZone,
+    private alertService: AlertService
+    ) {
+      this.currentBusinessSubscription = this.httpClientService.currentBusiness.subscribe(user => {
+        this.currentBusiness = user;
+      });
+     }
 
   ngOnInit() {
   }
+  ngOnDestroy() {
+    this.currentBusinessSubscription.unsubscribe();
+  }  
 
   addAnotherPhoneNumber(){
     if(this.phoneNumberCounter==1 || this.phoneNumberCounter==3){
@@ -168,33 +181,7 @@ export class BusinessRegisterComponent implements OnInit {
   onSubmit() { this.submitted = true; }
   
   // TODO: Remove after api integration
-  business_name = "Ferns n Petals"
-  business_type = "Wedding Event Florists"
-  business_url = "www.fernsnpetals.com"
-  business_address = {
-    OFFICE:{
-    business_addressline1 : "3/12, Akshok Avenue",
-    business_addressline2 : "Marks Road",
-    business_landmark : "Near ABC Palace",
-    business_country : "India",
-    business_state : "Hyderabad",
-    business_city : "Telangana",
-    business_pincode : "111111"
-  },
-  HOME:{
-    business_addressline1 : "3/12, GKS Avenue",
-    business_addressline2 : "Markx Road",
-    business_landmark : "Near XYZ Palace",
-    business_country : "India",
-    business_state : "Hyderabad",
-    business_city : "Telangana",
-    business_pincode : "111112"
-  }
-};
-  business_description = "";
-  business_phone_number = {HOME:9090909090,OFFICE:8080808080,MOBILE:''}
-  services_provided = "Flower Decoration, Flower Gifts, Flower Vases, Flower Supplies, Bouquets";
-
+  
   onPhoneTypeChange(event){
     if(event.target.value=='HOME'){
       this.phonetypevalue = 'HOME';
@@ -215,9 +202,14 @@ export class BusinessRegisterComponent implements OnInit {
   onEditForm() { this.editformsubmitted = true; }
 
   createBusiness(userdata){ 
-    this.httpClientService.CreateBusiness(userdata).subscribe(res => {
-      alert("Business created successfully.")
-      this.ngZone.run(() => this.router.navigateByUrl('/business'))
-    });
+    this.httpClientService.CreateBusiness(userdata).subscribe(
+      res => {
+      this.alertService.success('Business registration successful.', true);
+      this.ngZone.run(() => this.router.navigateByUrl('/login/business'))
+    },
+    error => {
+      this.alertService.error('Username already exists.');
+    }
+    );
   }
 }

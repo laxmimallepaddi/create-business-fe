@@ -29,22 +29,63 @@
         </div>
     </nav>
 </div>
-<div class="container" *ngIf="router.url == '/business'">
+<div class="container" *ngIf="currentCustomer">
     <nav class="navbar navbar-expand-sm fixed-top">
         <a class="navbar-brand" href="#">
             <img src="/assets/images/logo.png" alt="book the event" style="width:200px;">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <button class="navbar-toggler text-light" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
+                <div class="input-group ml-6 " *ngIf="router.url == '/'">
+                    <div class="input-group-append">
+                        <a class="fa fa-search nav-link font-weight-bold" (click)="onSearch()">
+                                Search
+                        </a>
+                    </div>
+                </div>
                 </li>
             </ul>
             <ul class="navbar-nav">
+                <li class="nav-item pr-5 mt-1 ">
+                        <h4 class="nav-link font-weight-bold text-dark bg-light"> Hi! {{currentCustomer.firstName}} </h4>
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" [routerLink]="'/login'">LOGOUT</a>
+                    <a class="nav-link font-weight-bold" (click)='logout();'>LOGOUT</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container" *ngIf="currentBusiness">
+    <nav class="navbar navbar-expand-sm fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="/assets/images/logo.png" alt="book the event" style="width:200px;">
+        </a>
+        <button class="navbar-toggler text-light" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+        <div id="navbarNavDropdown" class="navbar-collapse collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                <div class="input-group ml-6 " *ngIf="router.url == '/'">
+                    <div class="input-group-append">
+                        <a class="fa fa-search nav-link font-weight-bold" (click)="onSearch()">
+                                Search
+                        </a>
+                    </div>
+                </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item pr-5 mt-1 ">
+                        <h6 class="nav-link font-weight-bold text-dark bg-light"> Hi! {{currentBusiness.firstName}} </h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold" (click)='logout();'>LOGOUT</a>
                 </li>
             </ul>
         </div>

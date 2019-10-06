@@ -93,7 +93,7 @@
         <div class="row">
                 <div class=" col-sm-12 form-group">
                         <label>Address Type</label>  
-                        <select class="form-control" required (change)="onAddressTypeChange($event)" [(ngModel)]="model.primaryAddressType" name="primaryAddressType" #primaryAddressType="ngModel">
+                        <select class="form-control" required #addressType (change)="onAddressTypeChange($event)" [(ngModel)]="model.primaryAddressType" name="primaryAddressType" #primaryAddressType="ngModel">
                         <option value="HOME">Home</option>
                         <option value="OFFICE">Office</option>
                         </select>
@@ -161,10 +161,10 @@
         <div class="row mr-auto" *ngIf="replicateAddressCheckbox==true">
                 <div class="col-sm-1 form-group"> 
                         <input type="checkbox" (click)="onChangeCheckbox($event,addressline1.value,addressline2.value,landmark.value,pincode.value,country.value,state.value,city.value);"></div>
-                        <div class="col-sm-11 form-group"  *ngIf="model.primaryAddressType =='HOME'">
+                        <div class="col-sm-11 form-group"  *ngIf="addressType.value  =='HOME'">
                         <label > Check if Office Address same as Home Address</label>
                         </div>
-                <div class="col-sm-11 form-group" *ngIf="model.secondaryAddressType=='OFFICE'">
+                <div class="col-sm-11 form-group" *ngIf="addressType.value =='OFFICE'">
                         <label > Check if Home Address same as Office Address</label>
                 </div>
         </div>      
@@ -423,40 +423,45 @@
         <div class="row">
         <div class="col-sm-4 mb-5">
                 <div class="ml-5 d-none d-sm-none d-md-block">
-                        <div class="row">
+                        <div class="row"> 
                                 Welcome,
                         </div> 
                         <div class="row">
-                                <h4>{{business_name}}</h4>
+                                <h4>{{currentBusiness.businessName}}</h4>
                         </div> 
                         <div class="row">
-                        <h6><strong><em>{{business_type}}</em></strong></h6>
+                        <h6><strong><em>{{currentBusiness.businessType}}</em></strong></h6>
+                        </div>
+                        <div class="row">
+                        <h6><strong><em><a href="http:\\{{currentBusiness.websiteUrl}}" target="_blank">{{currentBusiness.websiteUrl}}</a></em></strong></h6>
                         </div>
                         <br>
                         <div class="row">
                         <h6><strong>Address: </strong></h6>
                         </div>
                         <div class="row">
-                        <h6>{{business_address.OFFICE.business_addressline1}} </h6>
+                        <h6>{{currentBusiness.primaryAddressLine1}} </h6>
+                        </div>
+                        <div class="row" *ngIf="currentBusiness.primaryAddressLine2">
+                        <h6>{{currentBusiness.primaryAddressLine2}} </h6>
+                        </div>
+                        <div class="row" *ngIf="currentBusiness.primaryLandmark">
+                        <h6>{{currentBusiness.primaryLandmark}} </h6>
                         </div>
                         <div class="row">
-                        <h6>{{business_address.OFFICE.business_addressline2}} </h6>
+                        <h6>{{currentBusiness.primaryCity}}, {{currentBusiness.primaryState}} </h6>
                         </div>
                         <div class="row">
-                        <h6>{{business_address.OFFICE.business_landmark}} </h6>
-                        </div>
-                        <div class="row">
-                        <h6>{{business_address.OFFICE.business_city}}, {{business_address.OFFICE.business_state}} </h6>
-                        </div>
-                        <div class="row">
-                        <h6>{{business_address.OFFICE.business_country}} - {{business_address.OFFICE.business_pincode}}</h6>
+                        <h6>{{currentBusiness.primaryCountry}} - {{currentBusiness.primaryZipCode}}</h6>
                         </div>
                         <br>
                         <div class="row">
                         <h6><strong>Phone Number: </strong></h6>
                         </div>
                         <div class="row">
-                        <h6>{{business_phone_number.HOME}},{{business_phone_number.OFFICE}}</h6>
+                        <h6>{{currentBusiness.primaryPhoneNumber}}</h6>
+                        <h6 *ngIf="currentBusiness.secondaryPhoneNumber">, {{currentBusiness.secondaryPhoneNumber}}</h6>
+                        <h6 *ngIf="currentBusiness.thirdPhoneNumber">, {{currentBusiness.thirdPhoneNumber}}</h6>
                         </div>
                 </div>
                 
@@ -475,7 +480,7 @@
                                 <label>Business Name</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_name}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.businessName}}">
                         </div>
                         </div>
                         <br>
@@ -485,7 +490,7 @@
                         </div>
                         <div class="col-sm-8">
                                 <select class="form-control custom-select">
-                                        <option *ngFor="let b_type of b_type_keys();let i=index"  [selected]="b_type == business_type" value="{{b_type}}">{{b_type_values()[i]}}</option>
+                                        <option *ngFor="let b_type of b_type_keys();let i=index"  [selected]="b_type == currentBusiness.businessType" value="{{b_type}}">{{b_type_values()[i]}}</option>
                                 </select>
                         </div>
                         </div>
@@ -495,7 +500,25 @@
                                 <label>Description</label>
                         </div>
                         <div class="col-sm-8">
-                                <textarea type="text" class="form-control" value="{{business_description}}"></textarea>
+                                <textarea type="text" class="form-control" value="{{currentBusiness.businessDescription}}"></textarea>
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <div class="col-sm-4">
+                                <label>Website URL</label>
+                        </div>
+                        <div class="col-sm-8">
+                                <textarea type="text" class="form-control" value="{{currentBusiness.websiteUrl}}"></textarea>
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <div class="col-sm-4">
+                                <label>Business Est. Date</label>
+                        </div>
+                        <div class="col-sm-8">
+                                <textarea type="text" class="form-control" value="{{currentBusiness.businessEstDate}}"></textarea>
                         </div>
                         </div>
                         <br>
@@ -505,19 +528,19 @@
                         </div>
                         <div class="col-sm-8">
                                 <select class="form-control custom-select" #addressType (change)="onAddressTypeChange($event)">
-                                        <option value="HOME">Home</option>
                                         <option value="OFFICE">Office</option>
+                                        <option value="HOME">Home</option>
                                 </select>
                         </div>
                         </div>
                         <br> 
-                        <div [hidden]="addresstypevalue != 'HOME'">   
+                        <div [hidden]="addressType.value != 'OFFICE'">   
                         <div class="row">
                         <div class="col-sm-4">
                                 <label>Address Line 1</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_address.HOME.business_addressline1}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.primaryAddressLine1}}">
                         </div>
                         </div>
                         <br>
@@ -526,7 +549,7 @@
                                 <label>Address Line 2</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_address.HOME.business_addressline2}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.primaryAddressLine2}}">
                         </div>
                         </div>
                         <br>
@@ -535,7 +558,7 @@
                                 <label>Landmark</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_address.HOME.business_landmark}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.primaryLandmark}}">
                         </div>
                         </div>
                         <br>
@@ -544,7 +567,7 @@
                                 <label>Country</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_address.HOME.business_country}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.primaryCountry}}">
                         </div>
                         </div>
                         <br>
@@ -553,7 +576,7 @@
                                 <label>City</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_address.HOME.business_city}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.primaryCity}}">
                         </div>
                         </div>
                         <br>
@@ -562,17 +585,17 @@
                                 <label>Pincode</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_address.HOME.business_pincode}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.primaryZipCode}}">
                         </div>
                         </div>
                         </div>
-                        <div [hidden]="addressType.value != 'OFFICE'">
+                        <div [hidden]="addressType.value != 'HOME'">
                         <div class="row">
                         <div class="col-sm-4">
                                 <label>Address Line 1</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_address.OFFICE.business_addressline1}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.secondaryAddressLine1}}">
                         </div>
                         </div>
                         <br>
@@ -581,7 +604,7 @@
                                 <label>Address Line 2</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_address.OFFICE.business_addressline2}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.secondaryAddressLine2}}">
                         </div>
                         </div>
                         <br>
@@ -590,7 +613,7 @@
                                 <label>Landmark</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_address.OFFICE.business_landmark}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.secondaryLandmark}}">
                         </div>
                         </div>
                         <br>
@@ -599,7 +622,7 @@
                                 <label>Country</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_address.OFFICE.business_country}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.secondaryCountry}}">
                         </div>
                         </div>
                         <br>
@@ -608,7 +631,7 @@
                                 <label>City</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_address.OFFICE.business_city}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.secondaryCity}}">
                         </div>
                         </div>
                         <br>
@@ -617,7 +640,7 @@
                                 <label>Pincode</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_address.OFFICE.business_pincode}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.secondaryZipCode}}">
                         </div>
                         </div>
                         </div>
@@ -635,28 +658,28 @@
                         </div>
                         </div>
                         <br>   
-                        <div class="row" [hidden]="phoneNumberType.value != 'HOME'">
+                        <div class="row" [hidden]="currentBusiness.primaryPhoneType != 'HOME'">
                         <div class="col-sm-4">
                                 <label>Phone Number</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_phone_number.HOME}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.primaryPhoneNumber}}">
                         </div>
                         </div>
-                        <div class="row" [hidden]="phoneNumberType.value != 'OFFICE'">
+                        <div class="row" [hidden]="currentBusiness.secondaryPhoneType != 'OFFICE'">
                         <div class="col-sm-4">
                                 <label>Phone Number</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_phone_number.OFFICE}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.secondaryPhoneNumber}}">
                         </div>
                         </div>
-                        <div class="row" [hidden]="phoneNumberType.value != 'MOBILE'">
+                        <div class="row" [hidden]="currentBusiness.thirdPhoneType != 'MOBILE'">
                         <div class="col-sm-4">
                                 <label>Phone Number</label>
                         </div>
                         <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{business_phone_number.MOBILE}}">
+                                <input type="text" class="form-control" value="{{currentBusiness.thirdPhoneNumber}}">
                         </div>
                         </div>
                         <br>
@@ -665,7 +688,11 @@
                                 <label>Services Provided</label>
                         </div>
                         <div class="col-sm-8">
-                                <textarea class="form-control" value="{{services_provided}}" ></textarea>
+                                <select class="custom-select"  required  multiple="multiple" name="servicesProvided">
+                                <option [ngValue]="null" disabled >Click or use Ctrl to select multiple services.</option>
+                                <option *ngFor="let sub_b_type of sub_b_type_keys();let i=index" [ngValue]="sub_b_type">
+                                        {{sub_b_type_values()[i]}}</option>
+                                </select>
                         </div>
                         </div>
                         <br>
