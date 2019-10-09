@@ -21,3 +21,6 @@ input,button{
     background-color: antiquewhite;
     color: antiquewhite;
 }
+.dropdown-toggle::after {
+    display:none;
+}

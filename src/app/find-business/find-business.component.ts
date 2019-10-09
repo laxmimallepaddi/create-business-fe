@@ -38,6 +38,9 @@ export class FindBusinessComponent implements OnInit {
     this.httpClientService.getAllBusiness().subscribe(
       response =>this.handleSuccessfulResponse(response),
      );
+    //  this.httpClientService.getRating().subscribe(
+    //   response =>this.handleSuccessfulResponse(response),
+    //  );
   }
 
   ngOnDestroy() {
@@ -62,11 +65,14 @@ export class FindBusinessComponent implements OnInit {
     return values;
   }
 
-    model = new BusinessFilter()
+  model = new BusinessFilter()
   filterBusiness(userdata){ 
     this.httpClientService.SearchFilter(userdata).subscribe(res => {
       console.log("search successful.")
       this.handleSuccessfulResponse(res);
     });
   }
+  
+  currentRate = 6;
+  
 }

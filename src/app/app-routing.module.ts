@@ -8,6 +8,7 @@ import { CustomerRegisterComponent } from './register/customer-register/customer
 import { BusinessRegisterComponent } from './register/business-register/business-register.component';
 import { BusinessLoginComponent } from './login/business-login/business-login.component';
 import { CustomerLoginComponent } from './login/customer-login/customer-login.component';
+import { BusinessProfileComponent } from './business-profile/business-profile.component';
 
 const routes: Routes = [
   { path:'', component:HomeComponent },
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path:'register/customer', component:CustomerRegisterComponent},
   { path:'login/business', component:BusinessLoginComponent },
   { path:'login/customer', component:CustomerLoginComponent},
-  { path:'business', component:BusinessRegisterComponent }
+  { path:'business', component:BusinessProfileComponent }
 ];
 
 @NgModule({

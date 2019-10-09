@@ -62,10 +62,10 @@ a, a:active, a:focus{
     }
 }  
   
-.starrating > input {display: none;}  /* Remove radio buttons */
+/* .starrating > input {display: none;} 
 
 .starrating > label:before { 
-  content: "\f005"; /* Star */
+  content: "\f005"; 
   margin: 2px;
   font-family: FontAwesome;
   display: inline-block; 
@@ -73,11 +73,24 @@ a, a:active, a:focus{
 
 .starrating > label
 {
-  color: #222222; /* Start color when not clicked */
-}
-
+  color: #222222; 
+} */
+/* 
 .starrating > input:checked ~ label
-{ color: #ffca08 ; } /* Set yellow color when star checked */
+{ color: #ffca08 ; }
 
 .starrating > input:hover ~ label
-{ color: #ffca08 ;  } /* Set yellow color when star hover */
+{ color: #ffca08 ;  }  */
+.star {
+    font-size: 1.5rem;
+    color: #b0c4de;
+  }
+  .filled {
+    color: #1e90ff;
+  }
+  .bad {
+    color: #deb0b0;
+  }
+  .filled.bad {
+    color: #ff1e1e;
+  }

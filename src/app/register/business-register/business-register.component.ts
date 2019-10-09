@@ -176,11 +176,9 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
       }
   }
     
-  model = new Business(null,null,null,null,null,null,null,null,null,"OFFICE",null,null,null,null,null,null,"HOME",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+  model = new Business(null,null,null,null,null,null,null,null,null,null,"OFFICE",null,null,null,null,null,null,"HOME",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   
   onSubmit() { this.submitted = true; }
-  
-  // TODO: Remove after api integration
   
   onPhoneTypeChange(event){
     if(event.target.value=='HOME'){

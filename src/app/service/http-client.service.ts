@@ -120,4 +120,13 @@ errorHandl(error) {
     localStorage.removeItem('currentCustomer');
     this.currentCustomerSubject.next(null);
   }
+// PUT
+ UpdateBusiness(data): Observable<Business> {
+  console.log(data);
+  return this.httpClient.put<Business>('/api/business/', JSON.stringify(data), this.httpOptions)
+  .pipe(
+    retry(1),
+    catchError(this.errorHandl)
+  )
+}  
 }

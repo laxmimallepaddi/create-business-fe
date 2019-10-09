@@ -1,5 +1,6 @@
 export class Business {
     constructor(
+        public businessId: string,
         public firstName: string,
         public lastName: string,
         public email: string,
