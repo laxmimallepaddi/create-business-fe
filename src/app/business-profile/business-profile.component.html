@@ -372,8 +372,28 @@
                             <button class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit" [disabled]="!businessForm.valid">Save</button>
                         </form>
                 </div>
-                <div class="tab-pane fade show active" id="change_password-tab" role="tabpanel" aria-labelledby="change_password-tab">
-                        
+                <div class="tab-pane fade show" id="change_password" role="tabpanel" aria-labelledby="change_password-tab">
+                        <form class="form-signin" #passwordChangeForm="ngForm" (ngSubmit)="passwordChangeForm.form.valid" novalidate>
+                        <div class="row">
+                                <div class="col-sm-12 form-group">
+                                        <label>Old Password</label>
+                                        <input type="password" class="form-control"  required  name="password">
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-sm-12 form-group">
+                                        <label>New Password</label>
+                                        <input type="password" class="form-control"  required  name="password">
+                                </div>
+                        </div>
+                        <div class="row">    
+                                <div class="col-sm-12 form-group">
+                                        <label>Confirm your New Password</label>
+                                        <input type="password" class="form-control" required  name="confirmPassword" >
+                                </div>
+                        </div>   
+                        <button class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit" [disabled]="!passwordChangeForm.valid">Save</button>
+                        </form>
                 </div>
         </div>
         </div>
