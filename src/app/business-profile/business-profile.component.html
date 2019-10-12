@@ -130,9 +130,9 @@
                         <div class="row">        
                                 <div class=" col-sm-6 form-group ">
                                         <label>Business Type</label>
-                                        <select class="form-control custom-select" required [(ngModel)]="model.businessType" name="businessType" #businessType="ngModel">
-                                                <option [ngValue]="null">Select Business Type</option>
-                                                <option *ngFor="let b_type of b_type_keys();let i=index" [ngValue]="b_type">{{b_type_values()[i]}}</option>
+                                        <select class="form-control custom-select" required (change)="filterServices($event);" [(ngModel)]="model.businessType" name="businessType" #businessType="ngModel">
+                                                        <option [ngValue]="null" disabled>Select Business Type</option>
+                                                        <option *ngFor="let b_type of b_type_keys();" [ngValue]="b_type">{{b_type}}</option>
                                         </select>
                                         <div *ngIf="businessForm.submitted  && businessType.invalid" class="alert alert-danger">
                                         <div *ngIf="businessType.errors.required">Business Type is required.</div>
@@ -170,8 +170,8 @@
                                         <label>Services Provided</label>
                                         <select class="custom-select"  required  multiple="multiple" name="servicesProvided">
                                         <option [ngValue]="null" disabled >Click or use Ctrl to select multiple services.</option>
-                                        <option *ngFor="let sub_b_type of sub_b_type_keys();let i=index" [ngValue]="sub_b_type">
-                                                {{sub_b_type_values()[i]}}</option>
+                                        <option *ngFor="let sub_b_type of serviceproviderslist" [ngValue]="sub_b_type">
+                                                {{sub_b_type}}</option>
                                         </select>
                                 </div>
                         </div>
@@ -392,7 +392,7 @@
                                         <input type="password" class="form-control" required  name="confirmPassword" >
                                 </div>
                         </div>   
-                        <button class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit" [disabled]="!passwordChangeForm.valid">Save</button>
+                        <button class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit">Save</button>
                         </form>
                 </div>
         </div>

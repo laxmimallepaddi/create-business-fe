@@ -1,6 +1,6 @@
 import { Component, OnInit ,ElementRef, NgZone, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Business,BusinessType,BusinessPasswordChange,SubBusinessType } from '../business';
+import { Business,BusinessType,BusinessPasswordChange,mapBusinessTypes } from '../business';
 import { HttpClientService } from '../service/http-client.service';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +14,6 @@ import { AlertService} from '../service/alert.service';
 export class BusinessProfileComponent implements OnInit,OnDestroy {
 
   businesstypes=BusinessType;
-  subbusinesstypes=SubBusinessType;
   phoneNumberCounter=1;
   addressCounter=1;
   replicateAddressCheckbox=true;
@@ -25,6 +24,7 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
   submitted = false;
   addresstypevalue = 'OFFICE';
   phonetypevalue = 'OFFICE';
+  serviceproviderslist=[];
 
   currentBusiness: Business;
   currentBusinessSubscription: Subscription;
@@ -32,19 +32,7 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
 
   b_type_keys() : Array<string> {
     var keys = Object.keys(this.businesstypes);
-    return keys;
-  }
-  b_type_values(): Array<string> {
-    var values = Object.values(this.businesstypes);
-    return values;
-  }
-  sub_b_type_keys() : Array<string> {
-    var keys = Object.keys(this.subbusinesstypes);
-    return keys;
-  }
-  sub_b_type_values(): Array<string> {
-    var values = Object.values(this.subbusinesstypes);
-    return values;
+    return keys.slice(keys.length / 2);
   }
 
   constructor(
@@ -62,12 +50,14 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
 
   ngOnInit() {
     this.model = this.currentBusiness;
+    let val= this.model.businessType;
+    console.log(val);
+    this.serviceproviderslist = mapBusinessTypes(val);
+    console.log(this.serviceproviderslist);
   }
   ngOnDestroy() {
     this.currentBusinessSubscription.unsubscribe();
   }  
-
-
   
   onPhoneTypeChange(event){
     if(event.target.value=='HOME'){
@@ -109,4 +99,10 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
     }
     );
   }
+  filterServices(event){
+    let val= event.target.value;
+    this.serviceproviderslist = mapBusinessTypes(val);
+    
+  }
+  
 }

@@ -36,9 +36,9 @@
         <div class="row">        
                 <div class=" col-sm-6 form-group ">
                         <label>Business Type</label>
-                        <select class="form-control custom-select" required [(ngModel)]="model.businessType" name="businessType" #businessType="ngModel">
-                                <option [ngValue]="null">Select Business Type</option>
-                                <option *ngFor="let b_type of b_type_keys();let i=index" [ngValue]="b_type">{{b_type_values()[i]}}</option>
+                        <select class="form-control custom-select" required (change)="filterServices($event);" [(ngModel)]="model.businessType" name="businessType" #businessType="ngModel">
+                                <option [ngValue]="null" disabled>Select Business Type</option>
+                                <option *ngFor="let b_type of b_type_keys();" [ngValue]="b_type">{{b_type}}</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && businessType.invalid" class="alert alert-danger">
                         <div *ngIf="businessType.errors.required">Business Type is required.</div>
@@ -78,14 +78,14 @@
                         <div *ngIf="businessDescription.errors.required">Description is required.</div>
                         </div>
                 </div>
-        </div>
+        </div> 
         <div class="row">     
                 <div class=" col-sm-12 form-group ">
                         <label>Services Provided</label>
                         <select class="custom-select"  required  multiple="multiple" name="servicesProvided">
                         <option [ngValue]="null" disabled >Click or use Ctrl to select multiple services.</option>
-                        <option *ngFor="let sub_b_type of sub_b_type_keys();let i=index" [ngValue]="sub_b_type">
-                                {{sub_b_type_values()[i]}}</option>
+                        <option *ngFor="let sub_b_type of serviceproviderslist" [ngValue]="sub_b_type">
+                                {{sub_b_type}}</option>
                         </select>
                 </div>
         </div>
@@ -94,8 +94,8 @@
                 <div class=" col-sm-12 form-group">
                         <label>Address Type</label>  
                         <select class="form-control" required #addressType (change)="onAddressTypeChange($event)" [(ngModel)]="model.primaryAddressType" name="primaryAddressType" #primaryAddressType="ngModel">
-                        <option value="HOME">Home</option>
                         <option value="OFFICE">Office</option>
+                        <option value="HOME">Home</option>
                         </select>
                 </div>
        </div>
@@ -265,9 +265,9 @@
                         <label>Phone Type</label>
                         <select type="text" class="form-control"  required ngModel name="primaryPhoneType" #primaryPhoneType="ngModel" >
                         <option value="" disabled>Select Type</option>
+                        <option value="OFFICE">OFFICE</option>
                         <option value="HOME">HOME</option>
                         <option value="MOBILE">MOBILE</option>
-                        <option value="OFFICE">OFFICE</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && primaryPhoneType.invalid" class="alert alert-danger">
                         <div *ngIf="primaryPhoneType.errors.required">
@@ -299,9 +299,9 @@
                         <label>Phone Type</label>
                         <select type="text" class="form-control"  required ngModel name="secondaryPhoneType" #secondaryPhoneType="ngModel">
                         <option value="" disabled>Select Type</option>
+                        <option value="OFFICE">OFFICE</option>
                         <option value="HOME">HOME</option>
                         <option value="MOBILE">MOBILE</option>
-                        <option value="OFFICE">OFFICE</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && secondaryPhoneType.invalid" class="alert alert-danger">
                         <div *ngIf="secondaryPhoneType.errors.required">Phone Number Type is required.</div>
@@ -330,9 +330,9 @@
                         <label>Phone Type</label>
                         <select type="text" class="form-control"  required ngModel name="thirdPhoneType" #thirdPhoneType="ngModel">
                         <option value="" disabled>Select Type</option>
+                        <option value="OFFICE">OFFICE</option>
                         <option value="HOME">HOME</option>
                         <option value="MOBILE">MOBILE</option>
-                        <option value="OFFICE">OFFICE</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && thirdPhoneType.invalid" class="alert alert-danger">
                         <div *ngIf="thirdPhoneType.errors.required">Phone Number Type is required.</div>
