@@ -47,89 +47,86 @@
             </div>
         </div>
         </div>
-        <div class="col-sm-10 col-md-10 col-lg-10 mx-auto py-3"  *ngFor="let businessi of business;let i=index">
-            <!-- Card -->
-            <div class="card promoting-card">
-                    <!-- Card content -->
-                    <div class="card-body d-flex flex-row">
-                    <!-- Content -->
-                    <div>
-                    <!-- Title -->
-                    <h4 class="card-title font-weight-bold mb-2">
-                        <a href="https:\\{{businessi.websiteUrl}}" target="_blank" class="uppercase">{{businessi.businessName}}</a>
-                        <!-- <h6 class="starrating">
-                                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
-                                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
-                                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star"></label>
-                                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star"></label>
-                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>
-                        </h6> -->
-                        <!-- <ngb-rating [(rate)]="currentRate">
-                                <ng-template let-fill="fill" let-index="index">
-                                  <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
-                                </ng-template>
-                              </ngb-rating>
-                              <hr>
-                              <pre>Rate: <b>{{currentRate}}</b></pre> -->
-                    </h4>
-                    <!-- Subtitle -->
-                    <!-- <div class="card-text" *ngFor="let b_type of b_type_keys() where b_type == businessi.businessType;let i=index">
-                        {{b_type_values()[i]}}
-                    </div> -->
-                    {{businessi.businessType}}
-                    </div>
-                    </div>
-                    <!-- Card image -->
-                    <div class="view overlay">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                    </div>
-                    <div class="row ml-1">
-                        <div class="col-sm-12 capitalize">
-                            {{businessi.businessDescription}}
-                        </div>
-                    </div>
-                    
-                    
-                    <!-- Card content -->
+    </div>
+    <div class="row">
+        <div class="col-sm-10 mx-auto pb-3"  *ngFor="let businessi of business;let i=index">
+            <div class="card" style="height: 20em;">
                     <div class="card-body">
-                    <div class="collapse-content">
-                        <!-- Text -->
-                        <div class="card-text">
-                            <div class="row ml-4">
-                                <div class="col-sm-4 font-weight-bold">
-                                    Address:
-                                </div>
-                                <div class="col-sm-8 capitalize">
-                                    {{businessi.primaryAddressLine1}}, {{businessi.primaryAddressLine2}}
-                                    <br>
-                                    {{businessi.primaryCity}}, {{businessi.primaryState}}
-                                    <br>
-                                    {{businessi.primaryCountry}}, {{businessi.primaryZipCode}}
-                                </div>
-                            </div>
-                            <div class="row ml-4">
-                                <div class="col-sm-4 font-weight-bold">
-                                    Phone Number:
-                                </div>
-                                <div class="col-sm-8 capitalize">
-                                    {{businessi.primaryPhoneNumber}}
-                                </div>
-                            </div>
-                            <div class="row ml-4">
-                                <div class="col-sm-4 font-weight-bold">
-                                    Services Provided:
-                                </div>
-                                <div class="col-sm-8 capitalize">
-
-                                </div>
-                            </div>
+                    <h4 class="card-title font-weight-bold">
+                        <a href="https:\\{{businessi.websiteUrl}}" target="_blank" class="uppercase mb-2">{{businessi.businessName}}</a>
+                    </h4>
+                    {{businessi.businessType}}
+                    <h6>
+                      <div class="rating mt-2">
+                          0.0 <span>☆</span>
+                          <span>☆</span>
+                          <span>☆</span>
+                          <span>☆</span>
+                          <span>☆</span>(0)
                         </div>
+                    </h6>
                     </div>
-                    </div>
+                    <div class="card-text mb-5">
+                     <div class="row">
+                       <div class="col-sm-4 ml-5">
+                          <ul class="navbar-nav" id="myTab" role="tablist">
+                              <li class="nav-item">
+                                <a class="nav-link text-dark" id="about-tab" href="#about{{i}}" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-pencil-square-o"></span> About</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link text-dark" id="contact-tab" href="#contact{{i}}" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="true"><span class="fa fa-address-book "></span> Contact Details</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link text-dark" id="rate-tab" href="#rate{{i}}" data-toggle="tab" role="tab" aria-controls="rate" aria-selected="true"><span class="fa fa-star"></span> Rate Us</a>
+                              </li>
+                            </ul>
+                       </div>
+                       <div class="col-sm-7">
+                          <div class="tab-content" >
+                              <div class="tab-pane fade show active" id="about{{i}}" role="tabpanel" aria-labelledby="about-tab">
+                                  <div class="row">  
+                                    {{businessi.businessDescription}}
+                                </div>
+                                  <div class="row">
+                                      <div class="col-sm-4">
+                                          <label>Services Provided:</label>
+                                        </div>
+                                        <div class="col-sm-8">    
+                                        {{businessi.servicesProvided}}
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="tab-pane fade" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
+                                  <div class="row">
+                                    <div class="col-sm-4 capitalize">
+                                        <label>Address:</label>
+                                    </div>
+                                    <div class="col-sm-8 capitalize">
+                                        {{businessi.primaryAddressLine1}}, {{businessi.primaryAddressLine2}}<br>
+                                        {{businessi.primaryCity}}, {{businessi.primaryState}}<br>
+                                        {{businessi.primaryCountry}}, {{businessi.primaryZipCode}}
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-4 capitalize">
+                                          <label>Phone Number:</label>
+                                        </div>
+                                        <div class="col-sm-8 capitalize">    
+                                          {{businessi.primaryPhoneNumber}}
+                                    </div>
+                                  </div>
+                                  
+                              </div>
+                          <div class="tab-pane fade" id="rate{{i}}" role="tabpanel" aria-labelledby="rate-tab">
+                            <div class="rating">
+                                <div class="row">
+                               
+                                </div>
+                          </div>
+                        </div>
+                     </div>
+                   </div>
                 </div>
-                <!-- Card -->
         </div>
     </div>
 </div>
