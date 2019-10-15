@@ -60,24 +60,27 @@ a, a:active, a:focus{
     .search-filter{
         height: 90%;
     }
-}  
-  
-.starrating > input {display: none;}  /* Remove radio buttons */
-
-.starrating > label:before { 
-  content: "\f005"; /* Star */
-  margin: 2px;
-  font-family: FontAwesome;
-  display: inline-block; 
+} 
+.rating {
+  unicode-bidi: bidi-override;
+  /* direction: rtl; */
 }
-
-.starrating > label
-{
-  color: #222222; /* Start color when not clicked */
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
 }
-
-.starrating > input:checked ~ label
-{ color: #ffca08 ; } /* Set yellow color when star checked */
-
-.starrating > input:hover ~ label
-{ color: #ffca08 ;  } /* Set yellow color when star hover */
+.rating1 {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+.rating1 > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+}
+.rating1 > span:hover:before,
+.rating1 > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}

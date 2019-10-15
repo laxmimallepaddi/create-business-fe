@@ -36,9 +36,9 @@
         <div class="row">        
                 <div class=" col-sm-6 form-group ">
                         <label>Business Type</label>
-                        <select class="form-control custom-select" required [(ngModel)]="model.businessType" name="businessType" #businessType="ngModel">
-                                <option [ngValue]="null">Select Business Type</option>
-                                <option *ngFor="let b_type of b_type_keys();let i=index" [ngValue]="b_type">{{b_type_values()[i]}}</option>
+                        <select class="form-control custom-select" required (change)="filterServices($event);" [(ngModel)]="model.businessType" name="businessType" #businessType="ngModel">
+                                <option [ngValue]="null" disabled>Select Business Type</option>
+                                <option *ngFor="let b_type of b_type_keys();" [ngValue]="b_type">{{b_type}}</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && businessType.invalid" class="alert alert-danger">
                         <div *ngIf="businessType.errors.required">Business Type is required.</div>
@@ -78,14 +78,14 @@
                         <div *ngIf="businessDescription.errors.required">Description is required.</div>
                         </div>
                 </div>
-        </div>
+        </div> 
         <div class="row">     
                 <div class=" col-sm-12 form-group ">
                         <label>Services Provided</label>
                         <select class="custom-select"  required  multiple="multiple" name="servicesProvided">
                         <option [ngValue]="null" disabled >Click or use Ctrl to select multiple services.</option>
-                        <option *ngFor="let sub_b_type of sub_b_type_keys();let i=index" [ngValue]="sub_b_type">
-                                {{sub_b_type_values()[i]}}</option>
+                        <option *ngFor="let sub_b_type of serviceproviderslist" [ngValue]="sub_b_type">
+                                {{sub_b_type}}</option>
                         </select>
                 </div>
         </div>
@@ -94,8 +94,8 @@
                 <div class=" col-sm-12 form-group">
                         <label>Address Type</label>  
                         <select class="form-control" required #addressType (change)="onAddressTypeChange($event)" [(ngModel)]="model.primaryAddressType" name="primaryAddressType" #primaryAddressType="ngModel">
-                        <option value="HOME">Home</option>
                         <option value="OFFICE">Office</option>
+                        <option value="HOME">Home</option>
                         </select>
                 </div>
        </div>
@@ -263,11 +263,11 @@
                 </div>
                 <div class=" col-sm-5 form-group "> 
                         <label>Phone Type</label>
-                        <select type="text" class="form-control"  required ngModel name="primaryPhoneType" #primaryPhoneType="ngModel" #primaryPhoneType="ngModel" >
+                        <select type="text" class="form-control"  required ngModel name="primaryPhoneType" #primaryPhoneType="ngModel" >
                         <option value="" disabled>Select Type</option>
+                        <option value="OFFICE">OFFICE</option>
                         <option value="HOME">HOME</option>
                         <option value="MOBILE">MOBILE</option>
-                        <option value="OFFICE">OFFICE</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && primaryPhoneType.invalid" class="alert alert-danger">
                         <div *ngIf="primaryPhoneType.errors.required">
@@ -299,9 +299,9 @@
                         <label>Phone Type</label>
                         <select type="text" class="form-control"  required ngModel name="secondaryPhoneType" #secondaryPhoneType="ngModel">
                         <option value="" disabled>Select Type</option>
+                        <option value="OFFICE">OFFICE</option>
                         <option value="HOME">HOME</option>
                         <option value="MOBILE">MOBILE</option>
-                        <option value="OFFICE">OFFICE</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && secondaryPhoneType.invalid" class="alert alert-danger">
                         <div *ngIf="secondaryPhoneType.errors.required">Phone Number Type is required.</div>
@@ -330,9 +330,9 @@
                         <label>Phone Type</label>
                         <select type="text" class="form-control"  required ngModel name="thirdPhoneType" #thirdPhoneType="ngModel">
                         <option value="" disabled>Select Type</option>
+                        <option value="OFFICE">OFFICE</option>
                         <option value="HOME">HOME</option>
                         <option value="MOBILE">MOBILE</option>
-                        <option value="OFFICE">OFFICE</option>
                         </select>
                         <div *ngIf="businessForm.submitted  && thirdPhoneType.invalid" class="alert alert-danger">
                         <div *ngIf="thirdPhoneType.errors.required">Phone Number Type is required.</div>
@@ -396,358 +396,4 @@
         </div>
         </div>
         </div>
-</div>
-<div class="container emp-profile" *ngIf="router.url == '/business'">
-        <a class="fa fa-close float-right ml-auto"  href="/" ></a>
-        <div class="row"> 
-                <div class="col-sm-4">
-                        <div class="row mb-3">
-                                <img src="./assets/images/logo.png" alt="book the event" class="mx-auto" style="width: 250px;height:150px;">
-                        </div>
-                </div>        
-                <div class="col-md-8 mt-5">
-                        <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
-                        <li class="nav-item">
-                                <a class="nav-link active text-dark" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Timeline</a>
-                        </li>
-                        <li class="nav-item">
-                                <a class="nav-link text-dark" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Edit Profile</a>
-                        </li>
-                        <li class="nav-item">
-                                <a class="nav-link text-dark" id="change_password-tab" data-toggle="tab" href="#change_password" role="tab" aria-controls="change_password" aria-selected="false">Change Password</a>
-                        </li>
-                        </ul>
-                </div>
-        </div>
-        <br>
-        <div class="row">
-        <div class="col-sm-4 mb-5">
-                <div class="ml-5 d-none d-sm-none d-md-block">
-                        <div class="row"> 
-                                Welcome,
-                        </div> 
-                        <div class="row">
-                                <h4>{{currentBusiness.businessName}}</h4>
-                        </div> 
-                        <div class="row">
-                        <h6><strong><em>{{currentBusiness.businessType}}</em></strong></h6>
-                        </div>
-                        <div class="row">
-                        <h6><strong><em><a href="http:\\{{currentBusiness.websiteUrl}}" target="_blank">{{currentBusiness.websiteUrl}}</a></em></strong></h6>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <h6><strong>Address: </strong></h6>
-                        </div>
-                        <div class="row">
-                        <h6>{{currentBusiness.primaryAddressLine1}} </h6>
-                        </div>
-                        <div class="row" *ngIf="currentBusiness.primaryAddressLine2">
-                        <h6>{{currentBusiness.primaryAddressLine2}} </h6>
-                        </div>
-                        <div class="row" *ngIf="currentBusiness.primaryLandmark">
-                        <h6>{{currentBusiness.primaryLandmark}} </h6>
-                        </div>
-                        <div class="row">
-                        <h6>{{currentBusiness.primaryCity}}, {{currentBusiness.primaryState}} </h6>
-                        </div>
-                        <div class="row">
-                        <h6>{{currentBusiness.primaryCountry}} - {{currentBusiness.primaryZipCode}}</h6>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <h6><strong>Phone Number: </strong></h6>
-                        </div>
-                        <div class="row">
-                        <h6>{{currentBusiness.primaryPhoneNumber}}</h6>
-                        <h6 *ngIf="currentBusiness.secondaryPhoneNumber">, {{currentBusiness.secondaryPhoneNumber}}</h6>
-                        <h6 *ngIf="currentBusiness.thirdPhoneNumber">, {{currentBusiness.thirdPhoneNumber}}</h6>
-                        </div>
-                </div>
-                
-                
-        </div>
-        <div class="col-sm-7">
-                <div class="tab-content" >
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        
-                </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <form #editBusinessForm (onSubmit)="editformsubmitted && editBusinessForm.form.valid">
-                        <br>        
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Business Name</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.businessName}}">
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Business Type</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <select class="form-control custom-select">
-                                        <option *ngFor="let b_type of b_type_keys();let i=index"  [selected]="b_type == currentBusiness.businessType" value="{{b_type}}">{{b_type_values()[i]}}</option>
-                                </select>
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Description</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <textarea type="text" class="form-control" value="{{currentBusiness.businessDescription}}"></textarea>
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Website URL</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <textarea type="text" class="form-control" value="{{currentBusiness.websiteUrl}}"></textarea>
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Business Est. Date</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <textarea type="text" class="form-control" value="{{currentBusiness.businessEstDate}}"></textarea>
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Address Type</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <select class="form-control custom-select" #addressType (change)="onAddressTypeChange($event)">
-                                        <option value="OFFICE">Office</option>
-                                        <option value="HOME">Home</option>
-                                </select>
-                        </div>
-                        </div>
-                        <br> 
-                        <div [hidden]="addressType.value != 'OFFICE'">   
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Address Line 1</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.primaryAddressLine1}}">
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Address Line 2</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.primaryAddressLine2}}">
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Landmark</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.primaryLandmark}}">
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Country</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.primaryCountry}}">
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>City</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.primaryCity}}">
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Pincode</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.primaryZipCode}}">
-                        </div>
-                        </div>
-                        </div>
-                        <div [hidden]="addressType.value != 'HOME'">
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Address Line 1</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.secondaryAddressLine1}}">
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Address Line 2</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.secondaryAddressLine2}}">
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Landmark</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.secondaryLandmark}}">
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Country</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.secondaryCountry}}">
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>City</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.secondaryCity}}">
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Pincode</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.secondaryZipCode}}">
-                        </div>
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Phone Number Type</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <select class="form-control custom-select" #phoneNumberType (change)="onPhoneTypeChange($event);">
-                                        <option value="HOME">Home</option>
-                                        <option value="OFFICE">Office</option>
-                                        <option value="MOBILE">Mobile</option>
-                                </select>
-                        </div>
-                        </div>
-                        <br>   
-                        <div class="row" [hidden]="currentBusiness.primaryPhoneType != 'HOME'">
-                        <div class="col-sm-4">
-                                <label>Phone Number</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.primaryPhoneNumber}}">
-                        </div>
-                        </div>
-                        <div class="row" [hidden]="currentBusiness.secondaryPhoneType != 'OFFICE'">
-                        <div class="col-sm-4">
-                                <label>Phone Number</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.secondaryPhoneNumber}}">
-                        </div>
-                        </div>
-                        <div class="row" [hidden]="currentBusiness.thirdPhoneType != 'MOBILE'">
-                        <div class="col-sm-4">
-                                <label>Phone Number</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{currentBusiness.thirdPhoneNumber}}">
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="col-sm-4">
-                                <label>Services Provided</label>
-                        </div>
-                        <div class="col-sm-8">
-                                <select class="custom-select"  required  multiple="multiple" name="servicesProvided">
-                                <option [ngValue]="null" disabled >Click or use Ctrl to select multiple services.</option>
-                                <option *ngFor="let sub_b_type of sub_b_type_keys();let i=index" [ngValue]="sub_b_type">
-                                        {{sub_b_type_values()[i]}}</option>
-                                </select>
-                        </div>
-                        </div>
-                        <br>
-                        <br>
-                        <div class="row">
-                                <button class="edit-btn btn btn-dark text-uppercase mx-auto p-2" type="submit" (click)="onEditForm()">Update</button>
-                        </div>
-                </form>        
-                </div>
-                <div class="tab-pane fade" id="change_password" role="tabpanel" aria-labelledby="change_password-tab">
-                <form #changePasswordForm="ngForm" (ngSubmit)="passwordsubmitted && changePasswordForm.form.valid" [mustMatch]="['newPassword', 'confirmNewPassword']"  novalidate>
-                <div class="row">
-                <div class="col-sm-5">
-                        <label>Current Password</label>
-                </div>
-                <div class="col-sm-7">
-                                <input type="password" class="form-control" required [(ngModel)]="model1.password" name="password" #password="ngModel">
-                                <div *ngIf="passwordsubmitted &&  password.invalid" class="alert alert-danger">
-                                <div *ngIf="password.errors.required">Password is required.</div>
-                                </div>
-                        </div>
-                </div>
-                <br>
-                <div class="row">
-                <div class="col-sm-5">
-                        <label>Change Password</label>
-                </div>
-                <div class="col-sm-7">
-                                <input type="password" class="form-control" required [(ngModel)]="model1.newPassword" name="newPassword" #newPassword="ngModel">
-                                <div *ngIf="passwordsubmitted &&  newPassword.invalid" class="alert alert-danger">
-                                <div *ngIf="newPassword.errors.required">Password is required.</div>
-                                </div>
-                </div>
-                </div>
-                <br>
-                <div class="row">
-                <div class="col-sm-5">
-                        <label>Confirm Change Password</label>
-                </div>
-                <div class="col-sm-7">
-                        <input type="password" class="form-control" required [(ngModel)]="model1.confirmNewPassword" name="confirmNewPassword" #confirmNewPassword="ngModel">
-                        <div *ngIf="passwordsubmitted && confirmNewPassword.invalid" class="alert alert-danger">
-                        <div *ngIf="confirmNewPassword.errors.required">Confirm Password is required.</div>
-                        <div *ngIf="confirmNewPassword.errors.mustMatch">Passwords must match</div>
-                        </div>
-                </div>
-                </div>
-                <br>
-                <div class="row">
-                        <button class="edit-btn btn btn-dark text-uppercase p-2 mx-auto" type="submit" (click)="onChangePasswordForm()">Update</button>
-                </div>
-                </form>
-                </div>
-        </div>
-        </div>
-       </div>
-         
 </div>

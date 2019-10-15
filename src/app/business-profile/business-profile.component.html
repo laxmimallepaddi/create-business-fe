@@ -1,0 +1,401 @@
+
+<div class="container emp-profile" *ngIf="currentBusiness">
+        <a class="fa fa-close float-right ml-auto"  href="/" ></a>
+        <div class="row"> 
+                <div class="col-sm-4">
+                        <div class="row mb-3">
+                                <img src="./assets/images/logo.png" alt="book the event" class="mx-auto" style="width: 250px;height:150px;">
+                        </div>
+                </div>    
+                <div class="col-sm-1"></div>
+                <div class="col-md-7 mt-5">
+                        <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
+                        <li class="nav-item">
+                                <a class="nav-link active text-dark" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-line-chart"></span> Timeline</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link text-dark" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><span class="fa fa-edit"></span> Profile</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link text-dark" id="change_password-tab" data-toggle="tab" href="#change_password" role="tab" aria-controls="change_password" aria-selected="false"><span class="fa fa-key"></span> Change Password</a>
+                        </li>
+                        </ul>
+                </div>
+        </div>
+        <br>
+        <div class="row">
+        <div class="col-sm-4 mb-5">
+                <div class="d-none d-sm-none d-md-block">
+                        <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                        <h5 class="card-title">
+                                <div class="row">Welcome,
+                                <h4>{{currentBusiness.businessName}}</h4>
+                                </div> 
+                        </h5>
+                        <div class="card-text row">
+                                <h6><strong><em>{{currentBusiness.businessType}}</em></strong></h6>
+                                </div>
+                                <div class="row">
+                                <h6><strong><em><a href="http:\\{{currentBusiness.websiteUrl}}" target="_blank">
+                                        {{currentBusiness.websiteUrl}}</a></em></strong></h6>
+                                </div>
+                               
+                        
+                        </div>
+                        </div>
+                        <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                        <div class="row">
+                                <h6><strong>Address: </strong></h6>
+                                </div>
+                                <div class="row">
+                                <h6>{{currentBusiness.primaryAddressLine1}} </h6>
+                                </div>
+                                <div class="row">
+                                <h6>{{currentBusiness.primaryAddressLine2}} </h6>
+                                </div>
+                                <div class="row" >
+                                <h6>{{currentBusiness.primaryLandmark}} </h6>
+                                </div>
+                                <div class="row">
+                                <h6>{{currentBusiness.primaryCity}}, {{currentBusiness.primaryState}} </h6>
+                                </div>
+                                <div class="row">
+                                <h6>{{currentBusiness.primaryCountry}} - {{currentBusiness.primaryZipCode}}</h6>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                                <div class="row">
+                                <h6><strong>Phone Number: </strong></h6>
+                                </div>
+                                <div class="row">
+                                <h6>{{currentBusiness.primaryPhoneNumber}}</h6>
+                                </div>
+                        
+                        </div>
+                        </div>
+                        
+                </div>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-7">
+                <div class="tab-content" >
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <form class="form-signin" #businessForm="ngForm" (ngSubmit)="businessForm.form.valid && updateBusiness(businessForm.value)" novalidate>
+                        <div class="row" hidden>
+                                <div class="col-sm-6 form-group">
+                                    <input type="text" class="form-control" required [(ngModel)]="model.businessId" name="businessId" #businessId="ngModel">
+                                               
+                                </div>
+                                <div class="col-sm-6 form-group" >
+                                        <label>First Name</label>    
+                                        <input type="text" class="form-control" required [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel">
+                                        <div *ngIf="businessForm.submitted && firstName.invalid" class="alert alert-danger">
+                                        <div *ngIf="firstName.errors.required">First Name is required.</div>
+                                        </div>        
+                                </div>
+                                <div class=" col-sm-6 form-group">
+                                        <label>Last Name</label>  
+                                        <input type="text" class="form-control" required [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel">
+                                        <div *ngIf="businessForm.submitted  && lastName.invalid" class="alert alert-danger">
+                                        <div *ngIf="lastName.errors.required">Last Name is required.</div>
+                                        </div> 
+                                </div>
+                        </div> 
+                        <div class="row">        
+                                <div class=" col-sm-12 form-group ">
+                                        <label>Business Name</label>
+                                        <input type="text" class="form-control"  required [(ngModel)]="model.businessName" name="businessName" #businessName="ngModel">
+                                        <div *ngIf="businessForm.submitted  && businessName.invalid" class="alert alert-danger">
+                                        <div *ngIf="businessName.errors.required">Business Name is required.</div>
+                                        </div>
+                                </div>
+                        </div> 
+                        <div class="row">  
+                                <div class="col-sm-12 form-group">
+                                        <label>Email ID</label>  
+                                        <input type="text" class="form-control" required [(ngModel)]="model.email" name="email" #email="ngModel" email>
+                                        <div *ngIf="businessForm.submitted  && email.invalid" class="alert alert-danger">
+                                        <div *ngIf="email.errors.required">Email ID is required.</div>
+                                        <div *ngIf="email.errors.email">Email ID is not valid.</div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="row">        
+                                <div class=" col-sm-6 form-group ">
+                                        <label>Business Type</label>
+                                        <select class="form-control custom-select" required (change)="filterServices($event);" [(ngModel)]="model.businessType" name="businessType" #businessType="ngModel">
+                                                        <option [ngValue]="null" disabled>Select Business Type</option>
+                                                        <option *ngFor="let b_type of b_type_keys();" [ngValue]="b_type">{{b_type}}</option>
+                                        </select>
+                                        <div *ngIf="businessForm.submitted  && businessType.invalid" class="alert alert-danger">
+                                        <div *ngIf="businessType.errors.required">Business Type is required.</div>
+                                        </div>
+                                </div>
+                                <div class=" col-sm-6 form-group ">
+                                        <label>Business Est. Date</label>
+                                        <input type="text" class="form-control"  required [(ngModel)]="model.businessEstDate" name="businessEstDate" #businessEstDate="ngModel">
+                                        <div *ngIf="businessForm.submitted  && businessEstDate.invalid" class="alert alert-danger">
+                                        <div *ngIf="businessEstDate.errors.required">Business Est. Date is required.</div>
+                                        </div>
+                                </div>
+                        </div>  
+                        
+                        <div class="row">        
+                                <div class=" col-sm-12 form-group ">
+                                        <label>Business URL</label>
+                                        <input type="url" class="form-control" required [(ngModel)]="model.websiteUrl" name="websiteUrl" #websiteUrl="ngModel">
+                                        <div *ngIf="businessForm.submitted  && websiteUrl.invalid" class="alert alert-danger">
+                                        <div *ngIf="websiteUrl.errors.required">Business URL is required.</div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="row">        
+                                <div class=" col-sm-12 form-group ">
+                                        <label>Description</label>
+                                        <textarea rows="3" class="form-control" required [(ngModel)]="model.businessDescription" name="businessDescription" #businessDescription="ngModel"></textarea>
+                                        <div *ngIf="businessForm.submitted  && businessDescription.invalid" class="alert alert-danger">
+                                        <div *ngIf="businessDescription.errors.required">Description is required.</div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="row">     
+                                <div class=" col-sm-12 form-group ">
+                                        <label>Services Provided</label>
+                                        <select class="custom-select"  required  multiple="multiple" name="servicesProvided">
+                                        <option [ngValue]="null" disabled >Click or use Ctrl to select multiple services.</option>
+                                        <option *ngFor="let sub_b_type of serviceproviderslist" [ngValue]="sub_b_type">
+                                                {{sub_b_type}}</option>
+                                        </select>
+                                </div>
+                        </div>
+                        <hr class="my-4">
+                        <div class="row">
+                                <div class=" col-sm-12 form-group">
+                                        <label>Address Type</label>  
+                                        <select class="form-control custom-select" (change)="onAddressTypeChange($event);" >
+                                                <option value="OFFICE">Office</option>
+                                                <option value="HOME">Home</option>
+                                        </select>   
+                                </div>
+                       </div>
+                        <div class="row" *ngIf="addresstypevalue!= 'HOME'">
+                                <div class=" col-sm-12 form-group">
+                                        <label>Address Line 1</label>  
+                                        <input type="text" class="form-control address-1" required #addressline1 [(ngModel)]="model.primaryAddressLine1" name="primaryAddressLine1" #primaryAddressLine1="ngModel">
+                                        <div *ngIf="businessForm.submitted  && primaryAddressLine1.invalid" class="alert alert-danger">
+                                        <div *ngIf="primaryAddressLine1.errors.required">Address Line 1 is required.</div>
+                                        </div>        
+                                </div>
+                       </div>  
+                        <div class="row" *ngIf="addresstypevalue!= 'HOME'">
+                                <div class=" col-sm-12 form-group">
+                                        <label>Address Line 2</label>
+                                        <input type="text" class="form-control address-1"  #addressline2 [(ngModel)]="model.primaryAddressLine2" name="primaryAddressLine2" #primaryAddressLine2="ngModel">
+                                </div>
+                        </div>
+                        <div class="row" *ngIf="addresstypevalue!= 'HOME'">        
+                                <div class=" col-sm-12 form-group ">
+                                        <label>Landmark</label>
+                                        <input type="text" class="form-control address-1" #landmark [(ngModel)]="model.primaryLandmark" name="primaryLandmark" #primaryLandmark="ngModel" >
+                                </div>
+                        </div>  
+                        <div class="row" *ngIf="addresstypevalue!= 'HOME'">
+                                <div class=" col-sm-6 form-group ">
+                                        <label>Pin Code</label>
+                                        <input type="text" pattern="\d*" class="form-control address-1"  maxlength="6" minlength="6" required #pincode [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel" >
+                                        <div *ngIf="businessForm.submitted  && primaryZipCode.invalid" class="alert alert-danger">
+                                        <div *ngIf="primaryZipCode.errors.required">Pincode is required.</div>
+                                        <div *ngIf="primaryZipCode.errors.minlength">Pincode is less than 6 digits.</div>
+                                        </div>
+                                </div>
+                                <div class=" col-sm-6 form-group ">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control address-1"  required #country [(ngModel)]="model.primaryCountry" name="primaryCountry" #primaryCountry="ngModel" >
+                                        <div *ngIf="businessForm.submitted  && primaryCountry.invalid" class="alert alert-danger">
+                                        <div *ngIf="primaryCountry.errors.required">Country is required.</div>
+                                        </div>
+                                </div>
+                        </div>                
+                        <div class="row" *ngIf="addresstypevalue!= 'HOME'">
+                                <div class=" col-sm-6 form-group ">
+                                        <label>State</label>
+                                        <input type="text" class="form-control address-1"  required #state [(ngModel)]="model.primaryState" name="primaryState" #primaryState="ngModel" >
+                                        <div *ngIf="businessForm.submitted  && primaryState.invalid" class="alert alert-danger">
+                                        <div *ngIf="primaryState.errors.required">State is required.</div>
+                                        </div>
+                                </div>
+                                <div class=" col-sm-6 form-group " id="city_field1">
+                                        <label>City</label>
+                                        <input type="text" class="form-control address-1"  required #city [(ngModel)]="model.primaryCity" name="primaryCity" #primaryCity="ngModel" >
+                                        <div *ngIf="businessForm.submitted  && primaryCity.invalid" class="alert alert-danger">
+                                        <div *ngIf="primaryCity.errors.required">City is required.</div>
+                                </div>
+                                </div>
+                        </div>
+                        <div class="row" *ngIf="addresstypevalue!= 'OFFICE'">
+                                <div class=" col-sm-12 form-group">
+                                        <label>Address Line 1</label>
+                                        <input type="text" class="form-control address-2" [(ngModel)]="model.secondaryAddressLine1" name="secondaryAddressLine1" #secondaryAddressLine1="ngModel">
+                                        <div *ngIf="businessForm.submitted  && secondaryAddressLine1.invalid" class="alert alert-danger">
+                                        <div *ngIf="secondaryAddressLine1.errors.required">Address Line 1 is required.</div>
+                                        </div>
+                                </div>
+                        </div>  
+                        <div class="row" *ngIf="addresstypevalue!= 'OFFICE'">
+                                <div class=" col-sm-12 form-group">
+                                        <label>Address Line 2</label>
+                                        <input type="text" class="form-control address-2" [(ngModel)]="model.secondaryAddressLine2" name="secondaryAddressLine2" #secondaryAddressLine2="ngModel">
+                                </div>
+                        </div>
+                        <div class="row" *ngIf="addresstypevalue!= 'OFFICE'">        
+                                <div class=" col-sm-12 form-group ">
+                                        <label>Landmark</label>
+                                        <input type="text" class="form-control address-2" [(ngModel)]="model.secondaryLandmark" name="secondaryLandmark" #secondaryLandmark="ngModel">
+                                </div>
+                        </div>  
+                        <div class="row" *ngIf="addresstypevalue!= 'OFFICE'">
+                                <div class=" col-sm-6 form-group ">
+                                        <label>Pin Code</label>
+                                        <input type="text" pattern="\d*" class="form-control address-2"  maxlength="6" minlength="6"[(ngModel)]="model.secondaryZipCode" name="secondaryZipCode" #secondaryZipCode="ngModel">
+                                        <div *ngIf="businessForm.submitted  && secondaryZipCode.invalid" class="alert alert-danger">
+                                        <div *ngIf="secondaryZipCode.errors.required">Pincode is required.</div>
+                                        <div *ngIf="secondaryZipCode.errors.minlength">Pincode is less than 6 digits.</div>
+                                        </div>        
+                                </div>
+                                <div class=" col-sm-6 form-group ">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control address-2"  [(ngModel)]="model.secondaryCountry" name="secondaryCountry" #secondaryCountry="ngModel">
+                                        <div *ngIf="businessForm.submitted  && secondaryCountry.invalid" class="alert alert-danger">
+                                        <div *ngIf="secondaryCountry.errors.required">Country is required.</div>
+                                        </div>        
+                                </div>
+                        </div>                
+                        <div class="row" *ngIf="addresstypevalue!= 'OFFICE'">
+                                <div class=" col-sm-6 form-group ">
+                                        <label>State</label>
+                                        <input type="text" class="form-control address-2" [(ngModel)]="model.secondaryState" name="secondaryState" #secondaryState="ngModel">
+                                        <div *ngIf="businessForm.submitted  && secondaryState.invalid" class="alert alert-danger">
+                                        <div *ngIf="secondaryState.errors.required">State is required.</div>
+                                        </div>
+                                </div>  
+                                <div class=" col-sm-6 form-group ">
+                                        <label>City</label>
+                                        <input type="text" class="form-control address-2"  [(ngModel)]="model.secondaryCity" name="secondaryCity" #secondaryCity="ngModel">
+                                        <div *ngIf="businessForm.submitted  && secondaryCity.invalid" class="alert alert-danger">
+                                        <div *ngIf="secondaryCity.errors.required">City is required.</div>
+                                        </div>
+                                </div>
+                        </div>
+                        <hr class="my-4">
+                        <div class="row">
+                                <div class=" col-sm-12 form-group ">
+                                        <select class="form-control custom-select" (change)="onPhoneTypeChange($event);">
+                                                <option value="OFFICE">Office</option>
+                                                <option value="HOME">Home</option>
+                                                <option value="MOBILE">Mobile</option>
+                                        </select>         
+                                </div>
+                        </div>
+                        
+                        <div class="row" [hidden]="phonetypevalue != 'HOME'">
+                                <div class=" col-sm-4 form-group">
+                                        <label>Ext.</label>  
+                                        <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control" [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel">
+                                </div>        
+                                <div class=" col-sm-8 form-group">
+                                        <label>Phone Number</label>  
+                                        <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.primaryPhoneNumber" name="primaryPhoneNumber" #primaryPhoneNumber="ngModel" >
+                                        <div *ngIf="businessForm.submitted  && primaryPhoneNumber.invalid" class="alert alert-danger">
+                                        <div *ngIf="primaryPhoneNumber.errors.required">Phone Number is required.</div>
+                                        <div *ngIf="primaryPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="row" [hidden]="phonetypevalue != 'OFFICE'">
+                                <div class=" col-sm-4 form-group">
+                                        <label>Ext.</label>  
+                                        <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control" [(ngModel)]="model.secondaryExtension" name="secondaryExtension" #secondaryExtension="ngModel">
+                                        
+                                </div> 
+                                <div class=" col-sm-8 form-group">
+                                                <label>Phone Number</label>  
+                                                <input type="text" pattern="\d*" class="form-control" required [(ngModel)]="model.secondaryPhoneNumber" name="secondaryPhoneNumber" #secondaryPhoneNumber="ngModel">
+                                                <div *ngIf="businessForm.submitted  && secondaryPhoneNumber.invalid" class="alert alert-danger">
+                                                <div *ngIf="secondaryPhoneNumber.errors.required">Phone Number is required.</div>
+                                                <div *ngIf="secondaryPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
+                                                </div>
+                                </div>
+                        </div>
+                        <div class="row" [hidden]="phonetypevalue != 'MOBILE'">
+                                <div class=" col-sm-4 form-group">
+                                        <label>Ext.</label>  
+                                        <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control"  [(ngModel)]="model.thirdExtension" name="thirdExtension" #thirdExtension="ngModel">
+                                </div> 
+                                <div class=" col-sm-8 form-group">
+                                        <label>Phone Number</label>  
+                                        <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.thirdPhoneNumber" name="thirdPhoneNumber" #thirdPhoneNumber="ngModel">
+                                        <div *ngIf="businessForm.submitted  && thirdPhoneNumber.invalid" class="alert alert-danger">
+                                        <div *ngIf="thirdPhoneNumber.errors.required">Phone Number is required.</div>
+                                        <div *ngIf="thirdPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="row" hidden>  
+                                <div class="col-sm-12 form-group">
+                                        <label>Username</label>  
+                                        <input type="text" class="form-control" required [(ngModel)]="model.userName" name="userName" #userName="ngModel">
+                                        <div *ngIf="businessForm.submitted  && userName.invalid" class="alert alert-danger">
+                                        <div *ngIf="userName.errors.required">
+                                        User Name is required.
+                                        </div>
+                                </div>
+                        </div>
+                        </div>       
+                        <div class="row" hidden>
+                                <div class="col-sm-12 form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control"  required [(ngModel)]="model.password" name="password" #password="ngModel">
+                                        <div *ngIf="businessForm.submitted  && password.invalid" class="alert alert-danger">
+                                        <div *ngIf="password.errors.required">
+                                        Password is required.
+                                        </div>
+                                        </div>
+                                </div>
+                        </div>
+                            <button class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit" [disabled]="!businessForm.valid">Save</button>
+                        </form>
+                </div>
+                <div class="tab-pane fade show" id="change_password" role="tabpanel" aria-labelledby="change_password-tab">
+                        <form class="form-signin" #passwordChangeForm="ngForm" (ngSubmit)="passwordChangeForm.form.valid" novalidate>
+                        <div class="row">
+                                <div class="col-sm-12 form-group">
+                                        <label>Old Password</label>
+                                        <input type="password" class="form-control"  required  name="password">
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-sm-12 form-group">
+                                        <label>New Password</label>
+                                        <input type="password" class="form-control"  required  name="password">
+                                </div>
+                        </div>
+                        <div class="row">    
+                                <div class="col-sm-12 form-group">
+                                        <label>Confirm your New Password</label>
+                                        <input type="password" class="form-control" required  name="confirmPassword" >
+                                </div>
+                        </div>   
+                        <button class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit">Save</button>
+                        </form>
+                </div>
+        </div>
+        </div>
+       </div>
+</div>

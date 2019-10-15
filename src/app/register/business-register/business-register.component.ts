@@ -1,6 +1,6 @@
 import { Component, OnInit ,ElementRef, NgZone, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Business,BusinessType,BusinessPasswordChange,SubBusinessType } from '../../business';
+import { Business,BusinessType,BusinessPasswordChange,mapBusinessTypes } from '../../business';
 import { HttpClientService } from '../../service/http-client.service';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +14,6 @@ import { AlertService} from '../../service/alert.service';
 export class BusinessRegisterComponent implements OnInit,OnDestroy {
   htmlToAddPhoneNumber='';
   businesstypes=BusinessType;
-  subbusinesstypes=SubBusinessType;
   phoneNumberCounter=1;
   addressCounter=1;
   replicateAddressCheckbox=true;
@@ -25,27 +24,16 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
   submitted = false;
   addresstypevalue = 'HOME';
   phonetypevalue = 'HOME';
+  serviceproviderslist:string[];
 
   currentBusiness: Business;
   currentBusinessSubscription: Subscription;
 
   b_type_keys() : Array<string> {
     var keys = Object.keys(this.businesstypes);
-    return keys;
+    return keys.slice(keys.length / 2);
   }
-  b_type_values(): Array<string> {
-    var values = Object.values(this.businesstypes);
-    return values;
-  }
-  sub_b_type_keys() : Array<string> {
-    var keys = Object.keys(this.subbusinesstypes);
-    return keys;
-  }
-  sub_b_type_values(): Array<string> {
-    var values = Object.values(this.subbusinesstypes);
-    return values;
-  }
-
+  
   constructor(
     public router: Router,
     public activatedroute: ActivatedRoute,
@@ -176,11 +164,9 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
       }
   }
     
-  model = new Business(null,null,null,null,null,null,null,null,null,"OFFICE",null,null,null,null,null,null,"HOME",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+  model = new Business(null,null,null,null,null,null,null,null,null,null,"OFFICE",null,null,null,null,null,null,"HOME",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   
   onSubmit() { this.submitted = true; }
-  
-  // TODO: Remove after api integration
   
   onPhoneTypeChange(event){
     if(event.target.value=='HOME'){
@@ -211,5 +197,10 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
       this.alertService.error('Username already exists.');
     }
     );
+  }
+
+  filterServices(event){
+    let val= event.target.value;
+    this.serviceproviderslist = mapBusinessTypes(val);
   }
 }

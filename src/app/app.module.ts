@@ -16,6 +16,7 @@ import { BusinessRegisterComponent } from './register/business-register/business
 import { BusinessLoginComponent } from './login/business-login/business-login.component';
 import { CustomerLoginComponent } from './login/customer-login/customer-login.component';
 import { MustMatchDirective } from './helpers/must-match.directive';
+import { BusinessProfileComponent } from './business-profile/business-profile.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MustMatchDirective } from './helpers/must-match.directive';
     BusinessRegisterComponent,
     BusinessLoginComponent,
     CustomerLoginComponent,
-    MustMatchDirective
+    MustMatchDirective,
+    BusinessProfileComponent
   ],
   imports: [
     BrowserModule,
