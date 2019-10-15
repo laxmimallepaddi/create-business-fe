@@ -63,15 +63,24 @@ a, a:active, a:focus{
 } 
 .rating {
   unicode-bidi: bidi-override;
-  direction: rtl;
+  /* direction: rtl; */
 }
 .rating > span {
   display: inline-block;
   position: relative;
   width: 1.1em;
 }
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
+.rating1 {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+.rating1 > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+}
+.rating1 > span:hover:before,
+.rating1 > span:hover ~ span:before {
    content: "\2605";
    position: absolute;
 }
