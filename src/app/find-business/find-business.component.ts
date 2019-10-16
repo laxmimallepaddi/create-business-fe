@@ -1,4 +1,4 @@
-import { Component, OnInit ,ElementRef, NgZone, ɵConsole} from '@angular/core';
+import { Component, OnInit ,ElementRef, NgZone,HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BusinessType,BusinessFilter } from '../business';
 import { HttpClientService } from '../service/http-client.service';
@@ -32,6 +32,7 @@ export class FindBusinessComponent implements OnInit {
       this.currentBusinessSubscription = this.httpClientService.currentBusiness.subscribe(user => {
         this.currentBusiness = user;
       });
+      this.onResize();
     }
  
   ngOnInit() {
@@ -69,6 +70,39 @@ export class FindBusinessComponent implements OnInit {
     });
   }
   
-  currentRate = 6;
+  screenWidth = 0;
+  @HostListener('window:resize', ['$event'])
+  onResize(event?) {
+  this.screenWidth = window.innerWidth;
+  console.log(this.screenWidth);
+  let result_count = document.getElementsByClassName('nav').length;
+  var items:any;
+  if(this.screenWidth <600){ 
+    for(let i=0;i<result_count;i++){
+        document.getElementsByClassName('nav')[i].classList.remove('flex-column');
+        document.getElementsByClassName('icon')[i].setAttribute('hidden','hidden');
+        document.getElementsByClassName('nav')[i].classList.add('nav-tabs');
+        }
+        items = document.getElementsByClassName('active');
+        for (let i = 0; i < items.length; i++) {
+            let element = items[i];
+            element.style.background = 'white';
+        }
+      }    
+  else{
+    for(let i=0;i<result_count;i++){
+      document.getElementsByClassName('nav')[i].classList.remove('nav-tabs');
+      document.getElementsByClassName('icon')[i].removeAttribute('hidden');
+      document.getElementsByClassName('nav')[i].classList.add('flex-column');
+      }
+      items = document.getElementsByClassName('active');
+        for (let i = 0; i < items.length; i++) {
+            let element = items[i];
+            element.style.background = '#ebebeb';
+        }
+    }
+   
+
+}
   
 }
