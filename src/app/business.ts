@@ -66,7 +66,8 @@ export enum BusinessType{
     "Transportation",
     "Decoration Department",
     "Cooks",
-    "Meat Providers"
+    "Meat Providers",
+    "Technical Services"
 }
 
 export class BusinessPasswordChange {
@@ -198,7 +199,7 @@ export function mapBusinessTypes(val: string){
         }
         if(val == "13: Kids Zone" || val == "Kids Zone"){
           list=["Magicians",
-                "Games",
+                "Gaming Equipment Providers",
                 "Mimicry and Stage Show"
                 ];
         }
@@ -233,6 +234,12 @@ export function mapBusinessTypes(val: string){
                 "Sea Food",
                 "Other"
                 ];
+        }
+        if(val == "19: Technical Services" || val == "Technical Services"){
+          list=["All types of technicians",
+                "Electrician",
+                "Plumbing Work",
+                "Bathroom Cleaners"];
         }
         
       return list;
