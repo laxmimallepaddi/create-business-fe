@@ -51,24 +51,20 @@ export class FindBusinessComponent implements OnInit {
   business: string[];
   handleSuccessfulResponse(response)
   {
-      console.log(response);
+      //console.log(response);
       this.business=response;
   }
 
   businesstypes=BusinessType;
   b_type_keys() : Array<string> {
     var keys = Object.keys(this.businesstypes);
-    return keys;
-  }
-  b_type_values(): Array<string> {
-    var values = Object.values(this.businesstypes);
-    return values;
+    return keys.slice(keys.length / 2);
   }
 
   model = new BusinessFilter()
   filterBusiness(userdata){ 
     this.httpClientService.SearchFilter(userdata).subscribe(res => {
-      console.log("search successful.")
+      //console.log("search successful.")
       this.handleSuccessfulResponse(res);
     });
   }

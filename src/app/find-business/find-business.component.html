@@ -12,8 +12,8 @@
                 <div class="col-sm-4  mr-auto">
                     <label>Type of Service</label>
                     <select class="form-control custom-select" [(ngModel)]="model.businessType" name="businessType" #businessType="ngModel">
-                            <option [ngValue]="undefined">Select Type of Service</option>
-                            <option *ngFor="let b_type of b_type_keys();let i=index" [ngValue]="b_type">{{b_type_values()[i]}}</option>
+                            <option [ngValue]="undefined">Select Business Type</option>
+                            <option *ngFor="let b_type of b_type_keys();" [ngValue]="b_type">{{b_type}}</option>
                     </select>
                 </div>
                 <div class="col-sm-4  mr-auto ">
