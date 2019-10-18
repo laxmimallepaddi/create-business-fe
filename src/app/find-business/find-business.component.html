@@ -67,29 +67,31 @@
                     </h6>
                     </div>
                     <div class="card-text mb-5">
+                            <div class="row ml-3 mb-5">
+                                    <div class="col-sm-12">
+                                    <ul class="nav nav-tabs" id="myTabx" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active text-dark" id="about-tab" href="#about{{i}}" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-pencil-square-o"></span><small class="icon font-weight-bold"> About</small></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" id="contact-tab" href="#contact{{i}}" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
+                                    </li>
+                                    <li class="nav-item" *ngIf="currentCustomer">
+                                        <a class="nav-link text-dark" id="rate-tab" href="#rate{{i}}" data-toggle="tab" role="tab" aria-controls="rate" aria-selected="false"><span class="fa fa-star"></span> <small class="icon font-weight-bold"> Rate Us</small></a>
+                                    </li>
+                                    </ul>
+                                    </div>
+                            </div>
                      <div class="row ml-3 mb-5">
-                       <div class="col-sm-3 first-col">
-                          <ul class="nav flex-column" id="myTabx" role="tablist">
-                              <li class="nav-item">
-                                <a class="nav-link active text-dark" id="about-tab" href="#about{{i}}" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-pencil-square-o"></span><small class="icon"> About</small></a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link text-dark" id="contact-tab" href="#contact{{i}}" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false"><span class="fa fa-address-book"></span> <small class="icon"> Contact Details</small></a>
-                              </li>
-                              <li class="nav-item" *ngIf="currentCustomer">
-                                <a class="nav-link text-dark" id="rate-tab" href="#rate{{i}}" data-toggle="tab" role="tab" aria-controls="rate" aria-selected="false"><span class="fa fa-star"></span> <small class="icon"> Rate Us</small></a>
-                              </li>
-                            </ul>
-                       </div>
-                       <div class="col-sm-8">
+                       <div class="col-sm-12 mx-auto">
                           <div class="tab-content">
-                              <div class="tab-pane fade show active  ml-5" id="about{{i}}" role="tabpanel" aria-labelledby="about-tab">
+                              <div class="tab-pane fade show active" id="about{{i}}" role="tabpanel" aria-labelledby="about-tab">
                                 <div class="ml-4  text-wrap"> 
                                 <div class="row text-wrap">  
                                     {{businessi.businessDescription}}
                                 </div>
                                   <div class="row text-wrap">
-                                      <div class="col-sm-4">
+                                      <div class="col-sm-4 font-weight-bold">
                                           <label>Services Provided:</label>
                                         </div>
                                         <div class="col-sm-8">    
@@ -98,9 +100,9 @@
                                 </div>
                                 </div> 
                               </div>
-                              <div class="tab-pane fade ml-5" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
+                              <div class="tab-pane fade" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
                                   <div class="row ml-2  text-wrap">
-                                    <div class="col-sm-4 capitalize">
+                                    <div class="col-sm-4 capitalize font-weight-bold">
                                         <label>Office Address:</label>
                                     </div>
                                     <div class="col-sm-8 capitalize text-wrap">
@@ -110,8 +112,8 @@
                                     </div>
                                   </div>
                                   <div class="row ml-2">
-                                      <div class="col-sm-4 capitalize">
-                                          <label>Office Phone No.:</label>
+                                      <div class="col-sm-4 capitalize font-weight-bold">
+                                          <label>Office Phone No:</label>
                                         </div>
                                         <div class="col-sm-8 capitalize text-wrap">    
                                           {{businessi.primaryPhoneNumber}}
@@ -119,7 +121,7 @@
                                   </div>
                                   
                               </div>
-                          <div class="tab-pane fade  ml-5" id="rate{{i}}" role="tabpanel" aria-labelledby="rate-tab" *ngIf="currentCustomer">
+                          <div class="tab-pane fade" id="rate{{i}}" role="tabpanel" aria-labelledby="rate-tab" *ngIf="currentCustomer">
                             <div class="rating ml-4">
                                 <div class="row text-wrap">
                                     <h5>We would like you to add a rating to our service.</h5>
@@ -130,7 +132,7 @@
                                 <div class="row text-wrap">
                                         <h6>Total No. of Reviews: 0 Reviews</h6>
                                 </div>
-                                <div class="row text-wrap">
+                                <div class="row text-wrap font-weight-bold">
                                         <h6 class="mt-2">Add Stars to our Service :  </h6>
                                 <h3> 
                                     <div class="rating1 ml-1 text-wrap">

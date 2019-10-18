@@ -85,7 +85,7 @@ a, a:active, a:focus{
    position: absolute;
 }
 .active{
-    background-color: rgba(197, 195, 195, 0.952);
+    /* background-color: rgba(197, 195, 195, 0.952); */
     margin-right: 10px;
 }
 .result-card{
@@ -102,7 +102,7 @@ a, a:active, a:focus{
     .first-col{
         margin-left: 0em;
     }
-    .active{
+    /* .active{
         background-color: rgb(235, 235, 235);
-    }
+    } */
 }
