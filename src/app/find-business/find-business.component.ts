@@ -39,9 +39,6 @@ export class FindBusinessComponent implements OnInit {
     this.httpClientService.getAllBusiness().subscribe(
       response =>this.handleSuccessfulResponse(response),
      );
-    //  this.httpClientService.getRating().subscribe(
-    //   response =>this.handleSuccessfulResponse(response),
-    //  );
   }
 
   ngOnDestroy() {
@@ -52,7 +49,6 @@ export class FindBusinessComponent implements OnInit {
   business: string[];
   handleSuccessfulResponse(response)
   {
-      //console.log(response);
       this.business=response;
   }
 
@@ -65,7 +61,6 @@ export class FindBusinessComponent implements OnInit {
   model = new BusinessFilter()
   filterBusiness(userdata){ 
     this.httpClientService.SearchFilter(userdata).subscribe(res => {
-      //console.log("search successful.")
       this.handleSuccessfulResponse(res);
     });
   }
@@ -74,7 +69,6 @@ export class FindBusinessComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
   this.screenWidth = window.innerWidth;
-  console.log(this.screenWidth);
   let result_count = document.getElementsByClassName('nav').length;
   var items:any;
   if(this.screenWidth <600){ 
