@@ -203,4 +203,12 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
     let val= event.target.value;
     this.serviceproviderslist = mapBusinessTypes(val);
   }
+  doUpperCase(){
+    this.model.primaryCountry = this.model.primaryCountry.toUpperCase();
+    this.model.primaryState = this.model.primaryState.toUpperCase();
+    this.model.primaryCity = this.model.primaryCity.toUpperCase();
+    this.model.secondaryCountry = this.model.secondaryCountry.toUpperCase();
+    this.model.secondaryState = this.model.secondaryState.toUpperCase();
+    this.model.secondaryCity = this.model.secondaryCity.toUpperCase();
+  }
 }

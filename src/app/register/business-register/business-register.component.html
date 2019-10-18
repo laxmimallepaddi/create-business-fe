@@ -131,7 +131,7 @@
                 </div>
                 <div class=" col-sm-6 form-group ">
                         <label>Country</label>
-                        <input type="text" class="form-control address-1"  required #country [(ngModel)]="model.primaryCountry" name="primaryCountry" #primaryCountry="ngModel" >
+                        <input type="text" class="form-control address-1"  required #country style="text-transform:uppercase" [(ngModel)]="model.primaryCountry" name="primaryCountry" #primaryCountry="ngModel" onblur ="this.value = this.value.toUpperCase();">
                         <div *ngIf="businessForm.submitted  && primaryCountry.invalid" class="alert alert-danger">
                         <div *ngIf="primaryCountry.errors.required">Country is required.</div>
                         </div>
@@ -140,14 +140,14 @@
         <div class="row">
                 <div class=" col-sm-6 form-group ">
                         <label>State</label>
-                        <input type="text" class="form-control address-1"  required #state [(ngModel)]="model.primaryState" name="primaryState" #primaryState="ngModel" >
+                        <input type="text" class="form-control address-1"  required #state style="text-transform:uppercase" [(ngModel)]="model.primaryState" name="primaryState" #primaryState="ngModel" style="text-transform: uppercase;">
                         <div *ngIf="businessForm.submitted  && primaryState.invalid" class="alert alert-danger">
                         <div *ngIf="primaryState.errors.required">State is required.</div>
                         </div>
                 </div>
                 <div class=" col-sm-5 form-group " id="city_field1">
                         <label>City</label>
-                        <input type="text" class="form-control address-1"  required #city [(ngModel)]="model.primaryCity" name="primaryCity" #primaryCity="ngModel" >
+                        <input type="text" class="form-control address-1"  required #city style="text-transform:uppercase" [(ngModel)]="model.primaryCity" name="primaryCity" #primaryCity="ngModel" style="text-transform: uppercase;">
                         <div *ngIf="businessForm.submitted  && primaryCity.invalid" class="alert alert-danger">
                         <div *ngIf="primaryCity.errors.required">City is required.</div>
                 </div>
@@ -213,7 +213,7 @@
                 </div>
                 <div class=" col-sm-6 form-group ">
                         <label>Country</label>
-                        <input type="text" class="form-control address-2"  required [(ngModel)]="model.secondaryCountry" name="secondaryCountry" #secondaryCountry="ngModel">
+                        <input type="text" class="form-control address-2"  required style="text-transform:uppercase" [(ngModel)]="model.secondaryCountry" name="secondaryCountry" #secondaryCountry="ngModel" style="text-transform: uppercase;">
                         <div *ngIf="businessForm.submitted  && secondaryCountry.invalid" class="alert alert-danger">
                         <div *ngIf="secondaryCountry.errors.required">Country is required.</div>
                         </div>        
@@ -222,14 +222,14 @@
         <div class="row" *ngIf="officeAddress1==true || sameAddress==true">
                 <div class=" col-sm-6 form-group ">
                         <label>State</label>
-                        <input type="text" class="form-control address-2"  required [(ngModel)]="model.secondaryState" name="secondaryState" #secondaryState="ngModel">
+                        <input type="text" class="form-control address-2"  required style="text-transform:uppercase" [(ngModel)]="model.secondaryState" name="secondaryState" #secondaryState="ngModel" style="text-transform: uppercase;">
                         <div *ngIf="businessForm.submitted  && secondaryState.invalid" class="alert alert-danger">
                         <div *ngIf="secondaryState.errors.required">State is required.</div>
                         </div>
                 </div>  
                 <div class=" col-sm-6 form-group " *ngIf="sameAddress==true">
                         <label>City</label>
-                        <input type="text" class="form-control address-2"  required  [(ngModel)]="model.secondaryCity" name="secondaryCity" #secondaryCity="ngModel">
+                        <input type="text" class="form-control address-2"  required style="text-transform:uppercase" [(ngModel)]="model.secondaryCity" name="secondaryCity" #secondaryCity="ngModel" style="text-transform: uppercase;">
                         <div *ngIf="businessForm.submitted  && secondaryCity.invalid" class="alert alert-danger">
                         <div *ngIf="secondaryCity.errors.required">City is required.</div>
                         </div>
@@ -386,7 +386,7 @@
                 </div>   
                 </div>     
         </div> 
-                <button class="btn btn-lg btn-primary btn-block text-uppercase mx-auto" type="submit" >Sign Up</button>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase mx-auto" type="submit" (click)="doUpperCase();">Sign Up</button>
         </form>
         <hr class="my-4">
         <div class="text-center">
