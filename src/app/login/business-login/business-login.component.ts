@@ -36,7 +36,7 @@ export class BusinessLoginComponent implements OnInit {
   });
   }
   show1: boolean;
-  showPassword1(pswd: string){
+  showPassword1(){
     this.show1 = !this.show1;
   }
 }
