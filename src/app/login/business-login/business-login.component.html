@@ -13,15 +13,14 @@
                     <div class="form-group">
                     <input type="password" class="form-control" placeholder="Password" required [(ngModel)]="model.password" name="password" #password="ngModel">
                     </div>
-                    <div class="custom-control custom-checkbox mb-3">
-                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                    <label class="custom-control-label" for="customCheck1">Remember password</label>
+                    <div class="form-group my-4 text-center">
+                    <h6><small>For techincal difficulties or help with login send us an email to: booktheeventthikwa@gmail.com</small></h6>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" >Log In</button>
             </form>        
             <hr class="my-4">
-            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><em class="fab fa-google mr-2"></em> Sign in with Google</button>
-            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><em class="fab fa-facebook-f mr-2"></em> Sign in with Facebook</button>
+            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><em class="fa fa-google mr-2"></em> Sign in with Google</button>
+            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><em class="fa fa-facebook-f mr-2"></em> Sign in with Facebook</button>
             <hr class="my-4">
             <div class="text-center">
                     Don't have an account? <a  [routerLink]="'/register/business'">Sign Up</a>        
