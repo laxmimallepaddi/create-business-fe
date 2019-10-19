@@ -82,5 +82,12 @@ export class FindBusinessComponent implements OnInit {
       }
     }
 }
-  
+doUpperCase(){
+  if(this.model.primaryCountry != null)
+    this.model.primaryCountry = this.model.primaryCountry.toUpperCase();
+  if(this.model.primaryState != null)
+    this.model.primaryState = this.model.primaryState.toUpperCase();
+  if(this.model.primaryCity != null)
+    this.model.primaryCity = this.model.primaryCity.toUpperCase();
+}
 }

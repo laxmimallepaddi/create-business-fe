@@ -18,28 +18,28 @@
                 </div>
                 <div class="col-sm-4  mr-auto ">
                         <label>Country</label>
-                        <input type="text" class="form-control search-slt"  placeholder="Enter Country" [(ngModel)]="model.primaryCountry" name="primaryCountry" #primaryCountry="ngModel" >
+                        <input type="text" class="form-control search-slt"  placeholder="Enter Country" [(ngModel)]="model.primaryCountry" name="primaryCountry" #primaryCountry="ngModel" style="text-transform: uppercase;" >
                 </div>
                 <div class="col-sm-4 mr-auto">
                     <label>State</label>
-                    <input type="text" class="form-control search-slt round" placeholder="Enter State" [(ngModel)]="model.primaryState" name="primaryState" #primaryState="ngModel">
+                    <input type="text" class="form-control search-slt round" placeholder="Enter State" [(ngModel)]="model.primaryState" name="primaryState" #primaryState="ngModel" style="text-transform: uppercase;">
                 </div>
             </div>
             <div class="row px-4">
                 <div class="col-sm-4 mr-auto">
                     <label>City</label>
-                    <input type="text" class="form-control search-slt round" placeholder="Enter City" [(ngModel)]="model.primaryCity" name="primaryCity" #primaryCity="ngModel">
+                    <input type="text" class="form-control search-slt round" placeholder="Enter City" [(ngModel)]="model.primaryCity" name="primaryCity" #primaryCity="ngModel" style="text-transform: uppercase;">
                 </div>
                 <div class="col-sm-4 mr-auto">
                         <label>Postal Code</label>
-                        <input type="text" pattern="\d*" minlength="6" maxlength="6" class="form-control search-slt" placeholder="Enter Postal Code" [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel">
+                        <input type="text" pattern="\d*" class="form-control search-slt" placeholder="Enter Postal Code" [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel">
                 </div>      
                 <div class="col-sm-4 mr-auto"></div>    
             </div>
             <div class="row">   
                 <div class="col-sm-4 mr-auto"></div>         
                 <div class="col-sm-4 mr-auto text-center">
-                    <button type="submit" class="btn btn-danger wrn-btn">Search</button>
+                    <button type="submit" class="btn btn-danger wrn-btn" (click)="doUpperCase();">Search</button>
                 </div>
                 <div class="col-sm-4 mr-auto"></div>    
             </div>
