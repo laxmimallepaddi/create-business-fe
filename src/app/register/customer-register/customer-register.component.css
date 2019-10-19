@@ -58,3 +58,9 @@ body {
     background-color: #67c2ec;
     box-shadow: 0em;
 }
+.field-icon {
+    float: right;
+    margin-top: -30px;
+    position: relative;
+    z-index: 2;
+  }

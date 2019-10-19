@@ -46,7 +46,7 @@
                 </div>
                 <div class=" col-sm-6 form-group ">
                         <label>Business Est. Date</label>
-                        <input type="text" class="form-control"  required [(ngModel)]="model.businessEstDate" name="businessEstDate" #businessEstDate="ngModel">
+                        <input type="text"  pattern="[0-9]{4}" minlength="4" maxlength="4" class="form-control"  required [(ngModel)]="model.businessEstDate" name="businessEstDate" #businessEstDate="ngModel">
                         <div *ngIf="businessForm.submitted  && businessEstDate.invalid" class="alert alert-danger">
                         <div *ngIf="businessEstDate.errors.required">Business Est. Date is required.</div>
                         </div>
@@ -123,10 +123,9 @@
         <div class="row">
                 <div class=" col-sm-6 form-group ">
                         <label>Pin Code</label>
-                        <input type="text" pattern="\d*" class="form-control address-1"  maxlength="6" minlength="6" required #pincode [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel" >
+                        <input type="text" pattern="\d*" class="form-control address-1" required #pincode [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel" >
                         <div *ngIf="businessForm.submitted  && primaryZipCode.invalid" class="alert alert-danger">
                         <div *ngIf="primaryZipCode.errors.required">Pincode is required.</div>
-                        <div *ngIf="primaryZipCode.errors.minlength">Pincode is less than 6 digits.</div>
                         </div>
                 </div>
                 <div class=" col-sm-6 form-group ">
@@ -205,10 +204,9 @@
         <div class="row" *ngIf="officeAddress1==true || sameAddress==true">
                 <div class=" col-sm-6 form-group ">
                         <label>Pin Code</label>
-                        <input type="text" pattern="\d*" class="form-control address-2"  maxlength="6" minlength="6" required [(ngModel)]="model.secondaryZipCode" name="secondaryZipCode" #secondaryZipCode="ngModel">
+                        <input type="text" pattern="\d*" class="form-control address-2"  required [(ngModel)]="model.secondaryZipCode" name="secondaryZipCode" #secondaryZipCode="ngModel">
                         <div *ngIf="businessForm.submitted  && secondaryZipCode.invalid" class="alert alert-danger">
                         <div *ngIf="secondaryZipCode.errors.required">Pincode is required.</div>
-                        <div *ngIf="secondaryZipCode.errors.minlength">Pincode is less than 6 digits.</div>
                         </div>        
                 </div>
                 <div class=" col-sm-6 form-group ">
@@ -359,7 +357,8 @@
         <div class="row">
                 <div class="col-sm-12 form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control"  required [(ngModel)]="model.password" name="password" #password="ngModel">
+                        <input [type]="show1 ? 'text' : 'password'" class="form-control"  required [(ngModel)]="model.password" name="password" #password="ngModel">
+                        <span toggle="#password-field" [class]="show1? 'fa fa-eye-slash field-icon' :'fa fa-eye field-icon' " (click)="showPassword1()"></span>
                         <div *ngIf="businessForm.submitted  && password.invalid" class="alert alert-danger">
                         <div *ngIf="password.errors.required">
                         Password is required.
@@ -370,11 +369,13 @@
         <div class="row">    
                 <div class="col-sm-12 form-group">
                         <label>Confirm your Password</label>
-                        <input type="password" class="form-control" required [(ngModel)]="model.confirmPassword" name="confirmPassword" #confirmPassword="ngModel">
+                        <input [type]="show2 ? 'text' : 'password'" id="password-field" class="form-control" required [(ngModel)]="model.confirmPassword" name="confirmPassword" #confirmPassword="ngModel">
+                        <span toggle="#password-field" [class]="show2? 'fa fa-eye-slash field-icon' :'fa fa-eye field-icon' " (click)="showPassword2()"></span>
                         <div *ngIf="businessForm.submitted  && confirmPassword.invalid" class="alert alert-danger">
                         <div *ngIf="confirmPassword.errors.required">Confirm Password is required.</div>
                         <div *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div>
                 </div>
+               
         </div>
         </div>    
         <div class="row mr-auto">
