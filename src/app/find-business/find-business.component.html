@@ -18,28 +18,28 @@
                 </div>
                 <div class="col-sm-4  mr-auto ">
                         <label>Country</label>
-                        <input type="text" class="form-control search-slt"  placeholder="Enter Country" [(ngModel)]="model.primaryCountry" name="primaryCountry" #primaryCountry="ngModel" >
+                        <input type="text" class="form-control search-slt"  placeholder="Enter Country" [(ngModel)]="model.primaryCountry" name="primaryCountry" #primaryCountry="ngModel" style="text-transform: uppercase;" >
                 </div>
                 <div class="col-sm-4 mr-auto">
                     <label>State</label>
-                    <input type="text" class="form-control search-slt round" placeholder="Enter State" [(ngModel)]="model.primaryState" name="primaryState" #primaryState="ngModel">
+                    <input type="text" class="form-control search-slt round" placeholder="Enter State" [(ngModel)]="model.primaryState" name="primaryState" #primaryState="ngModel" style="text-transform: uppercase;">
                 </div>
             </div>
             <div class="row px-4">
                 <div class="col-sm-4 mr-auto">
                     <label>City</label>
-                    <input type="text" class="form-control search-slt round" placeholder="Enter City" [(ngModel)]="model.primaryCity" name="primaryCity" #primaryCity="ngModel">
+                    <input type="text" class="form-control search-slt round" placeholder="Enter City" [(ngModel)]="model.primaryCity" name="primaryCity" #primaryCity="ngModel" style="text-transform: uppercase;">
                 </div>
                 <div class="col-sm-4 mr-auto">
                         <label>Postal Code</label>
-                        <input type="text" pattern="\d*" minlength="6" maxlength="6" class="form-control search-slt" placeholder="Enter Postal Code" [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel">
+                        <input type="text" pattern="\d*" class="form-control search-slt" placeholder="Enter Postal Code" [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel">
                 </div>      
                 <div class="col-sm-4 mr-auto"></div>    
             </div>
             <div class="row">   
                 <div class="col-sm-4 mr-auto"></div>         
                 <div class="col-sm-4 mr-auto text-center">
-                    <button type="submit" class="btn btn-danger wrn-btn">Search</button>
+                    <button type="submit" class="btn btn-danger wrn-btn" (click)="doUpperCase();">Search</button>
                 </div>
                 <div class="col-sm-4 mr-auto"></div>    
             </div>
@@ -53,7 +53,7 @@
             <div class="card result-card" >
                     <div class="card-body">
                     <h4 class="card-title font-weight-bold">
-                        <a href="https:\\{{businessi.websiteUrl}}" target="_blank" class="uppercase mb-2">{{businessi.businessName}}</a>
+                        <a class="uppercase mb-2">{{businessi.businessName}}</a>
                     </h4>
                     
                     <h6>
@@ -88,34 +88,47 @@
                               <div class="tab-pane fade show active" id="about{{i}}" role="tabpanel" aria-labelledby="about-tab">
                                 <div class="ml-4  text-wrap"> 
                                 <div class="row text-wrap">  
-                                    {{businessi.businessDescription}}
+                                        <div class="col-sm-3 font-weight-bold ml-auto">
+                                        <label>Description:</label>
+                                        </div>
+                                        <div class="col-sm-9">    
+                                                {{businessi.businessDescription}}
+                                        </div>
                                 </div>
                                   <div class="row text-wrap">
-                                      <div class="col-sm-4 font-weight-bold">
+                                      <div class="col-sm-3 font-weight-bold ml-auto">
                                           <label>Services Provided:</label>
                                         </div>
-                                        <div class="col-sm-8">    
+                                        <div class="col-sm-9">    
                                         {{businessi.servicesProvided}}
                                     </div>
                                 </div>
                                 </div> 
                               </div>
                               <div class="tab-pane fade" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
-                                  <div class="row ml-2  text-wrap">
-                                    <div class="col-sm-4 capitalize font-weight-bold">
-                                        <label>Office Address:</label>
+                                <div class="row ml-2 text-wrap" *ngIf="businessi.websiteUrl != null">
+                                        <div class="col-sm-2 capitalize font-weight-bold ml-auto">
+                                            <label>Website Url:</label>
+                                        </div>
+                                        <div class="col-sm-10 capitalize text-wrap">
+                                            <a href="http://{{businessi.websiteUrl}}" target="blank">{{businessi.websiteUrl}}</a>
+                                        </div>
+                                </div>  
+                                <div class="row ml-2  text-wrap">
+                                    <div class="col-sm-2 capitalize font-weight-bold ml-auto">
+                                        <label>Address:</label>
                                     </div>
-                                    <div class="col-sm-8 capitalize text-wrap">
+                                    <div class="col-sm-10 capitalize text-wrap">
                                         {{businessi.primaryAddressLine1}}, {{businessi.primaryAddressLine2}}<br>
                                         {{businessi.primaryCity}}, {{businessi.primaryState}}<br>
                                         {{businessi.primaryCountry}}, {{businessi.primaryZipCode}}
                                     </div>
                                   </div>
                                   <div class="row ml-2">
-                                      <div class="col-sm-4 capitalize font-weight-bold">
-                                          <label>Office Phone No:</label>
+                                      <div class="col-sm-2 capitalize font-weight-bold ml-auto">
+                                          <label>Phone No:</label>
                                         </div>
-                                        <div class="col-sm-8 capitalize text-wrap">    
+                                        <div class="col-sm-10 capitalize text-wrap">    
                                           {{businessi.primaryPhoneNumber}}
                                     </div>
                                   </div>

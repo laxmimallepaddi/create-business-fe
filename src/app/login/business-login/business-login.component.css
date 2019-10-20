@@ -39,3 +39,9 @@
     outline: none;
     text-decoration: none;
 }
+.field-icon {
+  float: right;
+  margin-top: -30px;
+  position: relative;
+  z-index: 2;
+}

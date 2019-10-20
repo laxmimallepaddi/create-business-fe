@@ -49,25 +49,30 @@ export class Business {
 
 
 export enum BusinessType{
-    "Space Providers",
-    "Pandith Services",
-    "Fashion Services",
-    "Gifting and Printing Services",
-    "Matrimonial Services",
-    "Cartering Services",
-    "Event Organizers",
-    "Beauty Services",
     "Bakers",
     "Band Baaja Services",
-    "Photography",
-    "Security Services",
-    "Kid Zone",
-    "Housekeeping Services",
-    "Transportation",
-    "Decoration Department",
+    "Beauty Services",
+    "Cartering Services",
+    "Cleaning Service Providers",
     "Cooks",
+    "Decoration Services",
+    "Event Organizers",
+    "Fashion Services",
+    "Fitness",
+    "Gifting and Printing Services",
+    "Housekeeping Services",
+    "Insurance Agents",
+    "Kids Zone",
+    "Matrimonial Services",
     "Meat Providers",
-    "Technical Services"
+    "Pandith Services",
+    "Photography",
+    "Professionals",
+    "Registration Agents",
+    "Repair and Fix",
+    "Security Services",
+    "Space Providers",
+    "Transportation"
 }
 
 export class BusinessPasswordChange {
@@ -125,20 +130,61 @@ export class BusinessLogin {
 
 export function mapBusinessTypes(val: string){
         let list=[];
-        if(val == '1: Space Providers' || val == 'Space Providers'){
-          list=["Hotel/Lodge",
-                "Resorts",
-                "Farmhouse",
-                "Banquet Halls",
-                "Convertion Center/Function Halls"
-            ];
-        }
-        if(val == '2: Pandith Services' || val == 'Pandith Services'){
-          list=['Wedding',
-                'Funeral'
+        if(val == "1: Bakers" || val == "Bakers"){
+          list=["Specialist for Birthday Cakes",
+                "Specialist for Wedding Cakes",
+                "All Types of Services"
                 ];
         }
-        if(val == "3: Fashion Services" || val == "Fashion Services"){
+        if(val == "2: Band Baaja Services" || val == "Band Baaja Services"){
+          list=["DJ",
+                "Sunny Mela Services",
+                "Bharat Bandh Services"
+                ];
+        }
+        if(val == "3: Beauty Services" || val == "Beauty Services"){
+          list=["For Mens only",
+                "For Women only",
+                "For both Men and Women"
+                ];
+        }
+        if(val == "4: Cartering Services" || val == "Cartering Services"){
+          list=["With food",
+                "With Catering Boys"
+                ];
+        }
+        if(val == "5: Cleaning Service Providers" || val == "Cleaning Service Providers"){
+          list=["Bathroom Cleaning",
+                "Dry Cleaning",
+                "Car Cleaning Services",
+                "Housekeeping Staff Contractor",
+                "Pest Control Service providers"
+              ];
+        }
+        if(val== "6: Cooks" ||  val== "Cooks"){
+          list=["For all food combinations",
+                "For Veg",
+                "For Non-Veg",
+                "For Jain",
+                "For Punjabi",
+                "For North Indian"
+                ];
+        }
+        if(val == "7: Decoration Department" || val == "Decoration Department"){
+          list=["Flowerist",
+                "Stage decoration",
+                "Fireworks Providers",
+                "Lighting Providers"
+                ];
+        }
+        if(val == "8: Event Organizers"|| val == "Event Organizers"){
+          list=["Birthday Party",
+                "Wedding Events",
+                "Corporate Events",
+                "All types of Events"
+                ];
+        }
+        if(val == "9: Fashion Services" || val == "Fashion Services"){
           list=["Bride Dress Designer",
                 "Groom Dress Designers",
                 "Clothing Stores",
@@ -148,99 +194,113 @@ export function mapBusinessTypes(val: string){
                 "Fashion Designers"
                 ];
         }
-        if(val == "4: Gifting and Printing Services" || val == "Gifting and Printing Services"){
+        if(val == "10: Fitness" || val == "Fitness"){
+          list=["Yoga Teacher",
+                "Personal Fitness Trainer"
+              ];
+        }
+        if(val == "11: Gifting and Printing Services" || val == "Gifting and Printing Services"){
           list=["Gift Shops",
                 "Wedding Card Printers",
-                "Handloom Gift Item Makers"
+                "Handloom Gift Item Makers",
+                "Flex Printing Services"
                 ];
         }
-        if(val == "5: Matrimonial Services" || val == "Matrimonial Services"){
-          list=["Martrimonial"
+        if(val == "12: Housekeeping Services" || val == "Housekeeping Services"){
+          list=["Individual Maids",
+                "Housekeeping Staff Contractor"
+                ];
+        }
+        if(val == "13: Insurance Agents" || val == "Insurance Agents"){
+          list=["All Types of Insurances",
+                "Life/Personal Insurance",
+                "Property Insurance",
+                "Health Insurance",
+                "Car/Bike",
+                "Other Insurances"
+              ];
+        }
+        if(val == "14: Kids Zone" || val == "Kids Zone"){
+          list=["Magicians",
+                "Gaming Equipment Providers",
+                "Stage Show Artist"
+                ];
+        }
+        if(val == "15: Matrimonial Services" || val == "Matrimonial Services"){
+          list=["All types of Martrimonial Services"
         ];
         }
-        if(val == "6: Cartering Services" || val == "Cartering Services"){
-          list=["With food",
-                "With Catering Boys"
+        if(val == "16: Meat Providers" || val == "Meat Providers"){
+          list=["Chicken",
+                "Mutton",
+                "Fish",
+                "Other"
                 ];
         }
-        if(val == "7: Event Organizers"|| val == "Event Organizers"){
-          list=["Birthday",
-                "All types of Events"
+        if(val == '17: Pandith Services' || val == 'Pandith Services'){
+          list=['Wedding',
+                'Funeral'
                 ];
         }
-        if(val == "8: Beauty Services" || val == "Beauty Services"){
-          list=["For Individual",
-                "For both Men and Women"
-                ];
-        }
-        if(val == "9: Bakers" || val == "9: Bakers"){
-          list=["Specialist for Birthday Cakes",
-                "Specialist for Wedding Cakes",
-                "All Types of Services"
-                ];
-        }
-        if(val == "10: Band Baaja Services" || val == "Band Baaja Services"){
-          list=["DJ",
-                "Sunny Mela Services",
-                "Bharat Bandh Services"
-                ];
-        }
-        if(val == "11: Photography" || val == "Photography"){
+        if(val == "18: Photography" || val == "Photography"){
           list=["Photoshoot",
-                "Wedding",
-                "Party",
                 "Event",
                 "All Types of Photography"
                 ];
         }
-        if(val == "12: Security Services" || val == "Security Services"){
-          list=["All type of Security Services"
+        if(val == "19: Professionals" || val == "Professionals"){
+          list=["Electrician",
+                "Plumber",
+                "Mechanic",
+                "Architect",
+                "Interior Designer",
+                "Painters",
+                "Application Developer",
+                "Web Designer",
+                "Charted Accountants(CAs)"
+              ];
+        }
+        if(val == "20: Registration Agents" || val == "Registration Agents"){
+          list=["Company Registration Agents",
+                "GST Registration Agents"
+              ];
+        }
+        if(val == "21: Repair and Fix" || val == "Repair and Fix"){
+          list=["AC",
+                "Air Cooler",
+                "Mobiles",
+                "Chimney",
+                "Laptop/Computers",
+                "Electric Geyser/Water Heater",
+                "Refirigerator",
+                "Washing Machine",
+                "D2H Installation",
+                "Mixer-Grinder",
+                "Water Purifers",
+                "TV Repair",
+                "Furniture Making and Repair"
+              ];
+        }
+        if(val == "22: Security Services" || val == "Security Services"){
+          list=[
+              "Bouncers",
+              "All type of Security Services"
                 ];  
         }
-        if(val == "13: Kids Zone" || val == "Kids Zone"){
-          list=["Magicians",
-                "Gaming Equipment Providers",
-                "Mimicry and Stage Show"
-                ];
+        if(val == '23: Space Providers' || val == 'Space Providers'){
+          list=["Hotel/Lodge",
+                "Resorts",
+                "Farmhouse",
+                "Banquet Halls",
+                "Convertion Center/Function Halls",
+                "PGs/Hostels for Men and Women"
+            ];
         }
-        if(val== "14: Housekeeping Services" || val== "Housekeeping Services"){
-          list=["All types of Housekeeping"
-               ];
-        }
-        if(val == "15: Transportation" || val == "Transportation"){
+        if(val == "24: Transportation" || val == "Transportation"){
           list=["Packers and Movers",
-                "Vehicle for Events"
+                "Vehicle for Events",
+                "Self Driving Cars"
                 ];
         }
-        if(val == "16: Decoration Department" || val == "Decoration Department"){
-          list=["Flowerist",
-                "Stage Organisers",
-                "Mobile Bar Organisers"
-                ];
-        }
-        if(val== "17: Cooks" ||  val== "Cooks"){
-          list=["For all food types",
-                "Veg",
-                "Non-Veg",
-                "Jain",
-                "Punjabi",
-                "North Indian"
-                ];
-        }
-        if(val == "18: Meat Providers" || val == "Meat Providers"){
-          list=["Chicken",
-                "Mutton",
-                "Fish",
-                "Sea Food",
-                "Other"
-                ];
-        }
-        if(val == "19: Technical Services" || val == "Technical Services"){
-          list=["All types of technicians",
-                "Electrician",
-                "Plumbing Work",
-                "Bathroom Cleaners"];
-        }
-        
       return list;
       }

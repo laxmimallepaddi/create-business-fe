@@ -35,4 +35,8 @@ export class BusinessLoginComponent implements OnInit {
       this.alertService.error('Username or password is incorrect.');
   });
   }
+  show1: boolean;
+  showPassword1(){
+    this.show1 = !this.show1;
+  }
 }

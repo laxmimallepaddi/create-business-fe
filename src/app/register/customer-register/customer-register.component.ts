@@ -37,4 +37,12 @@ export class CustomerRegisterComponent implements OnInit {
     }
     );
   }
+  show1: boolean;
+  show2:boolean;
+  showPassword1(){
+    this.show1 = !this.show1;
+  }
+  showPassword2(){
+    this.show2 = !this.show2;
+  }
 }

@@ -45,6 +45,8 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
       this.currentBusinessSubscription = this.httpClientService.currentBusiness.subscribe(user => {
         this.currentBusiness = user;
       });
+      this.show1 = false;
+      this.show2 = false;
      }
 
   ngOnInit() {
@@ -204,11 +206,25 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
     this.serviceproviderslist = mapBusinessTypes(val);
   }
   doUpperCase(){
-    this.model.primaryCountry = this.model.primaryCountry.toUpperCase();
-    this.model.primaryState = this.model.primaryState.toUpperCase();
-    this.model.primaryCity = this.model.primaryCity.toUpperCase();
-    this.model.secondaryCountry = this.model.secondaryCountry.toUpperCase();
-    this.model.secondaryState = this.model.secondaryState.toUpperCase();
-    this.model.secondaryCity = this.model.secondaryCity.toUpperCase();
+    if(this.model.primaryCountry != null)
+      this.model.primaryCountry = this.model.primaryCountry.toUpperCase();
+    if(this.model.primaryState != null)
+      this.model.primaryState = this.model.primaryState.toUpperCase();
+    if(this.model.primaryCity != null)
+      this.model.primaryCity = this.model.primaryCity.toUpperCase();
+    if(this.model.secondaryCountry != null)
+      this.model.secondaryCountry = this.model.secondaryCountry.toUpperCase();
+    if(this.model.secondaryState != null)
+      this.model.secondaryState = this.model.secondaryState.toUpperCase();
+    if(this.model.secondaryCity != null)
+      this.model.secondaryCity = this.model.secondaryCity.toUpperCase();
+  }
+  show1: boolean;
+  show2:boolean;
+  showPassword1(){
+    this.show1 = !this.show1;
+  }
+  showPassword2(){
+    this.show2 = !this.show2;
   }
 }

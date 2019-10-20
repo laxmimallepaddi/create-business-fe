@@ -104,5 +104,18 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
     this.serviceproviderslist = mapBusinessTypes(val);
     
   }
-  
+  doUpperCase(){
+    if(this.model.primaryCountry != null)
+      this.model.primaryCountry = this.model.primaryCountry.toUpperCase();
+    if(this.model.primaryState != null)
+      this.model.primaryState = this.model.primaryState.toUpperCase();
+    if(this.model.primaryCity != null)
+      this.model.primaryCity = this.model.primaryCity.toUpperCase();
+    if(this.model.secondaryCountry != null)
+      this.model.secondaryCountry = this.model.secondaryCountry.toUpperCase();
+    if(this.model.secondaryState != null)
+      this.model.secondaryState = this.model.secondaryState.toUpperCase();
+    if(this.model.secondaryCity != null)
+      this.model.secondaryCity = this.model.secondaryCity.toUpperCase();
+  }
 }

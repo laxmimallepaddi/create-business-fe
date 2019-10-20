@@ -37,4 +37,8 @@ export class CustomerLoginComponent implements OnInit {
       }
       );
   }
+  show1: boolean;
+  showPassword1(){
+    this.show1 = !this.show1;
+  }
 }
