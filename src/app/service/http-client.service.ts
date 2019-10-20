@@ -44,7 +44,7 @@ export class HttpClientService {
 
   // POST
  CreateBusiness(data): Observable<Business> {
-  console.log(data);
+  //console.log(data);
   return this.httpClient.post<Business>('/api/business/', JSON.stringify(data), this.httpOptions)
   .pipe(
     retry(1),
@@ -54,7 +54,7 @@ export class HttpClientService {
 
 // POST
 SearchFilter(data): Observable<Business> {
-  console.log(data);
+  //console.log(data);
   return this.httpClient.post<Business>('/api/business/search/', JSON.stringify(data), this.httpOptions)
   .pipe(
     retry(1),
@@ -64,7 +64,7 @@ SearchFilter(data): Observable<Business> {
 
 // POST
 LoginBusiness(data): Observable<Business> {
-  console.log(data);
+  //console.log(data);
   return this.httpClient.post<Business>('/api/business/login/', JSON.stringify(data), this.httpOptions)
   .pipe(map(user => {
     if (user) {
@@ -79,7 +79,7 @@ LoginBusiness(data): Observable<Business> {
 
 // POST
 CreateCustomer(data): Observable<Customer> {
-  console.log(data);
+  //console.log(data);
   return this.httpClient.post<Customer>('/api/customer/', JSON.stringify(data), this.httpOptions)
   .pipe(
     retry(1),
@@ -122,7 +122,7 @@ errorHandl(error) {
   }
 // PUT
  UpdateBusiness(data): Observable<Business> {
-  console.log(data);
+  //console.log(data);
   return this.httpClient.put<Business>('/api/business/', JSON.stringify(data), this.httpOptions)
   .pipe(
     retry(1),

@@ -131,8 +131,8 @@
                                 <div class=" col-sm-6 form-group ">
                                         <label>Business Type</label>
                                         <select class="form-control custom-select" required (change)="filterServices($event);" [(ngModel)]="model.businessType" name="businessType" #businessType="ngModel">
-                                                        <option [ngValue]="null" disabled>Select Business Type</option>
-                                                        <option *ngFor="let b_type of b_type_keys();" [ngValue]="b_type">{{b_type}}</option>
+                                                <option [ngValue]="null" disabled>Select Business Type</option>
+                                                <option *ngFor="let b_type of b_type_keys();" [ngValue]="b_type">{{b_type}}</option>
                                         </select>
                                         <div *ngIf="businessForm.submitted  && businessType.invalid" class="alert alert-danger">
                                         <div *ngIf="businessType.errors.required">Business Type is required.</div>
@@ -150,10 +150,7 @@
                         <div class="row">        
                                 <div class=" col-sm-12 form-group ">
                                         <label>Business URL</label>
-                                        <input type="url" class="form-control" required [(ngModel)]="model.websiteUrl" name="websiteUrl" #websiteUrl="ngModel">
-                                        <div *ngIf="businessForm.submitted  && websiteUrl.invalid" class="alert alert-danger">
-                                        <div *ngIf="websiteUrl.errors.required">Business URL is required.</div>
-                                        </div>
+                                        <input type="url" class="form-control" [(ngModel)]="model.websiteUrl" name="websiteUrl" #websiteUrl="ngModel">
                                 </div>
                         </div>
                         <div class="row">        
@@ -168,7 +165,7 @@
                         <div class="row">     
                                 <div class=" col-sm-12 form-group ">
                                         <label>Services Provided</label>
-                                        <select class="custom-select"  required  multiple="multiple" name="servicesProvided">
+                                        <select class="custom-select"  required  multiple="multiple" name="servicesProvided"  [(ngModel)]="model.servicesProvided" #servicesProvided="ngModel">
                                         <option [ngValue]="null" disabled >Click or use Ctrl to select multiple services.</option>
                                         <option *ngFor="let sub_b_type of serviceproviderslist" [ngValue]="sub_b_type">
                                                 {{sub_b_type}}</option>
@@ -209,15 +206,14 @@
                         <div class="row" *ngIf="addresstypevalue!= 'HOME'">
                                 <div class=" col-sm-6 form-group ">
                                         <label>Pin Code</label>
-                                        <input type="text" pattern="\d*" class="form-control address-1"  maxlength="6" minlength="6" required #pincode [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel" >
+                                        <input type="text" pattern="\d*" class="form-control address-1" required #pincode [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel" >
                                         <div *ngIf="businessForm.submitted  && primaryZipCode.invalid" class="alert alert-danger">
                                         <div *ngIf="primaryZipCode.errors.required">Pincode is required.</div>
-                                        <div *ngIf="primaryZipCode.errors.minlength">Pincode is less than 6 digits.</div>
                                         </div>
                                 </div>
                                 <div class=" col-sm-6 form-group ">
                                         <label>Country</label>
-                                        <input type="text" class="form-control address-1"  required #country [(ngModel)]="model.primaryCountry" name="primaryCountry" #primaryCountry="ngModel" >
+                                        <input type="text" class="form-control address-1"  required #country [(ngModel)]="model.primaryCountry" name="primaryCountry" #primaryCountry="ngModel" onblur ="this.value = this.value.toUpperCase();">
                                         <div *ngIf="businessForm.submitted  && primaryCountry.invalid" class="alert alert-danger">
                                         <div *ngIf="primaryCountry.errors.required">Country is required.</div>
                                         </div>
@@ -226,14 +222,14 @@
                         <div class="row" *ngIf="addresstypevalue!= 'HOME'">
                                 <div class=" col-sm-6 form-group ">
                                         <label>State</label>
-                                        <input type="text" class="form-control address-1"  required #state [(ngModel)]="model.primaryState" name="primaryState" #primaryState="ngModel" >
+                                        <input type="text" class="form-control address-1"  required #state [(ngModel)]="model.primaryState" name="primaryState" #primaryState="ngModel" onblur ="this.value = this.value.toUpperCase();">
                                         <div *ngIf="businessForm.submitted  && primaryState.invalid" class="alert alert-danger">
                                         <div *ngIf="primaryState.errors.required">State is required.</div>
                                         </div>
                                 </div>
                                 <div class=" col-sm-6 form-group " id="city_field1">
                                         <label>City</label>
-                                        <input type="text" class="form-control address-1"  required #city [(ngModel)]="model.primaryCity" name="primaryCity" #primaryCity="ngModel" >
+                                        <input type="text" class="form-control address-1"  required #city [(ngModel)]="model.primaryCity" name="primaryCity" #primaryCity="ngModel" onblur ="this.value = this.value.toUpperCase();">
                                         <div *ngIf="businessForm.submitted  && primaryCity.invalid" class="alert alert-danger">
                                         <div *ngIf="primaryCity.errors.required">City is required.</div>
                                 </div>
@@ -263,15 +259,14 @@
                         <div class="row" *ngIf="addresstypevalue!= 'OFFICE'">
                                 <div class=" col-sm-6 form-group ">
                                         <label>Pin Code</label>
-                                        <input type="text" pattern="\d*" class="form-control address-2"  maxlength="6" minlength="6"[(ngModel)]="model.secondaryZipCode" name="secondaryZipCode" #secondaryZipCode="ngModel">
+                                        <input type="text" pattern="\d*" class="form-control address-2" [(ngModel)]="model.secondaryZipCode" name="secondaryZipCode" #secondaryZipCode="ngModel">
                                         <div *ngIf="businessForm.submitted  && secondaryZipCode.invalid" class="alert alert-danger">
                                         <div *ngIf="secondaryZipCode.errors.required">Pincode is required.</div>
-                                        <div *ngIf="secondaryZipCode.errors.minlength">Pincode is less than 6 digits.</div>
                                         </div>        
                                 </div>
                                 <div class=" col-sm-6 form-group ">
                                         <label>Country</label>
-                                        <input type="text" class="form-control address-2"  [(ngModel)]="model.secondaryCountry" name="secondaryCountry" #secondaryCountry="ngModel">
+                                        <input type="text" class="form-control address-2"  [(ngModel)]="model.secondaryCountry" name="secondaryCountry" #secondaryCountry="ngModel" onblur ="this.value = this.value.toUpperCase();">
                                         <div *ngIf="businessForm.submitted  && secondaryCountry.invalid" class="alert alert-danger">
                                         <div *ngIf="secondaryCountry.errors.required">Country is required.</div>
                                         </div>        
@@ -280,14 +275,14 @@
                         <div class="row" *ngIf="addresstypevalue!= 'OFFICE'">
                                 <div class=" col-sm-6 form-group ">
                                         <label>State</label>
-                                        <input type="text" class="form-control address-2" [(ngModel)]="model.secondaryState" name="secondaryState" #secondaryState="ngModel">
+                                        <input type="text" class="form-control address-2" [(ngModel)]="model.secondaryState" name="secondaryState" #secondaryState="ngModel" onblur ="this.value = this.value.toUpperCase();">
                                         <div *ngIf="businessForm.submitted  && secondaryState.invalid" class="alert alert-danger">
                                         <div *ngIf="secondaryState.errors.required">State is required.</div>
                                         </div>
                                 </div>  
                                 <div class=" col-sm-6 form-group ">
                                         <label>City</label>
-                                        <input type="text" class="form-control address-2"  [(ngModel)]="model.secondaryCity" name="secondaryCity" #secondaryCity="ngModel">
+                                        <input type="text" class="form-control address-2"  [(ngModel)]="model.secondaryCity" name="secondaryCity" #secondaryCity="ngModel" onblur ="this.value = this.value.toUpperCase();">
                                         <div *ngIf="businessForm.submitted  && secondaryCity.invalid" class="alert alert-danger">
                                         <div *ngIf="secondaryCity.errors.required">City is required.</div>
                                         </div>
@@ -369,7 +364,7 @@
                                         </div>
                                 </div>
                         </div>
-                            <button class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit" [disabled]="!businessForm.valid">Save</button>
+                            <button class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit" (click)="doUpperCase();">Save</button>
                         </form>
                 </div>
                 <div class="tab-pane fade show" id="change_password" role="tabpanel" aria-labelledby="change_password-tab">
