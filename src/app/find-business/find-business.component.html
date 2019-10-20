@@ -53,7 +53,7 @@
             <div class="card result-card" >
                     <div class="card-body">
                     <h4 class="card-title font-weight-bold">
-                        <a target="_blank" class="uppercase mb-2">{{businessi.businessName}}</a>
+                        <a class="uppercase mb-2">{{businessi.businessName}}</a>
                     </h4>
                     
                     <h6>
@@ -88,13 +88,18 @@
                               <div class="tab-pane fade show active" id="about{{i}}" role="tabpanel" aria-labelledby="about-tab">
                                 <div class="ml-4  text-wrap"> 
                                 <div class="row text-wrap">  
-                                    {{businessi.businessDescription}}
+                                        <div class="col-sm-3 font-weight-bold ml-auto">
+                                        <label>Description:</label>
+                                        </div>
+                                        <div class="col-sm-9">    
+                                                {{businessi.businessDescription}}
+                                        </div>
                                 </div>
                                   <div class="row text-wrap">
-                                      <div class="col-sm-4 font-weight-bold">
+                                      <div class="col-sm-3 font-weight-bold ml-auto">
                                           <label>Services Provided:</label>
                                         </div>
-                                        <div class="col-sm-8">    
+                                        <div class="col-sm-9">    
                                         {{businessi.servicesProvided}}
                                     </div>
                                 </div>
@@ -102,28 +107,28 @@
                               </div>
                               <div class="tab-pane fade" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
                                 <div class="row ml-2 text-wrap" *ngIf="businessi.websiteUrl != null">
-                                        <div class="col-sm-4 capitalize font-weight-bold">
+                                        <div class="col-sm-2 capitalize font-weight-bold ml-auto">
                                             <label>Website Url:</label>
                                         </div>
-                                        <div class="col-sm-8 capitalize text-wrap">
-                                            {{businessi.websiteUrl}}
+                                        <div class="col-sm-10 capitalize text-wrap">
+                                            <a href="http://{{businessi.websiteUrl}}" target="blank">{{businessi.websiteUrl}}</a>
                                         </div>
                                 </div>  
                                 <div class="row ml-2  text-wrap">
-                                    <div class="col-sm-4 capitalize font-weight-bold">
-                                        <label>Office Address:</label>
+                                    <div class="col-sm-2 capitalize font-weight-bold ml-auto">
+                                        <label>Address:</label>
                                     </div>
-                                    <div class="col-sm-8 capitalize text-wrap">
+                                    <div class="col-sm-10 capitalize text-wrap">
                                         {{businessi.primaryAddressLine1}}, {{businessi.primaryAddressLine2}}<br>
                                         {{businessi.primaryCity}}, {{businessi.primaryState}}<br>
                                         {{businessi.primaryCountry}}, {{businessi.primaryZipCode}}
                                     </div>
                                   </div>
                                   <div class="row ml-2">
-                                      <div class="col-sm-4 capitalize font-weight-bold">
-                                          <label>Office Phone No:</label>
+                                      <div class="col-sm-2 capitalize font-weight-bold ml-auto">
+                                          <label>Phone No:</label>
                                         </div>
-                                        <div class="col-sm-8 capitalize text-wrap">    
+                                        <div class="col-sm-10 capitalize text-wrap">    
                                           {{businessi.primaryPhoneNumber}}
                                     </div>
                                   </div>
