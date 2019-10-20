@@ -53,7 +53,7 @@
             <div class="card result-card" >
                     <div class="card-body">
                     <h4 class="card-title font-weight-bold">
-                        <a href="https:\\{{businessi.websiteUrl}}" target="_blank" class="uppercase mb-2">{{businessi.businessName}}</a>
+                        <a target="_blank" class="uppercase mb-2">{{businessi.businessName}}</a>
                     </h4>
                     
                     <h6>
@@ -101,7 +101,15 @@
                                 </div> 
                               </div>
                               <div class="tab-pane fade" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
-                                  <div class="row ml-2  text-wrap">
+                                <div class="row ml-2 text-wrap" *ngIf="businessi.websiteUrl != null">
+                                        <div class="col-sm-4 capitalize font-weight-bold">
+                                            <label>Website Url:</label>
+                                        </div>
+                                        <div class="col-sm-8 capitalize text-wrap">
+                                            {{businessi.websiteUrl}}
+                                        </div>
+                                </div>  
+                                <div class="row ml-2  text-wrap">
                                     <div class="col-sm-4 capitalize font-weight-bold">
                                         <label>Office Address:</label>
                                     </div>
