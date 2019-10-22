@@ -1,20 +1,16 @@
 
 <div class="container emp-profile" *ngIf="currentBusiness">
-        <a class="fa fa-close float-right ml-auto"  href="/" ></a>
         <div class="row"> 
                 <div class="col-sm-4">
-                        <div class="row mb-3">
-                                <img src="./assets/images/logo.png" alt="book the event" class="mx-auto" style="width: 250px;height:150px;">
+                        <div class="row d-none d-sm-none d-md-block ml-1">
+                                <img src="./assets/images/logo.png" alt="book the event" class="mx-auto" style="width: 18rem;height:150px;">
                         </div>
                 </div>    
                 <div class="col-sm-1"></div>
                 <div class="col-md-7 mt-5">
                         <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
                         <li class="nav-item">
-                                <a class="nav-link active text-dark" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-line-chart"></span> Timeline</a>
-                        </li>
-                        <li class="nav-item">
-                                <a class="nav-link text-dark" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><span class="fa fa-edit"></span> Profile</a>
+                                <a class="nav-link active text-dark" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><span class="fa fa-edit"></span> Profile</a>
                         </li>
                         <li class="nav-item">
                                 <a class="nav-link text-dark" id="change_password-tab" data-toggle="tab" href="#change_password" role="tab" aria-controls="change_password" aria-selected="false"><span class="fa fa-key"></span> Change Password</a>
@@ -24,24 +20,23 @@
         </div>
         <br>
         <div class="row">
-        <div class="col-sm-4 mb-5">
+        <div class="col-sm-4 mb-5 mx-auto">
                 <div class="d-none d-sm-none d-md-block">
                         <div class="card" style="width: 18rem;">
-                        <div class="card-body">
                         <h5 class="card-title">
-                                <div class="row">Welcome,
-                                <h4>{{currentBusiness.businessName}}</h4>
+                                <div class="row ml-2 mt-4">
+                                        Welcome,<h4 class="font-weight-bold">{{currentBusiness.firstName}}&nbsp;{{currentBusiness.lastName}}</h4>
                                 </div> 
-                        </h5>
-                        <div class="card-text row">
-                                <h6><strong><em>{{currentBusiness.businessType}}</em></strong></h6>
+                                </h5>
+                        </div>
+                        <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                                <div class="row">
+                                <h6><strong>Business Name: </strong></h6>
                                 </div>
                                 <div class="row">
-                                <h6><strong><em><a href="http:\\{{currentBusiness.websiteUrl}}" target="_blank">
-                                        {{currentBusiness.websiteUrl}}</a></em></strong></h6>
+                                <h6>{{currentBusiness.businessName}}</h6>
                                 </div>
-                               
-                        
                         </div>
                         </div>
                         <div class="card" style="width: 18rem;">
@@ -83,10 +78,7 @@
         <div class="col-sm-1"></div>
         <div class="col-sm-7">
                 <div class="tab-content" >
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        
-                </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <form class="form-signin" #businessForm="ngForm" (ngSubmit)="businessForm.form.valid && updateBusiness(businessForm.value)" novalidate>
                         <div class="row" hidden>
                                 <div class="col-sm-6 form-group">
@@ -300,11 +292,11 @@
                         </div>
                         
                         <div class="row" [hidden]="phonetypevalue != 'HOME'">
-                                <div class=" col-sm-4 form-group">
+                                <div class=" col-sm-2 form-group">
                                         <label>Ext.</label>  
                                         <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control" [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel">
                                 </div>        
-                                <div class=" col-sm-8 form-group">
+                                <div class=" col-sm-10 form-group">
                                         <label>Phone Number</label>  
                                         <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.primaryPhoneNumber" name="primaryPhoneNumber" #primaryPhoneNumber="ngModel" >
                                         <div *ngIf="businessForm.submitted  && primaryPhoneNumber.invalid" class="alert alert-danger">
@@ -314,14 +306,14 @@
                                 </div>
                         </div>
                         <div class="row" [hidden]="phonetypevalue != 'OFFICE'">
-                                <div class=" col-sm-4 form-group">
+                                <div class=" col-sm-2 form-group">
                                         <label>Ext.</label>  
                                         <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control" [(ngModel)]="model.secondaryExtension" name="secondaryExtension" #secondaryExtension="ngModel">
                                         
                                 </div> 
-                                <div class=" col-sm-8 form-group">
+                                <div class=" col-sm-10 form-group">
                                                 <label>Phone Number</label>  
-                                                <input type="text" pattern="\d*" class="form-control" required [(ngModel)]="model.secondaryPhoneNumber" name="secondaryPhoneNumber" #secondaryPhoneNumber="ngModel">
+                                                <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.secondaryPhoneNumber" name="secondaryPhoneNumber" #secondaryPhoneNumber="ngModel">
                                                 <div *ngIf="businessForm.submitted  && secondaryPhoneNumber.invalid" class="alert alert-danger">
                                                 <div *ngIf="secondaryPhoneNumber.errors.required">Phone Number is required.</div>
                                                 <div *ngIf="secondaryPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
@@ -329,11 +321,11 @@
                                 </div>
                         </div>
                         <div class="row" [hidden]="phonetypevalue != 'MOBILE'">
-                                <div class=" col-sm-4 form-group">
+                                <div class=" col-sm-2 form-group">
                                         <label>Ext.</label>  
                                         <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control"  [(ngModel)]="model.thirdExtension" name="thirdExtension" #thirdExtension="ngModel">
                                 </div> 
-                                <div class=" col-sm-8 form-group">
+                                <div class=" col-sm-10 form-group">
                                         <label>Phone Number</label>  
                                         <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.thirdPhoneNumber" name="thirdPhoneNumber" #thirdPhoneNumber="ngModel">
                                         <div *ngIf="businessForm.submitted  && thirdPhoneNumber.invalid" class="alert alert-danger">

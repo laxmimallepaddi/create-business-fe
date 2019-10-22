@@ -284,7 +284,7 @@
                 </div> 
                 <div class=" col-sm-4 form-group">
                                 <label>Phone Number</label>  
-                                <input type="text" pattern="\d*" class="form-control" required [(ngModel)]="model.secondaryPhoneNumber" name="secondaryPhoneNumber" #secondaryPhoneNumber="ngModel">
+                                <input type="text" pattern="\d*" minlength="10" maxlength="10" class="form-control" required [(ngModel)]="model.secondaryPhoneNumber" name="secondaryPhoneNumber" #secondaryPhoneNumber="ngModel">
                                 <div *ngIf="businessForm.submitted  && secondaryPhoneNumber.invalid" class="alert alert-danger">
                                 <div *ngIf="secondaryPhoneNumber.errors.required">Phone Number is required.</div>
                                 <div *ngIf="secondaryPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>

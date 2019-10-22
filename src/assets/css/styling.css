@@ -11,3 +11,6 @@ a, a:active, a:focus{
 .fa-close{
   color: #808080;
 }
+.lowercase {
+  text-transform: lowercase;
+}  
