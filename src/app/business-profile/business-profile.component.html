@@ -1,10 +1,9 @@
 
 <div class="container emp-profile" *ngIf="currentBusiness">
-        <a class="fa fa-close float-right ml-auto"  href="/" ></a>
         <div class="row"> 
                 <div class="col-sm-4">
-                        <div class="row mb-3">
-                                <img src="./assets/images/logo.png" alt="book the event" class="mx-auto" style="width: 250px;height:150px;">
+                        <div class="row d-none d-sm-none d-md-block ml-1">
+                                <img src="./assets/images/logo.png" alt="book the event" class="mx-auto" style="width: 18rem;height:150px;">
                         </div>
                 </div>    
                 <div class="col-sm-1"></div>
@@ -21,14 +20,24 @@
         </div>
         <br>
         <div class="row">
-        <div class="col-sm-4 mb-5">
+        <div class="col-sm-4 mb-5 mx-auto">
                 <div class="d-none d-sm-none d-md-block">
                         <div class="card" style="width: 18rem;">
                         <h5 class="card-title">
                                 <div class="row ml-2 mt-4">
-                                        Welcome,<h4 class="font-weight-bold">{{currentBusiness.businessName}}</h4>
+                                        Welcome,<h4 class="font-weight-bold">{{currentBusiness.firstName}}&nbsp;{{currentBusiness.lastName}}</h4>
                                 </div> 
                                 </h5>
+                        </div>
+                        <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                                <div class="row">
+                                <h6><strong>Business Name: </strong></h6>
+                                </div>
+                                <div class="row">
+                                <h6>{{currentBusiness.businessName}}</h6>
+                                </div>
+                        </div>
                         </div>
                         <div class="card" style="width: 18rem;">
                         <div class="card-body">
