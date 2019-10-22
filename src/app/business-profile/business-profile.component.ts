@@ -51,9 +51,9 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.model = this.currentBusiness;
     let val= this.model.businessType;
-    console.log(val);
+    //console.log(val);
     this.serviceproviderslist = mapBusinessTypes(val);
-    console.log(this.serviceproviderslist);
+    //console.log(this.serviceproviderslist);
   }
   ngOnDestroy() {
     this.currentBusinessSubscription.unsubscribe();
