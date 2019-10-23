@@ -90,7 +90,7 @@
                                         <input type="text" class="form-control" required [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel">
                                         <div *ngIf="businessForm.submitted && firstName.invalid" class="alert alert-danger">
                                         <div *ngIf="firstName.errors.required">First Name is required.</div>
-                                        </div>        
+                                        </div>  
                                 </div>
                                 <div class=" col-sm-6 form-group">
                                         <label>Last Name</label>  
@@ -360,24 +360,84 @@
                         </form>
                 </div>
                 <div class="tab-pane fade show" id="change_password" role="tabpanel" aria-labelledby="change_password-tab">
-                        <form class="form-signin" #passwordChangeForm="ngForm" (ngSubmit)="passwordChangeForm.form.valid" novalidate>
+                        <form class="form-signin" id="pswd_form"  #passwordChangeForm="ngForm" (ngSubmit)="passwordChangeForm.form.valid && changePasswordBusiness(passwordChangeForm,passwordChangeForm.value)" [mustMatch]="['newPassword', 'confirmPassword']">
+                        <div class="row" hidden>          
+                        <input type="text" class="form-control" [(ngModel)]="model.businessId" name="businessId" #businessId="ngModel">
+                        <input type="text" class="form-control"  [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel">
+                        <input type="text" class="form-control"  [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.email" name="email" #email="ngModel">
+                        <input type="text" class="form-control"  [(ngModel)]="model.businessType" name="businessType" #businessType="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.businessEstDate" name="businessEstDate" #businessEstDate="ngModel">
+                        <input type="text" class="form-control"  [(ngModel)]="model.businessName" name="businessName" #businessName="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.websiteUrl" name="websiteUrl" #websiteUrl="ngModel">
+                        <textarea rows="3" class="form-control" required [(ngModel)]="model.businessDescription" name="businessDescription" #businessDescription="ngModel"></textarea>
+                        <input type="text" class="form-control"  [(ngModel)]="model.servicesProvided" name="servicesProvided" #servicesProvided="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.primaryAddressType" name="primaryAddressType" #primaryAddressType="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.secondaryAddressType" name="secondaryAddressType" #secondaryAddressType="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.primaryAddressLine1" name="primaryAddressLine1" #primaryAddressLine1="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.primaryAddressLine2" name="primaryAddressLine2" #primaryAddressLine2="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.primaryLandmark" name="primaryLandmark" #primaryLandmark="ngModel" >
+                        <input type="text" class="form-control" [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel" >
+                        <input type="text" class="form-control" [(ngModel)]="model.primaryCountry" name="primaryCountry" #primaryCountry="ngModel" >
+                        <input type="text" class="form-control"  [(ngModel)]="model.primaryState" name="primaryState" #primaryState="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.primaryCity" name="primaryCity" #primaryCity="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.secondaryAddressLine1" name="secondaryAddressLine1" #secondaryAddressLine1="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.secondaryAddressLine2" name="secondaryAddressLine2" #secondaryAddressLine2="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.secondaryLandmark" name="secondaryLandmark" #secondaryLandmark="ngModel">
+                        <input type="text" class="form-control"  [(ngModel)]="model.secondaryZipCode" name="secondaryZipCode" #secondaryZipCode="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.secondaryCountry" name="secondaryCountry" #secondaryCountry="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.secondaryState" name="secondaryState" #secondaryState="ngModel" >
+                        <input type="text" class="form-control" [(ngModel)]="model.secondaryCity" name="secondaryCity" #secondaryCity="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel">
+                        <input type="text" class="form-control"  [(ngModel)]="model.primaryPhoneNumber" name="primaryPhoneNumber" #primaryPhoneNumber="ngModel" >
+                        <input type="text" class="form-control" [(ngModel)]="model.primaryPhoneType" name="primaryPhoneType" #primaryPhoneType="ngModel" >
+                        <input type="text" class="form-control" [(ngModel)]="model.secondaryExtension" name="secondaryExtension" #secondaryExtension="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.secondaryPhoneNumber" name="secondaryPhoneNumber" #secondaryPhoneNumber="ngModel">
+                        <input type="text" class="form-control"[(ngModel)]="model.secondaryPhoneType" name="secondaryPhoneType" #secondaryPhoneType="ngModel" >
+                        <input type="text" class="form-control"  [(ngModel)]="model.thirdExtension" name="thirdExtension" #thirdExtension="ngModel">
+                        <input type="text" class="form-control"[(ngModel)]="model.thirdPhoneNumber" name="thirdPhoneNumber" #thirdPhoneNumber="ngModel">
+                        <input type="text" class="form-control" [(ngModel)]="model.thirdPhoneType" name="thirdPhoneType" #thirdPhoneType="ngModel" >
+                        <input type="text" class="form-control" [(ngModel)]="model.userName" name="userName" #userName="ngModel">
+                </div>
                         <div class="row">
                                 <div class="col-sm-12 form-group">
-                                        <label>Old Password</label>
-                                        <input type="password" class="form-control"  required  name="password">
+                                        <label>Current Password</label>
+                                        <input [type]="show1 ? 'text' : 'password'" class="form-control" id="old_password" required (keyup)="ifPasswordMatches($event);">
+                                        <span toggle="#old_password" [class]="show1? 'fa fa-eye-slash field-icon' :'fa fa-eye field-icon' " (click)="showPassword1()"></span>
+                                        <div *ngIf="!invalidpass" class="alert alert-success">
+                                                Enter your current password here.
+                                        </div>
+                                        <div *ngIf="invalidpass" class="alert alert-success">
+                                                Password entered <i class="fa fa-check-square-o" aria-hidden="true"></i> correctly.
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="row" hidden>
+                                <div class="col-sm-12 form-group">
+                                        <input [type]="show2 ? 'text' : 'password'" class="form-control" required  [(ngModel)]="model.password" name="password" #password="ngModel" readonly>
                                 </div>
                         </div>
                         <div class="row">
                                 <div class="col-sm-12 form-group">
                                         <label>New Password</label>
-                                        <input type="password" class="form-control"  required  name="password">
+                                        <input [type]="show2 ? 'text' : 'password'" class="form-control" id="new_password" required  [(ngModel)]="model.newPassword" name="newPassword" #newPassword="ngModel" readonly>
+                                        <span toggle="#new_password" [class]="show2? 'fa fa-eye-slash field-icon' :'fa fa-eye field-icon' " (click)="showPassword2()"></span>
+                                        <div *ngIf="passwordChangeForm.submitted  && newPassword.invalid" class="alert alert-danger">
+                                        <div *ngIf="newPassword.errors.required">
+                                        New Password is required.
+                                        </div>
+                                        </div>
                                 </div>
                         </div>
                         <div class="row">    
                                 <div class="col-sm-12 form-group">
                                         <label>Confirm your New Password</label>
-                                        <input type="password" class="form-control" required  name="confirmPassword" >
-                                </div>
+                                        <input [type]="show3 ? 'text' : 'password'" id="confirm_new_password" class="form-control" required [(ngModel)]="model.confirmPassword" name="confirmPassword" #confirmPassword="ngModel" readonly>
+                                        <span toggle="#confirm_new_password" [class]="show3? 'fa fa-eye-slash field-icon' :'fa fa-eye field-icon' " (click)="showPassword3()"></span>
+                                        <div *ngIf="passwordChangeForm.submitted  && confirmPassword.invalid" class="alert alert-danger">
+                                        <div *ngIf="confirmPassword.errors.required">Confirm Password is required.</div>
+                                        <div *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div>
+                                        </div>
                         </div>   
                         <button class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit">Save</button>
                         </form>

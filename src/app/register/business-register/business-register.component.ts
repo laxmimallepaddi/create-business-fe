@@ -1,6 +1,6 @@
 import { Component, OnInit ,ElementRef, NgZone, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Business,BusinessType,BusinessPasswordChange,mapBusinessTypes } from '../../business';
+import { Business,BusinessType,mapBusinessTypes } from '../../business';
 import { HttpClientService } from '../../service/http-client.service';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
@@ -166,7 +166,7 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
       }
   }
     
-  model = new Business(null,null,null,null,null,null,null,null,null,null,"OFFICE",null,null,null,null,null,null,"HOME",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+  model = new Business(null,null,null,null,null,null,null,null,null,null,"OFFICE",null,null,null,null,null,null,"HOME",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   
   onSubmit() { this.submitted = true; }
   
@@ -182,7 +182,6 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
     }
   }
 
-  model1 = new BusinessPasswordChange(null,null,null);
   passwordsubmitted = false;
   onChangePasswordForm() { this.passwordsubmitted = true; }
 

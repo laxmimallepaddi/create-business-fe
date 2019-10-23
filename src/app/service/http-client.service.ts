@@ -132,4 +132,16 @@ errorHandl(error) {
     
   )
 }  
+// PUT
+ChangeBusinessPassword(data): Observable<Business> {
+  //console.log(123,this.currentBusiness);
+  console.log(data);
+  localStorage.setItem('currentBusiness',JSON.stringify(data));
+  return this.httpClient.put<Business>('/api/business/', JSON.stringify(data), this.httpOptions)
+  .pipe(
+    retry(1),
+    catchError(this.errorHandl),
+    
+  )
+} 
 }
