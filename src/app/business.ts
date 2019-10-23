@@ -39,6 +39,7 @@ export class Business {
         public password: string,
         public confirmPassword: string,
         public agreeTandC: string,
+        public newPassword: string,
 
         public primaryAddressLine2?: string,
         public primaryLandmark?: string,
@@ -75,13 +76,6 @@ export enum BusinessType{
     "Transportation"
 }
 
-export class BusinessPasswordChange {
-    constructor(
-        public password: string,
-        public newPassword: string,
-        public confirmNewPassword: string
-    ){}
-}
 export class phoneNumber {
     constructor(
         public extension: string,

@@ -80,3 +80,9 @@ p{
 .active{
     font-weight: bold;
 }
+.field-icon {
+    float: right;
+    margin-top: -30px;
+    position: relative;
+    z-index: 2;
+  }
