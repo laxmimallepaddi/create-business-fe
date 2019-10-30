@@ -14,45 +14,38 @@
     <div class="container-fluid py-3">
         <div class="row">
             <div class="col-sm-3">
-                <div class="event-item row"><a href="/findbusiness/">Band Baaja Services</a></div>
-                <div class="event-item row"><a href="/findbusiness/">Beauty Services</a></div>
-                <div class="event-item row"><a [routerLink]="['findbusiness']">Catering Services</a></div>
-                <div class="event-item row"><a href="/findbusiness/">Decoration Services</a></div>
-                <div class="event-item row"><a href="/findbusiness/">Event Organizers</a></div>
+                <div class="event-item row" (click)="setFieldValue('Band Baaja Services');"><a>Band Baaja Services</a></div>
+                <div class="event-item row" (click)="setFieldValue('Beauty Services');"><a>Beauty Services</a></div>
+                <div class="event-item row" (click)="setFieldValue('Catering Services');"><a>Catering Services</a></div>
+                <div class="event-item row" (click)="setFieldValue('Decoration Services');"><a>Decoration Services</a></div>
+                <div class="event-item row" (click)="setFieldValue('Event Organizers');"><a>Event Organizers</a></div>
                 
             </div>
             <div class="col-sm-3">
-                <div class="event-item row"><a href="/findbusiness/">Fashion Services</a></div>
-                <div class="event-item row"><a href="/findbusiness/">Gifting and Printing Services</a></div>
-                <div class="event-item row"><a href="/findbusiness/">Kids Zone</a></div>
-                <div class="event-item row"><a href="/findbusiness/">Matrimonial Services</a></div>
-                <div class="event-item row"><a href="/findbusiness/">Pandith Services</a></div>
+                <div class="event-item row" (click)="setFieldValue('Fashion Services');"><a>Fashion Services</a></div>
+                <div class="event-item row" (click)="setFieldValue('Gifting and Printing Services');"><a>Gifting and Printing Services</a></div>
+                <div class="event-item row" (click)="setFieldValue('Kids Zone');"><a>Kids Zone</a></div>
+                <div class="event-item row" (click)="setFieldValue('Matrimonial Services');"><a>Matrimonial Services</a></div>
+                <div class="event-item row" (click)="setFieldValue('Pandith Services');"><a>Pandith Services</a></div>
             </div>
             <div class="col-sm-3">
-                <div class="event-item row"><a href="/findbusiness/">Photography</a></div>
-                <div class="event-item row"><a href="/findbusiness/">Professionals</a></div>
-                <div class="event-item row"><a href="/findbusiness/">Repair and Fix</a></div>    
-                <div class="event-item row"><a href="/findbusiness/">Space Providers</a></div>
-                <div class="event-item row"><a href="/findbusiness/">Transportation Services</a></div>
+                <div class="event-item row" (click)="setFieldValue('Photography');"><a>Photography</a></div>
+                <div class="event-item row" (click)="setFieldValue('Professionals');"><a>Professionals</a></div>
+                <div class="event-item row" (click)="setFieldValue('Repair and Fix');"><a>Repair and Fix</a></div>    
+                <div class="event-item row" (click)="setFieldValue('Space Providers');"><a>Space Providers</a></div>
+                <div class="event-item row" (click)="setFieldValue('Transportation');"><a>Transportation Services</a></div>
                 </div>
             <div class="col-sm-3">
-                <div class="row">  
-                    <a class="ml-auto pt-1" href="#">
-                    <!-- <img src="/assets/images/logo.png" alt="book the event" style="width:200px;"> -->
-                    <h2>Contact Us</h2>
-                    <h5 class="mt-4">House No 1-17, Near Hanuman Temple</h5>
-                    <h5 class="text-wrap">Dommara Pocham Palli, Dundigal Mandal</h5>
-                    <h5 class="text-wrap">Medchal District</h5>
-                    <h5 class="text-wrap">India - 500043</h5>
-                    <h6 class="text-wrap">Mail us on 
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=sainath.gulari@thethikwa.com" target="blank" class="font-weight-bold">
-                            sainath.gulari@thethikwa.com</a></h6>
-                    </a>
-                </div>      
+                <div class="event-item row"><h4><a href="">Contact Us</a></h4></div>
+                        <div class="event-item row text-wrap"><a href="">Dommara Pocham Palli, Dundigal Mandal</a></div>
+                        <div class="event-item row text-wrap"><a href="">House No 1-17, Near Hanuman Temple</a></div>
+                        <div class="event-item row text-wrap"><a href="">Medchal District, India - 500043</a></div>
+                        <div class="event-item row text-wrap">Mail us on <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=sainath.gulari@thethikwa.com" target="blank" class="font-weight-bold">
+                            sainath.gulari@thethikwa.com</a></div>
             </div>
         </div>
         <div class="row">
-            <hr class="mx-auto my-4" style=" width:100%; background-color: antiquewhite;">
+            <hr class="mx-auto my-5" style=" width:100%; background-color: antiquewhite;">
         </div>
         <div class="row">
             <h5 class="mx-auto">

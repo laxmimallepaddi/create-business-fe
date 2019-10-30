@@ -1,10 +1,11 @@
-import { Component, OnInit ,ElementRef, NgZone,HostListener } from '@angular/core';
+import { Component, OnInit ,ElementRef, NgZone,HostListener, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BusinessType,BusinessFilter } from '../business';
 import { HttpClientService } from '../service/http-client.service';
 import { Subscription } from 'rxjs';
 import { Customer } from '../customer';
 import { Business } from '../business';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-find-business',
@@ -33,12 +34,17 @@ export class FindBusinessComponent implements OnInit {
         this.currentBusiness = user;
       });
       this.onResize();
+      this.model.businessType = FooterComponent.businessTypeField;
     }
- 
+
+  @ViewChild('filter_submit', {static: false}) filter_submit: ElementRef;
   ngOnInit() {
     this.httpClientService.getAllBusiness().subscribe(
       response =>this.handleSuccessfulResponse(response),
      );
+    setTimeout(() => {
+    this.filter_submit.nativeElement.click();
+    }, 200);
   }
 
   ngOnDestroy() {
@@ -57,7 +63,6 @@ export class FindBusinessComponent implements OnInit {
     var keys = Object.keys(this.businesstypes);
     return keys.slice(keys.length / 2);
   }
-
   model = new BusinessFilter()
   filterBusiness(userdata){ 
     this.httpClientService.SearchFilter(userdata).subscribe(res => {
@@ -82,6 +87,7 @@ export class FindBusinessComponent implements OnInit {
       }
     }
 }
+
 doUpperCase(){
   if(this.model.primaryCountry != null)
     this.model.primaryCountry = this.model.primaryCountry.toUpperCase();

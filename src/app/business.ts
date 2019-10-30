@@ -53,7 +53,7 @@ export enum BusinessType{
     "Bakers",
     "Band Baaja Services",
     "Beauty Services",
-    "Cartering Services",
+    "Catering Services",
     "Cleaning Service Providers",
     "Cooks",
     "Decoration Services",
@@ -142,7 +142,7 @@ export function mapBusinessTypes(val: string){
                 "For both Men and Women"
                 ];
         }
-        if(val == "4: Cartering Services" || val == "Cartering Services"){
+        if(val == "4: Catering Services" || val == "Catering Services"){
           list=["With food",
                 "With Catering Boys"
                 ];
