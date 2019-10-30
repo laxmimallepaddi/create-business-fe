@@ -35,8 +35,6 @@ export class FindBusinessComponent implements OnInit {
       });
       this.onResize();
       this.model.businessType = FooterComponent.businessTypeField;
-      // let el: HTMLElement = this.filter_submit.nativeElement;
-      // el.click();
     }
 
   @ViewChild('filter_submit', {static: false}) filter_submit: ElementRef;

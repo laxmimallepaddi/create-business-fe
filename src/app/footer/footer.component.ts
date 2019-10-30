@@ -15,7 +15,8 @@ export class FooterComponent implements OnInit {
   setFieldValue(businesstype: string){
     FooterComponent.businessTypeField=businesstype;
     this.router.navigate(['/findbusiness']);
-    this.redirectTo(this.router.url);
+    if (this.router.url === '/findbusiness'){
+      this.redirectTo(this.router.url);}
   }
   redirectTo(uri) {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
