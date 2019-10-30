@@ -32,14 +32,14 @@
                 </div>
                 <div class="col-sm-4 mr-auto">
                         <label>Postal Code</label>
-                        <input type="text" pattern="\d*" class="form-control search-slt" placeholder="Enter Postal Code" [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel">
+                        <input type="text" pattern="\d*" class="form-control search-slt" placeholder="ENTER POSTAL CODE" [(ngModel)]="model.primaryZipCode" name="primaryZipCode" #primaryZipCode="ngModel">
                 </div>      
                 <div class="col-sm-4 mr-auto"></div>    
             </div>
             <div class="row">   
                 <div class="col-sm-4 mr-auto"></div>         
                 <div class="col-sm-4 mr-auto text-center">
-                    <button type="submit" class="btn btn-danger wrn-btn" (click)="doUpperCase();">Search</button>
+                    <button type="submit" class="btn btn-danger wrn-btn" (click)="doUpperCase();" #filter_submit>Search</button>
                 </div>
                 <div class="col-sm-4 mr-auto"></div>    
             </div>

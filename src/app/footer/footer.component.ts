@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -6,11 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
-  businessType= '';
-
+  public static businessTypeField = undefined;
+  setFieldValue(businesstype: string){
+    FooterComponent.businessTypeField=businesstype;
+    this.router.navigate(['/findbusiness']);
+    this.redirectTo(this.router.url);
+  }
+  redirectTo(uri) {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+    this.router.navigate([uri]));
+  }
 }
