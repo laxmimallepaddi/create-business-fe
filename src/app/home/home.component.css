@@ -55,7 +55,6 @@ h2{
 font-family: 'Arial';
 }
 .vision-block{
-  padding:1%;
   background: 
    linear-gradient(#84d438 , #84d438) top left/ 10% 0.25em,
    linear-gradient(#84d438, #84d438) bottom right / 10% 0.25em,
@@ -87,4 +86,10 @@ font-family: 'Arial';
 }
 .carousel{
   padding-bottom: 10em;
+}
+@media only screen and (min-width: 600px) {
+  .container1{
+    padding-left: 20%;
+    padding-right: 20%;
+  }
 }

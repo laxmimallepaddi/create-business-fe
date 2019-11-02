@@ -1,9 +1,9 @@
 import { Component, OnInit ,ElementRef, NgZone, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Business,BusinessType,BusinessPasswordChange,mapBusinessTypes } from '../business';
+import { Business,BusinessType,mapBusinessTypes } from '../business';
 import { HttpClientService } from '../service/http-client.service';
 import { Subscription } from 'rxjs';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { AlertService} from '../service/alert.service';
 
 @Component({
@@ -51,9 +51,9 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.model = this.currentBusiness;
     let val= this.model.businessType;
-    console.log(val);
+    //console.log(val);
     this.serviceproviderslist = mapBusinessTypes(val);
-    console.log(this.serviceproviderslist);
+    //console.log(this.serviceproviderslist);
   }
   ngOnDestroy() {
     this.currentBusinessSubscription.unsubscribe();
@@ -81,7 +81,6 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
   
   // new Business(null,null,null,null,null,null,null,null,null,null,"OFFICE",null,null,null,null,null,null,"HOME",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
   
-  model1 = new BusinessPasswordChange(null,null,null);
   passwordsubmitted = false;
   onChangePasswordForm() { this.passwordsubmitted = true; }
 
@@ -92,10 +91,27 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
     this.httpClientService.UpdateBusiness(userdata).subscribe(
       res => {
       this.alertService.success('Business details updated successful.', true);
-      this.ngZone.run(() => this.router.navigateByUrl('/business'))
+      this.ngZone.run(() => this.router.navigateByUrl('/business'));
     },
     error => {
       this.alertService.error('Username already exists.');
+    }
+    );
+  }
+  
+  changePasswordBusiness(f: NgForm, userdata){ 
+    userdata.password = userdata.newPassword;
+    this.httpClientService.ChangeBusinessPassword(userdata).subscribe(
+      res => {
+          this.alertService.success('Business password changed successfully.', true);
+          
+          this.ngZone.run(() => this.router.navigateByUrl('/business'));
+          document.getElementById('new_password').setAttribute('readonly','readonly');
+          document.getElementById('confirm_new_password').setAttribute('readonly','readonly');
+          this.invalidpass=false;
+         },
+    error => {
+      this.alertService.error('Please check, unable to change password.');
     }
     );
   }
@@ -117,5 +133,31 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
       this.model.secondaryState = this.model.secondaryState.toUpperCase();
     if(this.model.secondaryCity != null)
       this.model.secondaryCity = this.model.secondaryCity.toUpperCase();
+  }
+  show1: boolean;
+  show2: boolean;
+  show3: boolean;
+  showPassword1(){
+    this.show1 = !this.show1;
+  }
+  showPassword2(){
+    this.show2 = !this.show2;
+  }
+  showPassword3(){
+    this.show3 = !this.show3;
+  }
+  invalidpass=false;
+  ifPasswordMatches(event){
+    let val= event.target.value;
+    if(this.currentBusiness.password==val){
+      document.getElementById('new_password').removeAttribute('readonly');
+      document.getElementById('confirm_new_password').removeAttribute('readonly');
+      this.invalidpass=true;
+    }
+    else{
+      document.getElementById('new_password').setAttribute('readonly','readonly');
+      document.getElementById('confirm_new_password').setAttribute('readonly','readonly');
+      this.invalidpass=false;
+    }
   }
 }
