@@ -47,7 +47,12 @@ a, a:active, a:focus{
     font-size:30px;
 	z-index:100;
 }
-
+.float1,a:active{
+	color:rgb(0, 0, 0);
+}
+.float1,a:visited{
+	color:rgb(0, 0, 0);
+}
 .my-float1{
 	margin-top:16px;
 }
