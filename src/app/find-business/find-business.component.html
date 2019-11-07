@@ -50,6 +50,7 @@
     </div>
     <div class="row">
         <div class="col-sm-10 mx-auto pb-3"  *ngFor="let businessi of business;let i=index">
+           
             <div class="card result-card" >
                     <div class="card-body">
                     <h4 class="card-title font-weight-bold">
@@ -57,16 +58,18 @@
                     </h4>
                     
                     <h6>
-                      <div class="rating mt-2" title="Sign Up as Customer to add rating for the business">
-                          0.0 <span>☆</span>
-                          <span>☆</span>
-                          <span>☆</span>
-                          <span>☆</span>
-                          <span>☆</span>(0) - {{businessi.businessType}}
+                      <div class="rating mt-2" title="Sign Up as Customer to add rating for the business" >
+                            {{businessi.rating.averageRating | number: '1.1-1' }}
+                            <span id="Star1{{i}}" class="fa fa-star-o" ></span>
+                            <span id="Star2{{i}}" class="fa fa-star-o" ></span>
+                            <span id="Star3{{i}}" class="fa fa-star-o" ></span>
+                            <span id="Star4{{i}}" class="fa fa-star-o" ></span>
+                            <span id="Star5{{i}}" class="fa fa-star-o" ></span>
+                            ({{businessi.rating.noOfReviews}}) - {{businessi.businessType}}
                         </div>
                     </h6>
                     </div>
-                    <div class="card-text mb-5">
+                    <div class="card-text mb-1">
                             <div class="row ml-3 mb-5">
                                     <div class="col-sm-12">
                                     <ul class="nav nav-tabs" id="myTabx" role="tablist">
@@ -148,21 +151,22 @@
                                     <h5>We would like you to add a rating to our service.</h5>
                                 </div>
                                 <div class="row text-wrap">
-                                        <h6>Average Rating: 0 Stars</h6>
+                                        <h6>Average Rating: {{businessi.rating.averageRating| number: '1.1-1' }} Stars</h6>
                                 </div>
                                 <div class="row text-wrap">
-                                        <h6>Total No. of Reviews: 0 Reviews</h6>
+                                        <h6>Total No. of Reviews: {{businessi.rating.noOfReviews}} Reviews</h6>
                                 </div>
                                 <div class="row text-wrap font-weight-bold">
                                         <h6 class="mt-2">Add Stars to our Service :  </h6>
                                 <h3> 
-                                    <div class="rating1 ml-1 text-wrap">
-                                        <span>☆</span>
-                                        <span>☆</span>
-                                        <span>☆</span>
-                                        <span>☆</span>
-                                        <span>☆</span>
+                                    <div class="rating1 ml-1 text-wrap" >
+                                        <a id="Star5c{{i}}" class="fa fa-star-o" (click)="addRating('5',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
+                                        <a id="Star4c{{i}}" class="fa fa-star-o" (click)="addRating('4',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
+                                        <a id="Star3c{{i}}" class="fa fa-star-o" (click)="addRating('3',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
+                                        <a id="Star2c{{i}}" class="fa fa-star-o" (click)="addRating('2',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
+                                        <a id="Star1c{{i}}" class="fa fa-star-o" (click)="addRating('1',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
                                         </div>
+                                        <div>{{addCheckedToStars(businessi.rating.averageRating,i,'c')}}</div>
                                 </h3>
                                 </div>
                           </div>
@@ -172,5 +176,6 @@
                 </div>
         </div>
     </div>
+    <div>{{addCheckedToStars(businessi.rating.averageRating,i,'')}}</div>
 </div>
   

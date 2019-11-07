@@ -141,4 +141,29 @@ ChangeBusinessPassword(data): Observable<Business> {
     
   )
 } 
+
+// SMSVerification(data): Observable<any> {
+//   console.log(12345,data);
+//   return this.httpClient.post<any>('/api/phonenumber/'+data+'/otp/',{}, this.httpOptions)
+//   .pipe(
+//     retry(1),
+//     catchError(this.errorHandl)
+//   )
+// }  
+// GetVerificationCode(data): Observable<any> {
+//   let data_code = {"otp": data.otp};
+//   return this.httpClient.put<any>('/api/phonenumber/'+data.phone_no+'/otp/', JSON.stringify(data_code), this.httpOptions)
+//   .pipe(
+//     retry(1),
+//     catchError(this.errorHandl)
+//   )
+  
+// } 
+AddRating(userdata): Observable<any> {
+  return this.httpClient.put<any>('/api/business/'+userdata.businessid+'/rating/'+userdata.rate+'/',{}, this.httpOptions)
+  .pipe(
+    retry(1),
+    catchError(this.errorHandl),
+  )
+  }
 }
