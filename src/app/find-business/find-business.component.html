@@ -70,14 +70,14 @@
                     </h6>
                     </div>
                     <div class="card-text mb-1">
-                            <div class="row ml-3 mb-5">
+                            <div class="row ml-3 mb-1">
                                     <div class="col-sm-12">
                                     <ul class="nav nav-tabs" id="myTabx" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active text-dark" id="about-tab" href="#about{{i}}" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-pencil-square-o"></span><small class="icon font-weight-bold"> About</small></a>
+                                        <a class="nav-link text-dark" id="about-tab" href="#about{{i}}" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-pencil-square-o"></span><small class="icon font-weight-bold"> About</small></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" id="contact-tab" href="#contact{{i}}" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
+                                        <a class="nav-link active text-dark" id="contact-tab" href="#contact{{i}}" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
                                     </li>
                                     <li class="nav-item" *ngIf="currentCustomer">
                                         <a class="nav-link text-dark" id="rate-tab" href="#rate{{i}}" data-toggle="tab" role="tab" aria-controls="rate" aria-selected="false"><span class="fa fa-star"></span> <small class="icon font-weight-bold"> Rate Us</small></a>
@@ -85,10 +85,10 @@
                                     </ul>
                                     </div>
                             </div>
-                     <div class="row ml-3 mb-5">
+                     <div class="row ml-3 mb-3">
                        <div class="col-sm-12 mx-auto">
                           <div class="tab-content">
-                              <div class="tab-pane fade show active" id="about{{i}}" role="tabpanel" aria-labelledby="about-tab">
+                              <div class="tab-pane fade" id="about{{i}}" role="tabpanel" aria-labelledby="about-tab">
                                 <div class="ml-4  text-wrap"> 
                                 <div class="row text-wrap">  
                                         <div class="col-sm-3 font-weight-bold ml-auto">
@@ -108,7 +108,7 @@
                                 </div>
                                 </div> 
                               </div>
-                              <div class="tab-pane fade" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
+                              <div class="tab-pane fade show active" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
                                 <div class="row ml-2 text-wrap">
                                         <div class="col-sm-2 capitalize font-weight-bold ml-auto">
                                             <label>Owner Name:</label>
@@ -150,21 +150,15 @@
                                 <div class="row text-wrap">
                                     <h5>We would like you to add a rating to our service.</h5>
                                 </div>
-                                <div class="row text-wrap">
-                                        <h6>Average Rating: {{businessi.rating.averageRating| number: '1.1-1' }} Stars</h6>
-                                </div>
-                                <div class="row text-wrap">
-                                        <h6>Total No. of Reviews: {{businessi.rating.noOfReviews}} Reviews</h6>
-                                </div>
                                 <div class="row text-wrap font-weight-bold">
-                                        <h6 class="mt-2">Add Stars to our Service :  </h6>
+                                        <h6 class="mt-2"><label>Click on Stars to our Service :  </label></h6>
                                 <h3> 
-                                    <div class="rating1 ml-1 text-wrap" >
-                                        <a id="Star5c{{i}}" class="fa fa-star-o" (click)="addRating('5',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
-                                        <a id="Star4c{{i}}" class="fa fa-star-o" (click)="addRating('4',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
-                                        <a id="Star3c{{i}}" class="fa fa-star-o" (click)="addRating('3',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
-                                        <a id="Star2c{{i}}" class="fa fa-star-o" (click)="addRating('2',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
-                                        <a id="Star1c{{i}}" class="fa fa-star-o" (click)="addRating('1',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
+                                    <div class="rating1 ml-1 text-wrap" title="Click on Stars to give rating">
+                                        <a id="Star5c{{i}}" class="fa fa-star-o ml-1" (click)="addRating('5',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
+                                        <a id="Star4c{{i}}" class="fa fa-star-o ml-1" (click)="addRating('4',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
+                                        <a id="Star3c{{i}}" class="fa fa-star-o ml-1" (click)="addRating('3',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
+                                        <a id="Star2c{{i}}" class="fa fa-star-o ml-1" (click)="addRating('2',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
+                                        <a id="Star1c{{i}}" class="fa fa-star-o ml-1" (click)="addRating('1',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
                                         </div>
                                         <div>{{addCheckedToStars(businessi.rating.averageRating,i,'c')}}</div>
                                 </h3>
