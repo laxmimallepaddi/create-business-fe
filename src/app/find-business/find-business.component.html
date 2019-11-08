@@ -59,13 +59,16 @@
                     
                     <h6>
                       <div class="rating mt-2" title="Sign Up as Customer to add rating for the business" >
-                            {{businessi.rating.averageRating | number: '1.1-1'}}
+                            <a *ngIf="businessi.rating.averageRating">{{businessi.rating.averageRating | number: '1.1-1'}}</a>
+                            <a *ngIf="!businessi.rating.averageRating">0</a>&nbsp;
                             <span id="Star1{{i}}" class="fa fa-star-o" ></span>
                             <span id="Star2{{i}}" class="fa fa-star-o" ></span>
                             <span id="Star3{{i}}" class="fa fa-star-o" ></span>
                             <span id="Star4{{i}}" class="fa fa-star-o" ></span>
                             <span id="Star5{{i}}" class="fa fa-star-o" ></span>
-                            ({{businessi.rating.noOfReviews}}) - {{businessi.businessType}}
+                            <a *ngIf="businessi.rating.noOfReviews">({{businessi.rating.noOfReviews}})</a>
+                            <a *ngIf="!businessi.rating.noOfReviews">(0)</a> - {{businessi.businessType}}
+                            
                         </div>
                     </h6>
                     </div>
