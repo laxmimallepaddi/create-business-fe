@@ -195,7 +195,8 @@ export function mapBusinessTypes(val: string){
         }
         if(val == "10: Fitness" || val == "Fitness"){
           list=["Yoga Teacher",
-                "Personal Fitness Trainer"
+                "Personal Fitness Trainer",
+                "Swimming Coach"
               ];
         }
         if(val == "11: Gifting and Printing Services" || val == "Gifting and Printing Services"){

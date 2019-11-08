@@ -44,7 +44,7 @@ export class FindBusinessComponent implements OnInit {
      );
     setTimeout(() => {
     this.filter_submit.nativeElement.click();
-    }, 200);
+    }, 10);
   }
 
   ngOnDestroy() {
@@ -63,7 +63,7 @@ export class FindBusinessComponent implements OnInit {
     var keys = Object.keys(this.businesstypes);
     return keys.slice(keys.length / 2);
   }
-  model = new BusinessFilter()
+  model = new BusinessFilter();
   filterBusiness(userdata){ 
     this.httpClientService.SearchFilter(userdata).subscribe(res => {
       this.handleSuccessfulResponse(res);
@@ -96,4 +96,142 @@ doUpperCase(){
   if(this.model.primaryCity != null)
     this.model.primaryCity = this.model.primaryCity.toUpperCase();
 }
+
+addRating(rate :string,businessid: string,business_name,index:number){
+  let userdata = {"rate" : rate,"businessid":businessid};
+  this.httpClientService.AddRating(userdata).subscribe(res => {
+    this.handleSuccessfulResponse(res);
+    this.addCheckedToStars(res.averageRating,index,'c');
+  });
+  alert('Thanks for Rating for '+ business_name);
+}
+
+addCheckedToStars(rating: number,index_i:number,suffix:string){
+    let i = index_i+"";
+    document.getElementById('Star5'+suffix+i).classList.remove('fa-star-half-o');
+    document.getElementById('Star4'+suffix+i).classList.remove('fa-star-half-o');
+    document.getElementById('Star3'+suffix+i).classList.remove('fa-star-half-o');
+    document.getElementById('Star2'+suffix+i).classList.remove('fa-star-half-o');
+    document.getElementById('Star1'+suffix+i).classList.remove('fa-star-half-o');
+    document.getElementById('Star5'+suffix+i).classList.remove('fa-star-o');
+    document.getElementById('Star4'+suffix+i).classList.remove('fa-star-o');
+    document.getElementById('Star3'+suffix+i).classList.remove('fa-star-o');
+    document.getElementById('Star2'+suffix+i).classList.remove('fa-star-o');
+    document.getElementById('Star1'+suffix+i).classList.remove('fa-star-o');
+    document.getElementById('Star5'+suffix+i).classList.remove('fa-star');
+    document.getElementById('Star4'+suffix+i).classList.remove('fa-star');
+    document.getElementById('Star3'+suffix+i).classList.remove('fa-star');
+    document.getElementById('Star2'+suffix+i).classList.remove('fa-star');
+    document.getElementById('Star1'+suffix+i).classList.remove('fa-star');
+    document.getElementById('Star5'+suffix+i).classList.add('fa-star');
+    document.getElementById('Star4'+suffix+i).classList.add('fa-star');
+    document.getElementById('Star3'+suffix+i).classList.add('fa-star');
+    document.getElementById('Star2'+suffix+i).classList.add('fa-star');
+    document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      if(rating == 5.0) {
+          document.getElementById('Star5'+suffix+i).classList.add('fa-star');
+          document.getElementById('Star4'+suffix+i).classList.add('fa-star');
+          document.getElementById('Star3'+suffix+i).classList.add('fa-star');
+          document.getElementById('Star2'+suffix+i).classList.add('fa-star');
+          document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating<5.0 && rating>=4.5) {
+          document.getElementById('Star5'+suffix+i).classList.add('fa-star-half-o');
+          document.getElementById('Star4'+suffix+i).classList.add('fa-star');
+          document.getElementById('Star3'+suffix+i).classList.add('fa-star');
+          document.getElementById('Star2'+suffix+i).classList.add('fa-star');
+          document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating<4.5 && rating>4.0) {
+          document.getElementById('Star5'+suffix+i).classList.add('fa-star-half-o');
+          document.getElementById('Star4'+suffix+i).classList.add('fa-star');
+          document.getElementById('Star3'+suffix+i).classList.add('fa-star');
+          document.getElementById('Star2'+suffix+i).classList.add('fa-star');
+          document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating==4.0) {
+        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star4'+suffix+i).classList.add('fa-star');
+        document.getElementById('Star3'+suffix+i).classList.add('fa-star');
+        document.getElementById('Star2'+suffix+i).classList.add('fa-star');
+        document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating<4.0 && rating>=3.5) {
+          document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
+          document.getElementById('Star4'+suffix+i).classList.add('fa-star-half-o');
+          document.getElementById('Star3'+suffix+i).classList.add('fa-star');
+          document.getElementById('Star2'+suffix+i).classList.add('fa-star');
+          document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating<3.5 && rating>3.0) {
+        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star4'+suffix+i).classList.add('fa-star-half-o');
+        document.getElementById('Star3'+suffix+i).classList.add('fa-star');
+        document.getElementById('Star2'+suffix+i).classList.add('fa-star');
+        document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating==3.0) {
+        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star3'+suffix+i).classList.add('fa-star');
+        document.getElementById('Star2'+suffix+i).classList.add('fa-star');
+        document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating<3.0 && rating>=2.5) {
+        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star3'+suffix+i).classList.add('fa-star-half-o');
+        document.getElementById('Star2'+suffix+i).classList.add('fa-star');
+        document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating<2.5 && rating>2.0) {
+        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star3'+suffix+i).classList.add('fa-star-half-o');
+        document.getElementById('Star2'+suffix+i).classList.add('fa-star');
+        document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating==2.0) {
+        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star3'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star2'+suffix+i).classList.add('fa-star');
+        document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating<2.0 && rating>=1.5) {
+        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star3'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star2'+suffix+i).classList.add('fa-star-half-o');
+        document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating<1.5 && rating>1.0) {
+        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star3'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star2'+suffix+i).classList.add('fa-star-half-o');
+        document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating==1.0) {
+        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star3'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star2'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star1'+suffix+i).classList.add('fa-star');
+      }
+      else if(rating<1.0 && rating>=0.5) {
+        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star3'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star2'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star1'+suffix+i).classList.add('fa-star-half-o');
+      }
+      else if(rating<=0.5 && rating>=0.0) {
+        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star3'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star2'+suffix+i).classList.add('fa-star-o');
+        document.getElementById('Star1'+suffix+i).classList.add('fa-star-o');
+      }
+    }
 }
