@@ -1,4 +1,4 @@
-import { Component, OnInit ,ElementRef, NgZone,HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit ,ElementRef, NgZone,HostListener, ViewChild,AfterContentInit,AfterViewInit,OnChanges} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BusinessType,BusinessFilter } from '../business';
 import { HttpClientService } from '../service/http-client.service';
@@ -46,16 +46,18 @@ export class FindBusinessComponent implements OnInit {
     this.filter_submit.nativeElement.click();
     }, 10);
   }
-
+  
   ngOnDestroy() {
     this.currentCustomerSubscription.unsubscribe();
     this.currentBusinessSubscription.unsubscribe();
   }  
   
   business: string[];
+  no_of_business = 0;
   handleSuccessfulResponse(response)
   {
       this.business=response;
+      this.no_of_business = response.length;
   }
 
   businesstypes=BusinessType;
@@ -101,14 +103,19 @@ addRating(rate :string,businessid: string,business_name,index:number){
   let userdata = {"rate" : rate,"businessid":businessid};
   this.httpClientService.AddRating(userdata).subscribe(res => {
     this.handleSuccessfulResponse(res);
-    this.addCheckedToStars(res.averageRating,index,'c');
+    this.addStars(res,index,'c');
   });
   alert('Thanks for Rating for '+ business_name);
 }
 
-addCheckedToStars(rating: number,index_i:number,suffix:string){
+addStars(ratingx: any,index_i:number,suffix:string){
+    let rating;
+    if(ratingx !=null) 
+      rating = ratingx.averageRating +"";
+    else 
+      rating=0;    
     let i = index_i+"";
-    document.getElementById('Star5'+suffix+i).classList.remove('fa-star-half-o');
+    document.getElementById("Star5"+suffix+i).classList.remove('fa-star-half-o');
     document.getElementById('Star4'+suffix+i).classList.remove('fa-star-half-o');
     document.getElementById('Star3'+suffix+i).classList.remove('fa-star-half-o');
     document.getElementById('Star2'+suffix+i).classList.remove('fa-star-half-o');
