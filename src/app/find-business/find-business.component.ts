@@ -46,7 +46,7 @@ export class FindBusinessComponent implements OnInit {
     this.filter_submit.nativeElement.click();
     }, 10);
   }
-  
+
   ngOnDestroy() {
     this.currentCustomerSubscription.unsubscribe();
     this.currentBusinessSubscription.unsubscribe();
@@ -65,11 +65,12 @@ export class FindBusinessComponent implements OnInit {
     var keys = Object.keys(this.businesstypes);
     return keys.slice(keys.length / 2);
   }
-  model = new BusinessFilter();
+  model = new BusinessFilter(null,null);
   filterBusiness(userdata){ 
     this.httpClientService.SearchFilter(userdata).subscribe(res => {
       this.handleSuccessfulResponse(res);
     });
+    
   }
   
   screenWidth = 0;
@@ -99,15 +100,23 @@ doUpperCase(){
     this.model.primaryCity = this.model.primaryCity.toUpperCase();
 }
 
-addRating(rate :string,businessid: string,business_name,index:number){
+add_rating_success = {};
+msg_index = {}
+show = true;
+
+addRating(rate :string,businessid: string,index:number){
   let userdata = {"rate" : rate,"businessid":businessid};
   this.httpClientService.AddRating(userdata).subscribe(res => {
-    this.handleSuccessfulResponse(res);
-    this.addStars(res,index,'c');
+    this.addStars(res,index,'');
   });
-  alert('Thanks for Rating for '+ business_name);
+  this.add_rating_success[index] = true;
+  this.msg_index = index;
 }
 
+closeAlert() {
+  document.getElementById('alert').classList.remove('show');
+}
+  
 addStars(ratingx: any,index_i:number,suffix:string){
     let rating;
     if(ratingx !=null) 
@@ -142,14 +151,7 @@ addStars(ratingx: any,index_i:number,suffix:string){
           document.getElementById('Star2'+suffix+i).classList.add('fa-star');
           document.getElementById('Star1'+suffix+i).classList.add('fa-star');
       }
-      else if(rating<5.0 && rating>=4.5) {
-          document.getElementById('Star5'+suffix+i).classList.add('fa-star-half-o');
-          document.getElementById('Star4'+suffix+i).classList.add('fa-star');
-          document.getElementById('Star3'+suffix+i).classList.add('fa-star');
-          document.getElementById('Star2'+suffix+i).classList.add('fa-star');
-          document.getElementById('Star1'+suffix+i).classList.add('fa-star');
-      }
-      else if(rating<4.5 && rating>4.0) {
+      else if(rating<5.0 && rating>4.0) {
           document.getElementById('Star5'+suffix+i).classList.add('fa-star-half-o');
           document.getElementById('Star4'+suffix+i).classList.add('fa-star');
           document.getElementById('Star3'+suffix+i).classList.add('fa-star');
@@ -163,14 +165,7 @@ addStars(ratingx: any,index_i:number,suffix:string){
         document.getElementById('Star2'+suffix+i).classList.add('fa-star');
         document.getElementById('Star1'+suffix+i).classList.add('fa-star');
       }
-      else if(rating<4.0 && rating>=3.5) {
-          document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
-          document.getElementById('Star4'+suffix+i).classList.add('fa-star-half-o');
-          document.getElementById('Star3'+suffix+i).classList.add('fa-star');
-          document.getElementById('Star2'+suffix+i).classList.add('fa-star');
-          document.getElementById('Star1'+suffix+i).classList.add('fa-star');
-      }
-      else if(rating<3.5 && rating>3.0) {
+      else if(rating<4.0 && rating>3.0) {
         document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
         document.getElementById('Star4'+suffix+i).classList.add('fa-star-half-o');
         document.getElementById('Star3'+suffix+i).classList.add('fa-star');
@@ -184,14 +179,7 @@ addStars(ratingx: any,index_i:number,suffix:string){
         document.getElementById('Star2'+suffix+i).classList.add('fa-star');
         document.getElementById('Star1'+suffix+i).classList.add('fa-star');
       }
-      else if(rating<3.0 && rating>=2.5) {
-        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
-        document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
-        document.getElementById('Star3'+suffix+i).classList.add('fa-star-half-o');
-        document.getElementById('Star2'+suffix+i).classList.add('fa-star');
-        document.getElementById('Star1'+suffix+i).classList.add('fa-star');
-      }
-      else if(rating<2.5 && rating>2.0) {
+      else if(rating<3.0 && rating>2.0) {
         document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
         document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
         document.getElementById('Star3'+suffix+i).classList.add('fa-star-half-o');
@@ -205,14 +193,7 @@ addStars(ratingx: any,index_i:number,suffix:string){
         document.getElementById('Star2'+suffix+i).classList.add('fa-star');
         document.getElementById('Star1'+suffix+i).classList.add('fa-star');
       }
-      else if(rating<2.0 && rating>=1.5) {
-        document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
-        document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
-        document.getElementById('Star3'+suffix+i).classList.add('fa-star-o');
-        document.getElementById('Star2'+suffix+i).classList.add('fa-star-half-o');
-        document.getElementById('Star1'+suffix+i).classList.add('fa-star');
-      }
-      else if(rating<1.5 && rating>1.0) {
+      else if(rating<2.0 && rating>1.0) {
         document.getElementById('Star5'+suffix+i).classList.add('fa-star-o');
         document.getElementById('Star4'+suffix+i).classList.add('fa-star-o');
         document.getElementById('Star3'+suffix+i).classList.add('fa-star-o');

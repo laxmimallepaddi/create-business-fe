@@ -1,8 +1,6 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-10 col-md-10 col-lg-10 mx-auto">
-            
-            
         <div class="card card-signin my-5 search-filter">
             <a class="fa fa-close float-right px-2 pt-2 mr-1 ml-auto"  href="/" ></a>
             <div class="card-body">
@@ -70,26 +68,27 @@
                             </div>
                         </h6>
                         {{addStars(businessi.rating,i,'')}}
-                        <div class="card-text mb-2">
-                                <div class="row ml-3 mb-3">
+                    </div>    
+                    <div class="card-text mb-2">
+                                <div class="row ml-3 mb-5">
                                     <div class="col-sm-12">
                                     <ul class="nav nav-tabs" id="myTabx" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" id="about-tab" href="#about{{i}}" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-pencil-square-o"></span><small class="icon font-weight-bold"> About</small></a>
+                                        <a class="nav-link active text-dark" id="about-tab{{i}}" href="#about{{i}}" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-pencil-square-o"></span><small class="icon font-weight-bold"> About</small></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active text-dark" id="contact-tab" href="#contact{{i}}" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
+                                        <a class="nav-link text-dark" id="contact-tab{{i}}" href="#contact{{i}}" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
                                     </li>
                                     <li class="nav-item" *ngIf="currentCustomer">
-                                        <a class="nav-link text-dark" id="rate-tab" href="#rate{{i}}" data-toggle="tab" role="tab" aria-controls="rate" aria-selected="false"><span class="fa fa-star"></span> <small class="icon font-weight-bold"> Rate Us</small></a>
+                                        <a class="nav-link text-dark" id="rate-tab{{i}}" href="#rate{{i}}" data-toggle="tab" role="tab" aria-controls="rate" aria-selected="false"><span class="fa fa-star"></span> <small class="icon font-weight-bold"> Rate Us</small></a>
                                     </li>
                                     </ul>
                                     </div>
                                 </div>
-                                <div class="row ml-3 mb-2">
+                                <div class="row ml-3 mb-5">
                                         <div class="col-sm-12 mx-auto">
                                             <div class="tab-content">
-                                                    <div class="tab-pane fade" id="about{{i}}" role="tabpanel" aria-labelledby="about-tab">
+                                                    <div class="tab-pane fade show active" id="about{{i}}" role="tabpanel" aria-labelledby="about-tab">
                                                         <div class="ml-4  text-wrap"> 
                                                             <div class="row text-wrap">  
                                                                     <div class="col-sm-3 font-weight-bold ml-auto">
@@ -109,7 +108,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="tab-pane fade show active" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
+                                                    <div class="tab-pane fade" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
                                                         <div class="row ml-2 text-wrap">
                                                             <div class="col-sm-2 capitalize font-weight-bold ml-auto">
                                                                 <label>Owner Name:</label>
@@ -153,26 +152,28 @@
                                                                 <div class="row text-wrap font-weight-bold">
                                                                 <h6 class="mt-2"><label>Click on Stars to our Service :  </label></h6>
                                                                 <h3> 
-                                                                    <div class="rating1 ml-1 text-wrap" title="Click on Stars to give rating">
-                                                                       
-                                                                     <a id="Star5c{{i}}" class="fa fa-star-o ml-1" (click)="addRating('5',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
-                                                                        <a id="Star4c{{i}}" class="fa fa-star-o ml-1" (click)="addRating('4',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
-                                                                        <a id="Star3c{{i}}" class="fa fa-star-o ml-1" (click)="addRating('3',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
-                                                                        <a id="Star2c{{i}}" class="fa fa-star-o ml-1" (click)="addRating('2',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
-                                                                        <a id="Star1c{{i}}" class="fa fa-star-o ml-1" (click)="addRating('1',businessi.businessId,businessi.businessName,i);filterBusiness(filterForm.value)"></a>
-                                                                    </div>
-                                                                    {{addStars(businessi.rating,i,'c')}}
+                                                                    <fieldset class="rating mb-3">
+                                                                        <input type="radio" id="Star5c{{i}}" name="rating"/><label class = "fa fa-star-o" for="Star5c{{i}}" title="Great - 5 stars" (click)="addRating('5',businessi.businessId,i);filterBusiness(filterForm.value)"></label>
+                                                                        <input type="radio" id="Star4c{{i}}" name="rating"/><label class = "fa fa-star-o" for="Star4c{{i}}" title="Very Good - 4 stars" (click)="addRating('4',businessi.businessId,i);filterBusiness(filterForm.value)"></label>
+                                                                        <input type="radio" id="Star3c{{i}}" name="rating"/><label class = "fa fa-star-o" for="Star3c{{i}}" title="Good - 3 stars" (click)="addRating('3',businessi.businessId,i);filterBusiness(filterForm.value)"></label>
+                                                                        <input type="radio" id="Star2c{{i}}" name="rating"/><label class = "fa fa-star-o" for="Star2c{{i}}" title="Poor - 2 stars" (click)="addRating('2',businessi.businessId,i);filterBusiness(filterForm.value)"></label>
+                                                                        <input type="radio" id="Star1c{{i}}" name="rating"/><label class = "fa fa-star-o" for="Star1c{{i}}" title="Very Poor - 1 star" (click)="addRating('1',businessi.businessId,i);filterBusiness(filterForm.value)"></label>
+                                                                    </fieldset>
+                                                                    
                                                                 </h3>
-                                                                </div>
                                                             </div>
                                                         </div>
                                             </div>
                                         </div>
                                     </div> 
                         </div>    
-                    </div>
-                </div>        
+                        <div *ngIf="(add_rating_success | json) != '{}' && msg_index==i" id="alert{{i}}" class="alert alert-secondary alert-dismissible fade show mx-auto" role="alert">
+                        <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        Thanks for rating us!
+                        </div>   
+                </div>    
             </div> 
-
 </div>
 </div>
