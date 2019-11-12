@@ -168,7 +168,7 @@
                                     </div> 
                         </div>    
                         <div *ngIf="(add_rating_success | json) != '{}' && msg_index==i" id="alert{{i}}" class="alert alert-secondary alert-dismissible fade show mx-auto" role="alert">
-                        <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+                        <button type="button" class="close" aria-label="Close" (click)="closeAlert(i);">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         Thanks for rating us!
