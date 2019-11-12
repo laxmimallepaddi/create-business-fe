@@ -1,8 +1,6 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-10 col-md-10 col-lg-10 mx-auto">
-            
-            
         <div class="card card-signin my-5 search-filter">
             <a class="fa fa-close float-right px-2 pt-2 mr-1 ml-auto"  href="/" ></a>
             <div class="card-body">
@@ -12,7 +10,7 @@
                 <div class="col-sm-4  mr-auto">
                     <label>Type of Service</label>
                     <select class="form-control custom-select" [(ngModel)]="model.businessType" name="businessType" #businessType="ngModel">
-                            <option [ngValue]="undefined">Select Business Type</option>
+                            <option [ngValue]="undefined"> --Select--</option>
                             <option *ngFor="let b_type of b_type_keys();" [ngValue]="b_type">{{b_type}}</option>
                     </select>
                 </div>
@@ -49,128 +47,133 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-10 mx-auto pb-3"  *ngFor="let businessi of business;let i=index">
-            <div class="card result-card" >
+            <div class="col-sm-10 mx-auto pb-5"  *ngFor="let businessi of business;let i=index">
+                <div class="card result-card" >
                     <div class="card-body">
-                    <h4 class="card-title font-weight-bold">
-                        <a class="uppercase mb-2">{{businessi.businessName}}</a>
-                    </h4>
-                    
-                    <h6>
-                      <div class="rating mt-2" title="Sign Up as Customer to add rating for the business">
-                          0.0 <span>☆</span>
-                          <span>☆</span>
-                          <span>☆</span>
-                          <span>☆</span>
-                          <span>☆</span>(0) - {{businessi.businessType}}
-                        </div>
-                    </h6>
-                    </div>
-                    <div class="card-text mb-5">
-                            <div class="row ml-3 mb-5">
+                        <h4 class="card-title font-weight-bold">
+                            <a class="uppercase mb-2">{{businessi.businessName}}</a>
+                        </h4>
+                        <h6>
+                            <div class="rating mt-2" title="Sign Up as Customer to add rating for the business" >
+                                <a *ngIf="businessi.rating !== null">{{businessi.rating.averageRating | number: '1.1-1'}}</a>
+                                <a *ngIf="businessi.rating === null">0.0</a>&nbsp;
+                                <a id="Star1{{i}}" class="fa fa-star-o ml-1" ></a>
+                                <a id="Star2{{i}}" class="fa fa-star-o ml-1" ></a>
+                                <a id="Star3{{i}}" class="fa fa-star-o ml-1" ></a>
+                                <a id="Star4{{i}}" class="fa fa-star-o ml-1" ></a>
+                                <a id="Star5{{i}}" class="fa fa-star-o ml-1" ></a>
+                                &nbsp;
+                                <a *ngIf="businessi.rating !== null">({{businessi.rating.noOfReviews}})</a>
+                                <a *ngIf="businessi.rating === null">(0)</a> - {{businessi.businessType}}
+                            </div>
+                        </h6>
+                        {{addStars(businessi.rating,i,'')}}
+                    </div>    
+                    <div class="card-text mb-2">
+                                <div class="row ml-3 mb-5">
                                     <div class="col-sm-12">
                                     <ul class="nav nav-tabs" id="myTabx" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active text-dark" id="about-tab" href="#about{{i}}" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-pencil-square-o"></span><small class="icon font-weight-bold"> About</small></a>
+                                        <a class="nav-link active text-dark" id="about-tab{{i}}" href="#about{{i}}" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-pencil-square-o"></span><small class="icon font-weight-bold"> About</small></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" id="contact-tab" href="#contact{{i}}" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
+                                        <a class="nav-link text-dark" id="contact-tab{{i}}" href="#contact{{i}}" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
                                     </li>
                                     <li class="nav-item" *ngIf="currentCustomer">
-                                        <a class="nav-link text-dark" id="rate-tab" href="#rate{{i}}" data-toggle="tab" role="tab" aria-controls="rate" aria-selected="false"><span class="fa fa-star"></span> <small class="icon font-weight-bold"> Rate Us</small></a>
+                                        <a class="nav-link text-dark" id="rate-tab{{i}}" href="#rate{{i}}" data-toggle="tab" role="tab" aria-controls="rate" aria-selected="false"><span class="fa fa-star"></span> <small class="icon font-weight-bold"> Rate Us</small></a>
                                     </li>
                                     </ul>
                                     </div>
-                            </div>
-                     <div class="row ml-3 mb-5">
-                       <div class="col-sm-12 mx-auto">
-                          <div class="tab-content">
-                              <div class="tab-pane fade show active" id="about{{i}}" role="tabpanel" aria-labelledby="about-tab">
-                                <div class="ml-4  text-wrap"> 
-                                <div class="row text-wrap">  
-                                        <div class="col-sm-3 font-weight-bold ml-auto">
-                                        <label>Description:</label>
-                                        </div>
-                                        <div class="col-sm-9">    
-                                                {{businessi.businessDescription}}
-                                        </div>
                                 </div>
-                                  <div class="row text-wrap">
-                                      <div class="col-sm-3 font-weight-bold ml-auto">
-                                          <label>Services Provided:</label>
+                                <div class="row ml-3 mb-5">
+                                        <div class="col-sm-12 mx-auto">
+                                            <div class="tab-content">
+                                                    <div class="tab-pane fade show active" id="about{{i}}" role="tabpanel" aria-labelledby="about-tab">
+                                                        <div class="ml-4  text-wrap"> 
+                                                            <div class="row text-wrap">  
+                                                                    <div class="col-sm-3 font-weight-bold ml-auto">
+                                                                    <label>Description:</label>
+                                                                    </div>
+                                                                    <div class="col-sm-9">    
+                                                                            {{businessi.businessDescription}}
+                                                                    </div>
+                                                            </div>
+                                                            <div class="row text-wrap">
+                                                                <div class="col-sm-3 font-weight-bold ml-auto">
+                                                                    <label>Services Provided:</label>
+                                                                </div>
+                                                                <div class="col-sm-9">    
+                                                                    {{businessi.servicesProvided}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
+                                                        <div class="row ml-2 text-wrap">
+                                                            <div class="col-sm-2 capitalize font-weight-bold ml-auto">
+                                                                <label>Owner Name:</label>
+                                                            </div>
+                                                            <div class="col-sm-10 capitalize text-wrap">
+                                                                    {{businessi.firstName}}&nbsp;{{businessi.lastName}}<br>
+                                                            </div>
+                                                        </div>  
+                                                        <div class="row ml-2 text-wrap" *ngIf="businessi.websiteUrl != null">
+                                                            <div class="col-sm-2 capitalize font-weight-bold ml-auto">
+                                                                <label>Website Url:</label>
+                                                            </div>
+                                                            <div class="col-sm-10 lowercase text-wrap">
+                                                                <a href="http://{{businessi.websiteUrl}}" target="blank">{{businessi.websiteUrl}}</a>
+                                                            </div>
+                                                        </div>  
+                                                        <div class="row ml-2  text-wrap">
+                                                            <div class="col-sm-2 capitalize font-weight-bold ml-auto">
+                                                                <label>Address:</label>
+                                                            </div>
+                                                            <div class="col-sm-10 capitalize text-wrap">
+                                                                {{businessi.primaryAddressLine1}}, {{businessi.primaryAddressLine2}}<br>
+                                                                {{businessi.primaryCity}}, {{businessi.primaryState}}<br>
+                                                                {{businessi.primaryCountry}} - {{businessi.primaryZipCode}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row ml-2">
+                                                            <div class="col-sm-2 capitalize font-weight-bold ml-auto">
+                                                                <label>Phone No:</label>
+                                                            </div>
+                                                            <div class="col-sm-10 capitalize text-wrap">    
+                                                                {{businessi.primaryPhoneNumber}}
+                                                            </div>
+                                                        </div> 
+                                                    </div> 
+                                                    <div class="tab-pane fade" id="rate{{i}}" role="tabpanel" aria-labelledby="rate-tab" *ngIf="currentCustomer">
+                                                            <div class="rating ml-4">
+                                                                <div class="row text-wrap">
+                                                                <h5>We would like you to add a rating to our service.</h5>
+                                                                </div>
+                                                                <div class="row text-wrap font-weight-bold">
+                                                                <h6 class="mt-2"><label>Click on Stars to our Service :  </label></h6>
+                                                                <h3> 
+                                                                    <fieldset class="rating mb-3">
+                                                                        <input type="radio" id="Star5c{{i}}" name="rating"/><label class = "fa fa-star-o" for="Star5c{{i}}" title="Great - 5 stars" (click)="addRating('5',businessi.businessId,i);filterBusiness(filterForm.value)"></label>
+                                                                        <input type="radio" id="Star4c{{i}}" name="rating"/><label class = "fa fa-star-o" for="Star4c{{i}}" title="Very Good - 4 stars" (click)="addRating('4',businessi.businessId,i);filterBusiness(filterForm.value)"></label>
+                                                                        <input type="radio" id="Star3c{{i}}" name="rating"/><label class = "fa fa-star-o" for="Star3c{{i}}" title="Good - 3 stars" (click)="addRating('3',businessi.businessId,i);filterBusiness(filterForm.value)"></label>
+                                                                        <input type="radio" id="Star2c{{i}}" name="rating"/><label class = "fa fa-star-o" for="Star2c{{i}}" title="Poor - 2 stars" (click)="addRating('2',businessi.businessId,i);filterBusiness(filterForm.value)"></label>
+                                                                        <input type="radio" id="Star1c{{i}}" name="rating"/><label class = "fa fa-star-o" for="Star1c{{i}}" title="Very Poor - 1 star" (click)="addRating('1',businessi.businessId,i);filterBusiness(filterForm.value)"></label>
+                                                                    </fieldset>
+                                                                    
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-9">    
-                                        {{businessi.servicesProvided}}
-                                    </div>
-                                </div>
-                                </div> 
-                              </div>
-                              <div class="tab-pane fade" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
-                                <div class="row ml-2 text-wrap">
-                                        <div class="col-sm-2 capitalize font-weight-bold ml-auto">
-                                            <label>Owner Name:</label>
-                                        </div>
-                                        <div class="col-sm-10 capitalize text-wrap">
-                                                {{businessi.firstName}}&nbsp;{{businessi.lastName}}<br>
-                                           </div>
-                                </div>  
-                                <div class="row ml-2 text-wrap" *ngIf="businessi.websiteUrl != null">
-                                        <div class="col-sm-2 capitalize font-weight-bold ml-auto">
-                                            <label>Website Url:</label>
-                                        </div>
-                                        <div class="col-sm-10 lowercase text-wrap">
-                                            <a href="http://{{businessi.websiteUrl}}" target="blank">{{businessi.websiteUrl}}</a>
-                                        </div>
-                                </div>  
-                                <div class="row ml-2  text-wrap">
-                                    <div class="col-sm-2 capitalize font-weight-bold ml-auto">
-                                        <label>Address:</label>
-                                    </div>
-                                    <div class="col-sm-10 capitalize text-wrap">
-                                        {{businessi.primaryAddressLine1}}, {{businessi.primaryAddressLine2}}<br>
-                                        {{businessi.primaryCity}}, {{businessi.primaryState}}<br>
-                                        {{businessi.primaryCountry}}, {{businessi.primaryZipCode}}
-                                    </div>
-                                  </div>
-                                  <div class="row ml-2">
-                                      <div class="col-sm-2 capitalize font-weight-bold ml-auto">
-                                          <label>Phone No:</label>
-                                        </div>
-                                        <div class="col-sm-10 capitalize text-wrap">    
-                                          {{businessi.primaryPhoneNumber}}
-                                    </div>
-                                  </div>
-                                  
-                              </div>
-                          <div class="tab-pane fade" id="rate{{i}}" role="tabpanel" aria-labelledby="rate-tab" *ngIf="currentCustomer">
-                            <div class="rating ml-4">
-                                <div class="row text-wrap">
-                                    <h5>We would like you to add a rating to our service.</h5>
-                                </div>
-                                <div class="row text-wrap">
-                                        <h6>Average Rating: 0 Stars</h6>
-                                </div>
-                                <div class="row text-wrap">
-                                        <h6>Total No. of Reviews: 0 Reviews</h6>
-                                </div>
-                                <div class="row text-wrap font-weight-bold">
-                                        <h6 class="mt-2">Add Stars to our Service :  </h6>
-                                <h3> 
-                                    <div class="rating1 ml-1 text-wrap">
-                                        <span>☆</span>
-                                        <span>☆</span>
-                                        <span>☆</span>
-                                        <span>☆</span>
-                                        <span>☆</span>
-                                        </div>
-                                </h3>
-                                </div>
-                          </div>
-                        </div>
-                     </div>
-                   </div>
-                </div>
-        </div>
-    </div>
+                                    </div> 
+                        </div>    
+                        <div *ngIf="(add_rating_success | json) != '{}' && msg_index==i" id="alert{{i}}" class="alert alert-secondary alert-dismissible fade show mx-auto" role="alert">
+                        <button type="button" class="close" aria-label="Close" (click)="closeAlert(i);">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        Thanks for rating us!
+                        </div>   
+                </div>    
+            </div> 
 </div>
-  
+</div>
