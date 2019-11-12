@@ -113,8 +113,8 @@ addRating(rate :string,businessid: string,index:number){
   this.msg_index = index;
 }
 
-closeAlert() {
-  document.getElementById('alert').classList.remove('show');
+closeAlert(close_id: number) {
+  document.getElementById('alert' +close_id).classList.remove('show');
 }
   
 addStars(ratingx: any,index_i:number,suffix:string){
