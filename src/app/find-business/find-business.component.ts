@@ -103,7 +103,7 @@ doUpperCase(){
 add_rating_success = {};
 msg_index = {}
 show = true;
-
+rated = "0";
 addRating(rate :string,businessid: string,index:number){
   let userdata = {"rate" : rate,"businessid":businessid};
   this.httpClientService.AddRating(userdata).subscribe(res => {
@@ -111,6 +111,7 @@ addRating(rate :string,businessid: string,index:number){
   });
   this.add_rating_success[index] = true;
   this.msg_index = index;
+  this.rated = rate;
 }
 
 closeAlert(close_id: number) {

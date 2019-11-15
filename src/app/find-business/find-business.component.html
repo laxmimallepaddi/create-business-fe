@@ -58,7 +58,14 @@
                             <div class="rating mt-2" title="Sign Up as Customer to add rating for the business" >
                                     <a *ngIf="businessi.rating !== null">{{businessi.rating.averageRating | number: '1.1-1'}}</a>
                                     <a *ngIf="businessi.rating === null">0.0</a>
-                                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal" style="color: black;">
+                                    <button *ngIf="!currentCustomer" type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal" style="color: black;">
+                                    <a id="Star1{{i}}" class="fa fa-star-o ml-1" ></a>
+                                    <a id="Star2{{i}}" class="fa fa-star-o ml-1" ></a>
+                                    <a id="Star3{{i}}" class="fa fa-star-o ml-1" ></a>
+                                    <a id="Star4{{i}}" class="fa fa-star-o ml-1" ></a>
+                                    <a id="Star5{{i}}" class="fa fa-star-o ml-1" ></a>
+                                    </button>
+                                    <button *ngIf="currentCustomer" type="button" class="btn btn-link" style="color: black;">
                                     <a id="Star1{{i}}" class="fa fa-star-o ml-1" ></a>
                                     <a id="Star2{{i}}" class="fa fa-star-o ml-1" ></a>
                                     <a id="Star3{{i}}" class="fa fa-star-o ml-1" ></a>
@@ -174,7 +181,7 @@
                         <button type="button" class="close" aria-label="Close" (click)="closeAlert(i);">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        Thanks for rating us!
+                        Thanks for rating {{rated}} Star for {{businessi.businessName}} .
                         </div>   
                 </div>    
             </div> 
@@ -182,17 +189,17 @@
 </div>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-centered modal-md">
-        <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-body my-3">
-                    Sign Up as Customer to add rating for the business.
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/register/customer/'">Sign Up</button>
-              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-      
-        </div>
-      </div>
+<div class="modal-dialog modal-dialog-centered modal-md">
+<!-- Modal content-->
+    <div class="modal-content">
+    <div class="modal-body my-3">
+            Sign Up as Customer to add rating for the business.
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/register/customer/'">Sign Up</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+    </div>
+    </div>
+
+</div>
+</div>
