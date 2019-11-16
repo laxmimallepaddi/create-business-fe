@@ -55,7 +55,7 @@
                         </h4>
                         <h6>
                             
-                            <div class="rating mt-2" title="Sign Up as Customer to add rating for the business" >
+                            <div class="rating mt-2" title=" Sign Up or Sign In as a customer to provide the rating" >
                                     <a *ngIf="businessi.rating !== null">{{businessi.rating.averageRating | number: '1.1-1'}}</a>
                                     <a *ngIf="businessi.rating === null">0.0</a>
                                     <button *ngIf="!currentCustomer" type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal" style="color: black;">
@@ -196,6 +196,7 @@
             Sign Up as Customer to add rating for the business.
     </div>
     <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/login/customer/'">Log In</button>
         <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/register/customer/'">Sign Up</button>
         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
     </div>
