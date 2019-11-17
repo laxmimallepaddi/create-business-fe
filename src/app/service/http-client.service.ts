@@ -37,6 +37,9 @@ export class HttpClientService {
       'Content-Type': 'application/json'
     })
   }
+  httpOptions1 = {
+    headers: new HttpHeaders({'content-type':'application/json'}), responseType:'text'
+  }
    getAllBusiness()
   {
     return this.httpClient.get<Business[]>('/api/business');
@@ -64,7 +67,7 @@ SearchFilter(data): Observable<Business> {
 
 // POST
 LoginBusiness(data): Observable<Business> {
-  //console.log(data);
+  console.log(data);
   return this.httpClient.post<Business>('/api/business/login/', JSON.stringify(data), this.httpOptions)
   .pipe(map(user => {
     if (user) {
@@ -142,23 +145,15 @@ ChangeBusinessPassword(data): Observable<Business> {
   )
 } 
 
-// SMSVerification(data): Observable<any> {
-//   console.log(12345,data);
-//   return this.httpClient.post<any>('/api/phonenumber/'+data+'/otp/',{}, this.httpOptions)
-//   .pipe(
-//     retry(1),
-//     catchError(this.errorHandl)
-//   )
-// }  
-// GetVerificationCode(data): Observable<any> {
-//   let data_code = {"otp": data.otp};
-//   return this.httpClient.put<any>('/api/phonenumber/'+data.phone_no+'/otp/', JSON.stringify(data_code), this.httpOptions)
-//   .pipe(
-//     retry(1),
-//     catchError(this.errorHandl)
-//   )
+SMSVerification(data) {
+  return this.httpClient.post('/api/phonenumber/+'+data+'/otp/',JSON.stringify({}),{ responseType: 'text'});
+}  
+GetVerificationCode(data){
+  let data_code = {otp: data.otp};
+  let phone_number = data.phone_no +"";
+  return this.httpClient.put('/api/phonenumber/+'+phone_number+'/otp/',JSON.stringify(data_code),{headers: new HttpHeaders({'Content-Type':'application/json'}), responseType:'text'})
+  } 
   
-// } 
 AddRating(userdata): Observable<any> {
   return this.httpClient.put<any>('/api/business/'+userdata.businessid+'/rating/'+userdata.rate+'/',{}, this.httpOptions)
   .pipe(
