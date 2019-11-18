@@ -14,7 +14,7 @@
                         <div *ngIf="firstName.errors.required">First Name is required.</div>
                         </div>        
                 </div>
-                <div class=" col-sm-6 form-group">
+                <div class="col-sm-6 form-group">
                         <label>Last Name</label>  
                         <input type="text" class="form-control" required [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel">
                         <div *ngIf="businessForm.submitted  && lastName.invalid" class="alert alert-danger">
@@ -244,7 +244,7 @@
         </div>
         <hr class="my-4">
         <div class="row">
-                <div class=" col-sm-4 form-group">
+                <div class="col-sm-4 form-group">
                         <label>Ext.</label>  
                         <select type="text" class="form-control" [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel" required>
                         <option [ngValue]="null" disabled> --Select-- </option>
@@ -280,10 +280,11 @@
                         <option [ngValue]="+66">Thailand +66</option>
                         <option [ngValue]="+90">Turkey +90</option>
                         <option [ngValue]="+971">United Arab Emirates +971</option>
+                        <option [ngValue]="+1">USA +1</option>
                         <option [ngValue]="+263">Zimbabwe +263</option>
                         </select>        
                 </div>        
-                <div class=" col-sm-3 form-group">
+                <div class="col-sm-3 form-group">
                         <label>Phone Number</label>  
                         <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.primaryPhoneNumber" name="primaryPhoneNumber" #primaryPhoneNumber="ngModel" >
                         <div *ngIf="businessForm.submitted  && primaryPhoneNumber.invalid" class="alert alert-danger">
@@ -291,7 +292,7 @@
                         <div *ngIf="primaryPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
                         </div>
                 </div>
-                <div class=" col-sm-4 form-group "> 
+                <div class="col-sm-4 form-group "> 
                         <label>Phone Type</label>
                         <select type="text" class="form-control"  required ngModel name="primaryPhoneType" #primaryPhoneType="ngModel" >input
                         <option value="" disabled>Select Type</option>
@@ -305,17 +306,23 @@
                         </div>
                         </div>
                 </div>
-                <div class=" col-sm-1 form-group "> 
+                <div class="col-sm-1 form-group "> 
                 <button type="button" class="add-btn" (click)="addAnotherPhoneNumber();">
                         <span class="fa fa-plus"></span>
                 </button> 
                 </div>
-                <div *ngIf="primaryExtension.valid && primaryPhoneNumber.valid && primaryPhoneType.valid" class="alert alert-secondary">
-                * This phone number would be used for otp verification of your account.
+        </div>
+        <div class="row">
+                <div class="col-sm-12 form-group">        
+                <div *ngIf="primaryExtension.valid && primaryPhoneNumber.valid && primaryPhoneType.valid">
+                <div style="color:red;"><small>
+                *This phone number would be used for otp verification of your account.
+                </small></div>
+                </div>
                 </div>
         </div>
         <div class="row" *ngIf="phonenumber1==true">
-                <div class=" col-sm-4 form-group">
+                <div class="col-sm-4 form-group">
                         <label>Ext.</label>  
                         <select type="text"  class="form-control" [(ngModel)]="model.secondaryExtension" name="secondaryExtension" #secondaryExtension="ngModel" required>
                         <option [ngValue]="null" disabled> --Select-- </option>
@@ -351,10 +358,11 @@
                         <option [ngValue]="+66">Thailand +66</option>
                         <option [ngValue]="+90">Turkey +90</option>
                         <option [ngValue]="+971">United Arab Emirates +971</option>
+                        <option [ngValue]="+1">USA +1</option>
                         <option [ngValue]="+263">Zimbabwe +263</option>
                         </select>
                 </div> 
-                <div class=" col-sm-3 form-group">
+                <div class="col-sm-3 form-group">
                                 <label>Phone Number</label>  
                                 <input type="text" pattern="\d*" minlength="10" maxlength="10" class="form-control" required [(ngModel)]="model.secondaryPhoneNumber" name="secondaryPhoneNumber" #secondaryPhoneNumber="ngModel">
                                 <div *ngIf="businessForm.submitted  && secondaryPhoneNumber.invalid" class="alert alert-danger">
@@ -362,7 +370,7 @@
                                 <div *ngIf="secondaryPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
                                 </div>
                 </div>
-                <div class=" col-sm-4 form-group "> 
+                <div class="col-sm-4 form-group "> 
                         <label>Phone Type</label>
                         <select type="text" class="form-control"  required ngModel name="secondaryPhoneType" #secondaryPhoneType="ngModel">
                         <option value="" disabled>Select Type</option>
@@ -381,7 +389,7 @@
                 </div>
         </div>
         <div class="row" *ngIf="phonenumber2==true">
-                <div class=" col-sm-4 form-group">
+                <div class="col-sm-4 form-group">
                         <label>Ext.</label>  
                         <select type="text" class="form-control"  [(ngModel)]="model.thirdExtension" name="thirdExtension" #thirdExtension="ngModel" required>
                                 <option [ngValue]="null" disabled> --Select-- </option>
@@ -417,10 +425,11 @@
                                 <option [ngValue]="+66">Thailand +66</option>
                                 <option [ngValue]="+90">Turkey +90</option>
                                 <option [ngValue]="+971">United Arab Emirates +971</option>
+                                <option [ngValue]="+1">USA +1</option>
                                 <option [ngValue]="+263">Zimbabwe +263</option>
                         </select>        
                 </div> 
-                <div class=" col-sm-3 form-group">
+                <div class="col-sm-3 form-group">
                         <label>Phone Number</label>  
                         <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.thirdPhoneNumber" name="thirdPhoneNumber" #thirdPhoneNumber="ngModel">
                         <div *ngIf="businessForm.submitted  && thirdPhoneNumber.invalid" class="alert alert-danger">
@@ -428,7 +437,7 @@
                         <div *ngIf="thirdPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
                         </div>
                 </div>
-                <div class=" col-sm-4 form-group "> 
+                <div class="col-sm-4 form-group "> 
                         <label>Phone Type</label>
                         <select type="text" class="form-control"  required ngModel name="thirdPhoneType" #thirdPhoneType="ngModel">
                         <option value="" disabled>Select Type</option>
@@ -491,19 +500,19 @@
                 </div>   
                 </div>     
         </div> 
-        <hr class="my-4" *ngIf="!businessForm.form.valid">
+        <hr class="my-4" *ngIf="businessForm.form.valid">
         <div class="row mx-auto" *ngIf="businessForm.form.valid">
                 <br>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8 text-center">
-                        <label><h6>Verification Code will be send to the Phone Number below:</h6></label>  
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11 font-weight-bold my-1">
+                        <label>Verification Code will be send to the Phone Number below:</label>  
                 </div>
                 
         </div>
         <div class="row" *ngIf="businessForm.form.valid">   
                 <div class="col-sm-1"></div>
-                <div class=" col-sm-3 form-group">
-                        <select type="text" class="form-control" #ext_no [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel" required>
+                <div class="col-sm-3 form-group">
+                        <select type="text" class="form-control mt-2" #ext_no [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel" required>
                         <option [ngValue]="null" disabled> --Select-- </option>
                         <option [ngValue]="+61">Australia +61</option>
                         <option [ngValue]="+880">Bangladesh +880</option>
@@ -537,38 +546,31 @@
                         <option [ngValue]="+66">Thailand +66</option>
                         <option [ngValue]="+90">Turkey +90</option>
                         <option [ngValue]="+971">United Arab Emirates +971</option>
+                        <option [ngValue]="+1">USA +1</option>
                         <option [ngValue]="+263">Zimbabwe +263</option>
                         </select>        
                 </div> 
                 <div class="col-sm-4">
-                        <input type="text" minlength="10" maxlength="10" class="form-control" #v_phone_no required [(ngModel)]="model.primaryPhoneNumber" name="primaryPhoneNumber" #primaryPhoneNumber="ngModel">
+                        <input type="text" minlength="10" maxlength="10" class="form-control mt-2" #v_phone_no required [(ngModel)]="model.primaryPhoneNumber" name="primaryPhoneNumber" #primaryPhoneNumber="ngModel">
                 </div>
                 <div class="col-sm-4">
-                        <button class="btn btn-small" type="button" (click)="sendVCode(ext_no.value,v_phone_no.value);" data-toggle="modal" data-target="#verificationstep1">{{send_resend}}</button>
+                        <button class="btn btn-outline-primary btn-sm btn-block text-uppercase my-1 mx-auto" type="button" (click)="sendVCode(ext_no.value,v_phone_no.value);" data-toggle="modal" data-target="#verificationstep1"><small>{{send_resend}}</small></button>
                 </div>
                 <br><br>
         </div>
-        <div class="row text-center" *ngIf="businessForm.form.valid">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-        <div class="alert alert-secondary text-center">
-        * Changing this phone number would change the phone number entered in the form.
-        </div>
-        </div>
-        </div>
         <div class="row" *ngIf="businessForm.form.valid">
-                        <br>
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-8">
-                                <label>Enter code here: </label>
-                        </div>
-                        <div class="col-sm-2"></div>
-                        
-                </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-11">
+        <div style="color:red;"><small>
+        *Changing this phone number would change the phone number entered in the form.</small>
+        </div>
+        </div>
+        </div>
+        <br>
         <div class="row" *ngIf="businessForm.form.valid">   
-                        <div class="col-sm-2"></div>
-                        <div class=" col-sm-3 form-group" hidden>
-                                        <select type="text" class="form-control" #ext_no1 [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel" required>
+                        <div class="col-sm-1"></div>
+                        <div class="form-group" hidden>
+                                        <select type="text" class="form-control mt-2" #ext_no1 [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel" required>
                                         <option [ngValue]="null" disabled> --Select-- </option>
                                         <option [ngValue]="+61">Australia +61</option>
                                         <option [ngValue]="+880">Bangladesh +880</option>
@@ -602,17 +604,18 @@
                                         <option [ngValue]="+66">Thailand +66</option>
                                         <option [ngValue]="+90">Turkey +90</option>
                                         <option [ngValue]="+971">United Arab Emirates +971</option>
+                                        <option [ngValue]="+1">USA +1</option>
                                         <option [ngValue]="+263">Zimbabwe +263</option>
                                         </select>        
                                 </div> 
-                                <div class="col-sm-4" hidden>
+                                <div hidden>
                                         <input type="text" minlength="10" maxlength="10" class="form-control" #v_phone_no1 required [(ngModel)]="model.primaryPhoneNumber" name="primaryPhoneNumber" #primaryPhoneNumber="ngModel">
                                 </div>
-                        <div class="col-sm-4">
-                                <input type="text"  minlength="6" maxlength="6" class="form-control" required #code_received>
+                        <div class="col-sm-7">
+                                <input type="text"  minlength="6" maxlength="6" class="form-control mt-2" required #code_received placeholder="Enter code here">
                         </div>
-                        <div class="col-sm-5">
-                                <button class="btn" type="button" (click)="verifyVCode(ext_no1.value,v_phone_no1.value,code_received.value);" data-toggle="modal" data-target="#verificationstep2">Submit</button>
+                        <div class="col-sm-4">
+                                <button class="btn btn-outline-primary btn-sm btn-block text-uppercase my-1 mx-auto" type="button" (click)="verifyVCode(ext_no1.value,v_phone_no1.value,code_received.value);" data-toggle="modal" data-target="#verificationstep2"><small>Submit</small></button>
                         </div>
                         <br><br>
                 </div>
@@ -622,7 +625,7 @@
                 <br>
                 <button class="btn btn-lg btn-primary btn-block text-uppercase mx-auto" type="submit" (click)="doUpperCase();">Sign Up</button>
         </div> 
-        <div class="row"  *ngIf="businessForm.form.valid && v_step2_msg=='OTP verified successfully'">
+        <div class="row"  *ngIf="businessForm.form.valid && v_step2_msg=='OTP verified successfully and click on sign-up button to complete your business registration.'">
                 <br>
                 <button class="btn btn-lg btn-primary btn-block text-uppercase mx-auto" type="submit" (click)="doUpperCase();createBusiness(businessForm.value)">Sign Up</button>
         </div> 

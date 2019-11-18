@@ -37,17 +37,12 @@ export class HttpClientService {
       'Content-Type': 'application/json'
     })
   }
-  httpOptions1 = {
-    headers: new HttpHeaders({'content-type':'application/json'}), responseType:'text'
-  }
-   getAllBusiness()
+  getAllBusiness()
   {
     return this.httpClient.get<Business[]>('/api/business');
   }
 
-  // POST
  CreateBusiness(data): Observable<Business> {
-  //console.log(data);
   return this.httpClient.post<Business>('/api/business/', JSON.stringify(data), this.httpOptions)
   .pipe(
     retry(1),
@@ -55,9 +50,7 @@ export class HttpClientService {
   )
 }  
 
-// POST
 SearchFilter(data): Observable<Business> {
-  //console.log(data);
   return this.httpClient.post<Business>('/api/business/search/', JSON.stringify(data), this.httpOptions)
   .pipe(
     retry(1),
@@ -65,7 +58,6 @@ SearchFilter(data): Observable<Business> {
   )
 }  
 
-// POST
 LoginBusiness(data): Observable<Business> {
   console.log(data);
   return this.httpClient.post<Business>('/api/business/login/', JSON.stringify(data), this.httpOptions)
@@ -79,10 +71,7 @@ LoginBusiness(data): Observable<Business> {
   }));
 }  
 
-
-// POST
 CreateCustomer(data): Observable<Customer> {
-  //console.log(data);
   return this.httpClient.post<Customer>('/api/customer/', JSON.stringify(data), this.httpOptions)
   .pipe(
     retry(1),
@@ -90,7 +79,6 @@ CreateCustomer(data): Observable<Customer> {
   )
 }  
 
-// POST
 LoginCustomer(data): Observable<Customer> {
   return this.httpClient.post<Customer>('/api/customer/login/', JSON.stringify(data), this.httpOptions)
   .pipe(map(user => {
@@ -107,13 +95,10 @@ LoginCustomer(data): Observable<Customer> {
 errorHandl(error) {
   let errorMessage = '';
   if(error.error instanceof ErrorEvent) {
-    // Get client-side error
     errorMessage = error.error.message;
   } else {
-    // Get server-side error
     errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
   }
-  // console.log(errorMessage);
   return throwError(errorMessage);
   }
   logout() {
@@ -123,7 +108,7 @@ errorHandl(error) {
     localStorage.removeItem('currentCustomer');
     this.currentCustomerSubject.next(null);
   }
-// PUT
+
  UpdateBusiness(data): Observable<Business> {
   localStorage.removeItem('currentBusiness');
   localStorage.setItem('currentBusiness',JSON.stringify(data));
@@ -134,7 +119,7 @@ errorHandl(error) {
     
   )
 }  
-// PUT
+
 ChangeBusinessPassword(data): Observable<Business> {
   localStorage.setItem('currentBusiness',JSON.stringify(data));
   return this.httpClient.put<Business>('/api/business/', JSON.stringify(data), this.httpOptions)

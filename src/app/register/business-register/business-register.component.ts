@@ -250,7 +250,6 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
   verifyVCode(ext: string,phone_no: string,code: string){
     ext = ext.slice(ext.indexOf(" ")+1,ext.length);
     let data = {"phone_no":ext + phone_no + "","otp":code};
-    let msg_var = "";
     this.httpClientService.GetVerificationCode(data).subscribe( 
       data => {
         setTimeout( () => {}, 10000 );
@@ -261,7 +260,7 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
         if(error.status == 400)
           this.v_step2_msg = error.error;
         else
-          this.v_step1_msg = "Unable to process your request. Please check your code entered or internet connectivity.";
+          this.v_step2_msg = "Unable to process your request. Please check your code entered or internet connectivity.";
       
       })
   }
