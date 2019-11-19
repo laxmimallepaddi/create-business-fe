@@ -29,8 +29,8 @@ export class FooterComponent implements OnInit {
   msg1 = "";
   addFeedback(name:string, phno:string, message: string){
     let message1 = message + " From: " + phno +" ("+name+") ";
+    document.getElementById("myModal1_close_btn").click();
     if(message !="" && phno !="" && name !=""){
-      document.getElementById("myModal1_close_btn").click();
       this.httpClientService.AddFeedback(message1)
       .subscribe( 
         data => { 
@@ -41,12 +41,13 @@ export class FooterComponent implements OnInit {
           if(error.status == 500)
             this.msg1 = "Unable to process your request. Please check your mobile number entered or internet connectivity.";
         })
-  }
-  else if(message =="")
-    this.msg1 = "Please add message before submitting the form.";
-  else if(phno =="")
-    this.msg1 = "Please add phone number before submitting the form.";
-  else if(name =="")
-    this.msg1 = "Please add name before submitting the form.";
-  }
+    }
+    else if(name =="")
+      this.msg1 = "Please add name before submitting the form.";
+    else if(phno =="")
+      this.msg1 = "Please add phone number before submitting the form.";  
+    else if(message =="")
+      this.msg1 = "Please add message before submitting the form.";
+    
+    }
 }
