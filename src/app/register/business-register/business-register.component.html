@@ -5,7 +5,7 @@
         <div class="card-signin mx-auto">
         <div class="card-body">
         <h5 class="card-title text-center font-weight-bold">SIGN UP BUSINESS ACCOUNT</h5>
-        <form class="form-signin" #businessForm="ngForm" (ngSubmit)="businessForm.form.valid && createBusiness(businessForm.value)" [mustMatch]="['password', 'confirmPassword']" novalidate>
+        <form class="form-signin" #businessForm="ngForm" (ngSubmit)="businessForm.form.valid " [mustMatch]="['password', 'confirmPassword']" novalidate>
         <div class="row">
                 <div class="col-sm-6 form-group">
                         <label>First Name</label>    
@@ -14,7 +14,7 @@
                         <div *ngIf="firstName.errors.required">First Name is required.</div>
                         </div>        
                 </div>
-                <div class=" col-sm-6 form-group">
+                <div class="col-sm-6 form-group">
                         <label>Last Name</label>  
                         <input type="text" class="form-control" required [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel">
                         <div *ngIf="businessForm.submitted  && lastName.invalid" class="alert alert-danger">
@@ -244,11 +244,47 @@
         </div>
         <hr class="my-4">
         <div class="row">
-                <div class=" col-sm-2 form-group">
+                <div class="col-sm-4 form-group">
                         <label>Ext.</label>  
-                        <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control" [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel">
+                        <select type="text" class="form-control" [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel" required>
+                        <option [ngValue]="null" disabled> --Select-- </option>
+                        <option [ngValue]="+61">Australia +61</option>
+                        <option [ngValue]="+880">Bangladesh +880</option>
+                        <option [ngValue]="+32">Belgium +32</option>
+                        <option [ngValue]="+975">Bhutan +975</option>
+                        <option [ngValue]="+86">China +86</option>
+                        <option [ngValue]="+93">Afghanistan +93</option>
+                        <option [ngValue]="+506">Costa Rica +506</option>
+                        <option [ngValue]="+49">Germany +49</option>
+                        <option [ngValue]="+852">Hong Kong +852</option>
+                        <option [ngValue]="+91">India +91</option>
+                        <option [ngValue]="+81">Japan +81</option>
+                        <option [ngValue]="+254">Kenya +254</option>
+                        <option [ngValue]="+60">Malaysia +60</option>
+                        <option [ngValue]="+960">Maldives +960</option>
+                        <option [ngValue]="+977">Nepal +977</option>
+                        <option [ngValue]="+31">Netherlands +31</option>
+                        <option [ngValue]="+64">New Zealand +64</option>
+                        <option [ngValue]="+234">Nigeria +234</option>
+                        <option [ngValue]="+850">North Korea +850</option>
+                        <option [ngValue]="+92">Pakistan +92</option>
+                        <option [ngValue]="+51">Peru +51</option>
+                        <option [ngValue]="+63">Philippines +63</option>
+                        <option [ngValue]="+7">Russia +7</option>
+                        <option [ngValue]="+966">Saudi Arabia +966</option>
+                        <option [ngValue]="+65">Singapore +65</option>
+                        <option [ngValue]="+27">South Africa +27</option>
+                        <option [ngValue]="+82">South Korea +82</option>
+                        <option [ngValue]="+94">Sri Lanka +94</option>
+                        <option [ngValue]="+41">Switzerland +41</option>
+                        <option [ngValue]="+66">Thailand +66</option>
+                        <option [ngValue]="+90">Turkey +90</option>
+                        <option [ngValue]="+971">United Arab Emirates +971</option>
+                        <option [ngValue]="+1">USA +1</option>
+                        <option [ngValue]="+263">Zimbabwe +263</option>
+                        </select>        
                 </div>        
-                <div class=" col-sm-4 form-group">
+                <div class="col-sm-3 form-group">
                         <label>Phone Number</label>  
                         <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.primaryPhoneNumber" name="primaryPhoneNumber" #primaryPhoneNumber="ngModel" >
                         <div *ngIf="businessForm.submitted  && primaryPhoneNumber.invalid" class="alert alert-danger">
@@ -256,9 +292,9 @@
                         <div *ngIf="primaryPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
                         </div>
                 </div>
-                <div class=" col-sm-5 form-group "> 
+                <div class="col-sm-4 form-group "> 
                         <label>Phone Type</label>
-                        <select type="text" class="form-control"  required ngModel name="primaryPhoneType" #primaryPhoneType="ngModel" >
+                        <select type="text" class="form-control"  required ngModel name="primaryPhoneType" #primaryPhoneType="ngModel" >input
                         <option value="" disabled>Select Type</option>
                         <option value="OFFICE">OFFICE</option>
                         <option value="HOME">HOME</option>
@@ -270,19 +306,63 @@
                         </div>
                         </div>
                 </div>
-                <div class=" col-sm-1 form-group "> 
+                <div class="col-sm-1 form-group "> 
                 <button type="button" class="add-btn" (click)="addAnotherPhoneNumber();">
                         <span class="fa fa-plus"></span>
                 </button> 
                 </div>
         </div>
+        <div class="row">
+                <div class="col-sm-12 form-group">        
+                <div *ngIf="primaryExtension.valid && primaryPhoneNumber.valid && primaryPhoneType.valid">
+                <div style="color:red;"><small>
+                *This phone number would be used for otp verification of your account.
+                </small></div>
+                </div>
+                </div>
+        </div>
         <div class="row" *ngIf="phonenumber1==true">
-                <div class=" col-sm-2 form-group">
+                <div class="col-sm-4 form-group">
                         <label>Ext.</label>  
-                        <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control" [(ngModel)]="model.secondaryExtension" name="secondaryExtension" #secondaryExtension="ngModel">
-                        
+                        <select type="text"  class="form-control" [(ngModel)]="model.secondaryExtension" name="secondaryExtension" #secondaryExtension="ngModel" required>
+                        <option [ngValue]="null" disabled> --Select-- </option>
+                        <option [ngValue]="+61">Australia +61</option>
+                        <option [ngValue]="+880">Bangladesh +880</option>
+                        <option [ngValue]="+32">Belgium +32</option>
+                        <option [ngValue]="+975">Bhutan +975</option>
+                        <option [ngValue]="+86">China +86</option>
+                        <option [ngValue]="+93">Afghanistan +93</option>
+                        <option [ngValue]="+506">Costa Rica +506</option>
+                        <option [ngValue]="+49">Germany +49</option>
+                        <option [ngValue]="+852">Hong Kong +852</option>
+                        <option [ngValue]="+91">India +91</option>
+                        <option [ngValue]="+81">Japan +81</option>
+                        <option [ngValue]="+254">Kenya +254</option>
+                        <option [ngValue]="+60">Malaysia +60</option>
+                        <option [ngValue]="+960">Maldives +960</option>
+                        <option [ngValue]="+977">Nepal +977</option>
+                        <option [ngValue]="+31">Netherlands +31</option>
+                        <option [ngValue]="+64">New Zealand +64</option>
+                        <option [ngValue]="+234">Nigeria +234</option>
+                        <option [ngValue]="+850">North Korea +850</option>
+                        <option [ngValue]="+92">Pakistan +92</option>
+                        <option [ngValue]="+51">Peru +51</option>
+                        <option [ngValue]="+63">Philippines +63</option>
+                        <option [ngValue]="+7">Russia +7</option>
+                        <option [ngValue]="+966">Saudi Arabia +966</option>
+                        <option [ngValue]="+65">Singapore +65</option>
+                        <option [ngValue]="+27">South Africa +27</option>
+                        <option [ngValue]="+82">South Korea +82</option>
+                        <option [ngValue]="+94">Sri Lanka +94</option>
+                        <option [ngValue]="+41">Switzerland +41</option>
+                        <option [ngValue]="+66">Thailand +66</option>
+                        <option [ngValue]="+90">Turkey +90</option>
+                        <option [ngValue]="+971">United Arab Emirates +971</option>
+                        <option [ngValue]="+1">USA +1</option>
+                        <option [ngValue]="+263">Zimbabwe +263</option>
+                        </select>
                 </div> 
-                <div class=" col-sm-4 form-group">
+                <div class="col-sm-3 form-group">
                                 <label>Phone Number</label>  
                                 <input type="text" pattern="\d*" minlength="10" maxlength="10" class="form-control" required [(ngModel)]="model.secondaryPhoneNumber" name="secondaryPhoneNumber" #secondaryPhoneNumber="ngModel">
                                 <div *ngIf="businessForm.submitted  && secondaryPhoneNumber.invalid" class="alert alert-danger">
@@ -290,7 +370,7 @@
                                 <div *ngIf="secondaryPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
                                 </div>
                 </div>
-                <div class=" col-sm-5 form-group "> 
+                <div class="col-sm-4 form-group "> 
                         <label>Phone Type</label>
                         <select type="text" class="form-control"  required ngModel name="secondaryPhoneType" #secondaryPhoneType="ngModel">
                         <option value="" disabled>Select Type</option>
@@ -309,11 +389,47 @@
                 </div>
         </div>
         <div class="row" *ngIf="phonenumber2==true">
-                <div class=" col-sm-2 form-group">
+                <div class="col-sm-4 form-group">
                         <label>Ext.</label>  
-                        <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control"  [(ngModel)]="model.thirdExtension" name="thirdExtension" #thirdExtension="ngModel">
+                        <select type="text" class="form-control"  [(ngModel)]="model.thirdExtension" name="thirdExtension" #thirdExtension="ngModel" required>
+                                <option [ngValue]="null" disabled> --Select-- </option>
+                                <option [ngValue]="+61">Australia +61</option>
+                                <option [ngValue]="+880">Bangladesh +880</option>
+                                <option [ngValue]="+32">Belgium +32</option>
+                                <option [ngValue]="+975">Bhutan +975</option>
+                                <option [ngValue]="+86">China +86</option>
+                                <option [ngValue]="+93">Afghanistan +93</option>
+                                <option [ngValue]="+506">Costa Rica +506</option>
+                                <option [ngValue]="+49">Germany +49</option>
+                                <option [ngValue]="+852">Hong Kong +852</option>
+                                <option [ngValue]="+91">India +91</option>
+                                <option [ngValue]="+81">Japan +81</option>
+                                <option [ngValue]="+254">Kenya +254</option>
+                                <option [ngValue]="+60">Malaysia +60</option>
+                                <option [ngValue]="+960">Maldives +960</option>
+                                <option [ngValue]="+977">Nepal +977</option>
+                                <option [ngValue]="+31">Netherlands +31</option>
+                                <option [ngValue]="+64">New Zealand +64</option>
+                                <option [ngValue]="+234">Nigeria +234</option>
+                                <option [ngValue]="+850">North Korea +850</option>
+                                <option [ngValue]="+92">Pakistan +92</option>
+                                <option [ngValue]="+51">Peru +51</option>
+                                <option [ngValue]="+63">Philippines +63</option>
+                                <option [ngValue]="+7">Russia +7</option>
+                                <option [ngValue]="+966">Saudi Arabia +966</option>
+                                <option [ngValue]="+65">Singapore +65</option>
+                                <option [ngValue]="+27">South Africa +27</option>
+                                <option [ngValue]="+82">South Korea +82</option>
+                                <option [ngValue]="+94">Sri Lanka +94</option>
+                                <option [ngValue]="+41">Switzerland +41</option>
+                                <option [ngValue]="+66">Thailand +66</option>
+                                <option [ngValue]="+90">Turkey +90</option>
+                                <option [ngValue]="+971">United Arab Emirates +971</option>
+                                <option [ngValue]="+1">USA +1</option>
+                                <option [ngValue]="+263">Zimbabwe +263</option>
+                        </select>        
                 </div> 
-                <div class=" col-sm-4 form-group">
+                <div class="col-sm-3 form-group">
                         <label>Phone Number</label>  
                         <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.thirdPhoneNumber" name="thirdPhoneNumber" #thirdPhoneNumber="ngModel">
                         <div *ngIf="businessForm.submitted  && thirdPhoneNumber.invalid" class="alert alert-danger">
@@ -321,7 +437,7 @@
                         <div *ngIf="thirdPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
                         </div>
                 </div>
-                <div class=" col-sm-5 form-group "> 
+                <div class="col-sm-4 form-group "> 
                         <label>Phone Type</label>
                         <select type="text" class="form-control"  required ngModel name="thirdPhoneType" #thirdPhoneType="ngModel">
                         <option value="" disabled>Select Type</option>
@@ -384,7 +500,135 @@
                 </div>   
                 </div>     
         </div> 
+        <hr class="my-4" *ngIf="businessForm.form.valid">
+        <div class="row mx-auto" *ngIf="businessForm.form.valid">
+                <br>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11 font-weight-bold my-1">
+                        <label>Verification Code will be send to the Phone Number below:</label>  
+                </div>
+                
+        </div>
+        <div class="row" *ngIf="businessForm.form.valid">   
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3 form-group">
+                        <select type="text" class="form-control mt-2" #ext_no [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel" required>
+                        <option [ngValue]="null" disabled> --Select-- </option>
+                        <option [ngValue]="+61">Australia +61</option>
+                        <option [ngValue]="+880">Bangladesh +880</option>
+                        <option [ngValue]="+32">Belgium +32</option>
+                        <option [ngValue]="+975">Bhutan +975</option>
+                        <option [ngValue]="+86">China +86</option>
+                        <option [ngValue]="+93">Afghanistan +93</option>
+                        <option [ngValue]="+506">Costa Rica +506</option>
+                        <option [ngValue]="+49">Germany +49</option>
+                        <option [ngValue]="+852">Hong Kong +852</option>
+                        <option [ngValue]="+91">India +91</option>
+                        <option [ngValue]="+81">Japan +81</option>
+                        <option [ngValue]="+254">Kenya +254</option>
+                        <option [ngValue]="+60">Malaysia +60</option>
+                        <option [ngValue]="+960">Maldives +960</option>
+                        <option [ngValue]="+977">Nepal +977</option>
+                        <option [ngValue]="+31">Netherlands +31</option>
+                        <option [ngValue]="+64">New Zealand +64</option>
+                        <option [ngValue]="+234">Nigeria +234</option>
+                        <option [ngValue]="+850">North Korea +850</option>
+                        <option [ngValue]="+92">Pakistan +92</option>
+                        <option [ngValue]="+51">Peru +51</option>
+                        <option [ngValue]="+63">Philippines +63</option>
+                        <option [ngValue]="+7">Russia +7</option>
+                        <option [ngValue]="+966">Saudi Arabia +966</option>
+                        <option [ngValue]="+65">Singapore +65</option>
+                        <option [ngValue]="+27">South Africa +27</option>
+                        <option [ngValue]="+82">South Korea +82</option>
+                        <option [ngValue]="+94">Sri Lanka +94</option>
+                        <option [ngValue]="+41">Switzerland +41</option>
+                        <option [ngValue]="+66">Thailand +66</option>
+                        <option [ngValue]="+90">Turkey +90</option>
+                        <option [ngValue]="+971">United Arab Emirates +971</option>
+                        <option [ngValue]="+1">USA +1</option>
+                        <option [ngValue]="+263">Zimbabwe +263</option>
+                        </select>        
+                </div> 
+                <div class="col-sm-4">
+                        <input type="text" minlength="10" maxlength="10" class="form-control mt-2" #v_phone_no required [(ngModel)]="model.primaryPhoneNumber" name="primaryPhoneNumber" #primaryPhoneNumber="ngModel">
+                </div>
+                <div class="col-sm-4">
+                        <button class="btn btn-outline-primary btn-sm btn-block text-uppercase my-1 mx-auto" type="button" (click)="sendVCode(ext_no.value,v_phone_no.value);" data-toggle="modal" data-target="#verificationstep1"><small>{{send_resend}}</small></button>
+                </div>
+                <br><br>
+        </div>
+        <div class="row" *ngIf="businessForm.form.valid">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-11">
+        <div style="color:red;"><small>
+        *Changing this phone number would change the phone number entered in the form.</small>
+        </div>
+        </div>
+        </div>
+        <br>
+        <div class="row" *ngIf="businessForm.form.valid">   
+                        <div class="col-sm-1"></div>
+                        <div class="form-group" hidden>
+                                        <select type="text" class="form-control mt-2" #ext_no1 [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel" required>
+                                        <option [ngValue]="null" disabled> --Select-- </option>
+                                        <option [ngValue]="+61">Australia +61</option>
+                                        <option [ngValue]="+880">Bangladesh +880</option>
+                                        <option [ngValue]="+32">Belgium +32</option>
+                                        <option [ngValue]="+975">Bhutan +975</option>
+                                        <option [ngValue]="+86">China +86</option>
+                                        <option [ngValue]="+93">Afghanistan +93</option>
+                                        <option [ngValue]="+506">Costa Rica +506</option>
+                                        <option [ngValue]="+49">Germany +49</option>
+                                        <option [ngValue]="+852">Hong Kong +852</option>
+                                        <option [ngValue]="+91">India +91</option>
+                                        <option [ngValue]="+81">Japan +81</option>
+                                        <option [ngValue]="+254">Kenya +254</option>
+                                        <option [ngValue]="+60">Malaysia +60</option>
+                                        <option [ngValue]="+960">Maldives +960</option>
+                                        <option [ngValue]="+977">Nepal +977</option>
+                                        <option [ngValue]="+31">Netherlands +31</option>
+                                        <option [ngValue]="+64">New Zealand +64</option>
+                                        <option [ngValue]="+234">Nigeria +234</option>
+                                        <option [ngValue]="+850">North Korea +850</option>
+                                        <option [ngValue]="+92">Pakistan +92</option>
+                                        <option [ngValue]="+51">Peru +51</option>
+                                        <option [ngValue]="+63">Philippines +63</option>
+                                        <option [ngValue]="+7">Russia +7</option>
+                                        <option [ngValue]="+966">Saudi Arabia +966</option>
+                                        <option [ngValue]="+65">Singapore +65</option>
+                                        <option [ngValue]="+27">South Africa +27</option>
+                                        <option [ngValue]="+82">South Korea +82</option>
+                                        <option [ngValue]="+94">Sri Lanka +94</option>
+                                        <option [ngValue]="+41">Switzerland +41</option>
+                                        <option [ngValue]="+66">Thailand +66</option>
+                                        <option [ngValue]="+90">Turkey +90</option>
+                                        <option [ngValue]="+971">United Arab Emirates +971</option>
+                                        <option [ngValue]="+1">USA +1</option>
+                                        <option [ngValue]="+263">Zimbabwe +263</option>
+                                        </select>        
+                                </div> 
+                                <div hidden>
+                                        <input type="text" minlength="10" maxlength="10" class="form-control" #v_phone_no1 required [(ngModel)]="model.primaryPhoneNumber" name="primaryPhoneNumber" #primaryPhoneNumber="ngModel">
+                                </div>
+                        <div class="col-sm-7">
+                                <input type="text"  minlength="6" maxlength="6" class="form-control mt-2" required #code_received placeholder="Enter code here">
+                        </div>
+                        <div class="col-sm-4">
+                                <button class="btn btn-outline-primary btn-sm btn-block text-uppercase my-1 mx-auto" type="button" (click)="verifyVCode(ext_no1.value,v_phone_no1.value,code_received.value);" data-toggle="modal" data-target="#verificationstep2"><small>Submit</small></button>
+                        </div>
+                        <br><br>
+                </div>
+        <hr class="my-4" *ngIf="businessForm.form.valid">
+        
+        <div class="row"  *ngIf="v_step2_msg==''">
+                <br>
                 <button class="btn btn-lg btn-primary btn-block text-uppercase mx-auto" type="submit" (click)="doUpperCase();">Sign Up</button>
+        </div> 
+        <div class="row"  *ngIf="businessForm.form.valid && v_step2_msg=='OTP verified successfully and click on sign-up button to complete your business registration.'">
+                <br>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase mx-auto" type="submit" (click)="doUpperCase();createBusiness(businessForm.value)">Sign Up</button>
+        </div> 
         </form>
         <hr class="my-4">
         <div class="text-center">
@@ -394,4 +638,33 @@
         </div>
         </div>
         </div>
+</div>
+<!-- Modal -->
+<div id="verificationstep1"  class="modal fade" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-md">
+<!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-body my-3">
+                {{v_step1_msg}}
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Ok</button>
+        </div>
+        </div>
+
+</div>
+</div>
+<!-- Modal -->
+<div id="verificationstep2"  class="modal fade" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-md">
+<!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-body my-3">
+                {{v_step2_msg}}
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Ok</button>
+        </div>
+        </div>
+</div>
 </div>
