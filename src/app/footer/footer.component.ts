@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClientService } from '../service/http-client.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    public httpClientService: HttpClientService,) { }
 
   ngOnInit() {
   }
@@ -21,5 +24,29 @@ export class FooterComponent implements OnInit {
   redirectTo(uri) {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
     this.router.navigate([uri]));
+  }
+
+  msg1 = "";
+  addFeedback(name:string, phno:string, message: string){
+    let message1 = message + " From: " + phno +" ("+name+") ";
+    if(message !="" && phno !="" && name !=""){
+      document.getElementById("myModal1_close_btn").click();
+      this.httpClientService.AddFeedback(message1)
+      .subscribe( 
+        data => { 
+          if(data == "message sent successfully") 
+            this.msg1 = "Thanks for your feedback. We would get back to you ASAP.";
+        }, 
+        error =>{ 
+          if(error.status == 500)
+            this.msg1 = "Unable to process your request. Please check your mobile number entered or internet connectivity.";
+        })
+  }
+  else if(message =="")
+    this.msg1 = "Please add message before submitting the form.";
+  else if(phno =="")
+    this.msg1 = "Please add phone number before submitting the form.";
+  else if(name =="")
+    this.msg1 = "Please add name before submitting the form.";
   }
 }

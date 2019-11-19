@@ -146,4 +146,8 @@ AddRating(userdata): Observable<any> {
     catchError(this.errorHandl),
   )
   }
+
+AddFeedback(data){
+  return this.httpClient.post('/api/phonenumber/+919044281990/message/',data,{responseType:'text'})
+    }   
 }
