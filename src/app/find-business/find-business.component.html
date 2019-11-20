@@ -50,11 +50,16 @@
             <div class="col-sm-10 mx-auto pb-5"  *ngFor="let businessi of business;let i=index">
                 <div class="card result-card" >
                     <div class="card-body">
-                        <h4 class="card-title font-weight-bold">
-                            <a class="uppercase mb-2">{{businessi.businessName}}</a>
-                        </h4>
-                        <h6>
-                            
+                    <div class="row card-title ">
+                        <div class="col-sm-10">
+                            <h4 class="font-weight-bold"><a class="uppercase mb-2">{{businessi.businessName}}</a></h4> 
+                        </div>
+                        <div class="col-sm-2 mx-auto">
+                            <button *ngIf="currentCustomer" type="submit" (click)="doBooking(currentCustomer.extension,currentCustomer.phoneNumber,businessi.primaryExtension,businessi.primaryPhoneNumber)" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalx">BOOK NOW</button> 
+                        </div>
+                     </div>
+                    <div class="row">     
+                        <div class="col-sm-12">   
                             <div class="rating mt-2" title=" Sign Up or Sign In as a customer to provide the rating" >
                                     <a *ngIf="businessi.rating !== null">{{businessi.rating.averageRating | number: '1.1-1'}}</a>
                                     <a *ngIf="businessi.rating === null">0.0</a>
@@ -75,9 +80,9 @@
                                     <a *ngIf="businessi.rating !== null">({{businessi.rating.noOfReviews}})</a>
                                     <a *ngIf="businessi.rating === null">(0)</a> - {{businessi.businessType}}
                                 </div>
-                            
-                        </h6>
-                        {{addStars(businessi.rating,i,'')}}
+                        </div>        
+                    </div>       
+                    {{addStars(businessi.rating,i,'')}}
                     </div>    
                     <div class="card-text mb-2">
                                 <div class="row ml-3 mb-5">
@@ -201,6 +206,21 @@
         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
     </div>
     </div>
+
+</div>
+</div>
+<!-- Modal -->
+<div id="myModalx"  class="modal fade" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-sm">
+<!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-body my-3">
+                {{msgx}}
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Ok</button>
+        </div>
+        </div>
 
 </div>
 </div>

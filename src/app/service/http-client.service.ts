@@ -147,7 +147,15 @@ AddRating(userdata): Observable<any> {
   )
   }
 
-AddFeedback(data){
-  return this.httpClient.post('/api/phonenumber/+919044281990/message/',data,{responseType:'text'})
-    }   
+  AddFeedback(data){
+    return this.httpClient.post('/api/phonenumber/+13617205898/message/',data,{responseType:'text'})
+  }   
+
+  SendBookingMessagesToBusiness(data){
+    return this.httpClient.post('/api/phonenumber/+'+data.phno+'/message/',data.msg,{responseType:'text'})
+  }   
+  SendBookingMessagesToCustomer(data){
+    return this.httpClient.post('/api/phonenumber/+'+data.phno+'/message/',data.msg,{responseType:'text'})
+  }   
+      
 }

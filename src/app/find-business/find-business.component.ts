@@ -223,4 +223,33 @@ addStars(ratingx: any,index_i:number,suffix:string){
         document.getElementById('Star1'+suffix+i).classList.add('fa-star-o');
       }
     }
+
+  msgx = "";
+  msg1 = "";
+  msg2 = "";
+  doBooking(c_extno:number,c_phno: number, b_extno:number,b_phno: number){
+    let message_c = "Thanks for using Book The Event. Business owner will contact you soon. Have a nice day.";
+    let message_b = "Thanks for using Book The Event. Please reach out to the customer (+"+c_extno+c_phno+") for the lead. Have a nice day.";
+    let data = {"msg" : message_c, "phno": c_extno+c_phno+""};
+    let data1 = {"msg" : message_b, "phno": b_extno+b_phno+""};
+    this.httpClientService.SendBookingMessagesToBusiness(data1)
+    .subscribe( 
+      data => { 
+        if(data == "message sent successfully") 
+          this.msgx = "Notifications sent successfully.";
+      },
+      error =>{
+        this.msgx = "Unable to process your request. Please check your mobile number entered or internet connectivity.";
+      })
+    this.httpClientService.SendBookingMessagesToCustomer(data)
+    .subscribe( 
+      data => { 
+        if(data == "message sent successfully") 
+          this.msgx = "Notifications sent successfully.";
+      },
+      error =>{
+        this.msgx = "Unable to process your request. Please check your mobile number entered or internet connectivity.";
+      })
+    
+  }
 }
