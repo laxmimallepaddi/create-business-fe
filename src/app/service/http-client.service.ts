@@ -146,4 +146,16 @@ AddRating(userdata): Observable<any> {
     catchError(this.errorHandl),
   )
   }
+
+  AddFeedback(data){
+    return this.httpClient.post('/api/phonenumber/+13617205898/message/',data,{responseType:'text'})
+  }   
+
+  SendBookingMessagesToBusiness(data){
+    return this.httpClient.post('/api/phonenumber/+'+data.phno+'/message/',data.msg,{responseType:'text'})
+  }   
+  SendBookingMessagesToCustomer(data){
+    return this.httpClient.post('/api/phonenumber/+'+data.phno+'/message/',data.msg,{responseType:'text'})
+  }   
+      
 }

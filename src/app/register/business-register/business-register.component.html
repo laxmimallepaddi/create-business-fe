@@ -621,10 +621,10 @@
                 </div>
         <hr class="my-4" *ngIf="businessForm.form.valid">
         
-        <div class="row"  *ngIf="v_step2_msg==''">
+        <div class="row"  *ngIf="v_step2_msg!='OTP verified successfully and click on sign-up button to complete your business registration.'">
                 <br>
                 <button class="btn btn-lg btn-primary btn-block text-uppercase mx-auto" type="submit" (click)="doUpperCase();">Sign Up</button>
-        </div> 
+        </div>
         <div class="row"  *ngIf="businessForm.form.valid && v_step2_msg=='OTP verified successfully and click on sign-up button to complete your business registration.'">
                 <br>
                 <button class="btn btn-lg btn-primary btn-block text-uppercase mx-auto" type="submit" (click)="doUpperCase();createBusiness(businessForm.value)">Sign Up</button>
