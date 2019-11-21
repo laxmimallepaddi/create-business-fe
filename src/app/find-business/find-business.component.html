@@ -58,7 +58,7 @@
                             <button *ngIf="currentCustomer" type="submit" (click)="doBooking(currentCustomer.extension,currentCustomer.phoneNumber,businessi.primaryExtension,businessi.primaryPhoneNumber)" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalx">BOOK NOW</button> 
                         </div>
                      </div>
-                    <div class="row">     
+                    <div class="row"> 
                         <div class="col-sm-12">   
                             <div class="rating mt-2" title=" Sign Up or Sign In as a customer to provide the rating" >
                                     <a *ngIf="businessi.rating !== null">{{businessi.rating.averageRating | number: '1.1-1'}}</a>
@@ -211,6 +211,22 @@
 </div>
 <!-- Modal -->
 <div id="myModalx"  class="modal fade" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-sm">
+<!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-body my-3">
+        This will send a notification to the business owner and business owner will reach out to you. 
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="doBookingConfirmation(true)" data-toggle="modal" data-target="#myModalxy">Book</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" id="myModalx_close_btn">Cancel</button>    
+        </div>
+        </div>
+
+</div>
+</div>
+<!-- Modal -->
+<div id="myModalxy"  class="modal fade" role="dialog">
 <div class="modal-dialog modal-dialog-centered modal-sm">
 <!-- Modal content-->
         <div class="modal-content">
