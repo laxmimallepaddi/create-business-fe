@@ -227,29 +227,35 @@ addStars(ratingx: any,index_i:number,suffix:string){
   msgx = "";
   msg1 = "";
   msg2 = "";
+  data = {};
+  data1 = {};  
   doBooking(c_extno:number,c_phno: number, b_extno:number,b_phno: number){
     let message_c = "Thanks for using Book The Event. Business owner will contact you soon. Have a nice day.";
     let message_b = "Thanks for using Book The Event. Please reach out to the customer (+"+c_extno+c_phno+") for the lead. Have a nice day.";
-    let data = {"msg" : message_c, "phno": c_extno+c_phno+""};
-    let data1 = {"msg" : message_b, "phno": b_extno+b_phno+""};
-    this.httpClientService.SendBookingMessagesToBusiness(data1)
-    .subscribe( 
-      data => { 
-        if(data == "message sent successfully") 
-          this.msgx = "Notifications sent successfully.";
-      },
-      error =>{
-        this.msgx = "Unable to process your request. Please check your mobile number entered or internet connectivity.";
-      })
-    this.httpClientService.SendBookingMessagesToCustomer(data)
-    .subscribe( 
-      data => { 
-        if(data == "message sent successfully") 
-          this.msgx = "Notifications sent successfully.";
-      },
-      error =>{
-        this.msgx = "Unable to process your request. Please check your mobile number entered or internet connectivity.";
-      })
-    
+    this.data = {"msg" : message_c, "phno": c_extno+c_phno+""};
+    this.data1 = {"msg" : message_b, "phno": b_extno+b_phno+""};
+  }  
+  doBookingConfirmation(confirmation : boolean){
+    if(confirmation){
+      document.getElementById("myModalx_close_btn").click();
+      this.httpClientService.SendBookingMessagesToBusiness(this.data1)
+      .subscribe( 
+        data => { 
+          if(data == "message sent successfully") 
+            this.msgx = "Notifications sent successfully.";
+        },
+        error =>{
+          this.msgx = "Unable to process your request. Please check your mobile number entered or internet connectivity.";
+        })
+      this.httpClientService.SendBookingMessagesToCustomer(this.data)
+      .subscribe( 
+        data => { 
+          if(data == "message sent successfully") 
+            this.msgx = "Notifications sent successfully.";
+        },
+        error =>{
+          this.msgx = "Unable to process your request. Please check your mobile number entered or internet connectivity.";
+        })
+    }
   }
 }
