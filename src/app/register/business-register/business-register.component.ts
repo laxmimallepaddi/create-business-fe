@@ -190,14 +190,22 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
   editformsubmitted = false;
   onEditForm() { this.editformsubmitted = true; }
 
+  user_exists = false;
+  error_msg = '';
   createBusiness(userdata){ 
-    this.httpClientService.CreateBusiness(userdata).subscribe(
-      res => {
-      this.alertService.success('Business registration successful.', true);
-      this.ngZone.run(() => this.router.navigateByUrl('/login/business'))
+    this.httpClientService.CreateBusiness(userdata)
+    .subscribe(data => {
+      this.user_exists = false;
+      this.error_msg = "You are registered successfully.";
     },
-    error => {
-      this.alertService.error('Username already exists.');
+      error => {
+        if(error.error.message == "UserName Already Exists"){
+          this.user_exists = true;
+          this.error_msg = 'Username already exists.';
+        }
+        else{
+          this.error_msg = "Unable to process your request. Please check internet connection."  
+        }  
     }
     );
   }
