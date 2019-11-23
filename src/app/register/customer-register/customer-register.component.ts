@@ -25,15 +25,23 @@ export class CustomerRegisterComponent implements OnInit {
   model = new Customer(null,null,null,null,null,null,null,null);
   
   onSubmit() { this.submitted = true; }
-
+  
+  user_exists = false;
+  error_msg = '';
   createCustomer(userdata){ 
     this.httpClientService.CreateCustomer(userdata)
-    .subscribe(res => {
-      this.alertService.success('You are registered successfully.', true);
-      this.ngZone.run(() => this.router.navigateByUrl('/login/customer'))
+    .subscribe(data => {
+      this.user_exists = false;
+      this.error_msg = "You are registered successfully.";
     },
       error => {
-        this.alertService.error('Username already exists.');
+        if(error.error.message == "UserName Already Exists"){
+          this.user_exists = true;
+          this.error_msg = 'Username already exists.';
+        }
+        else{
+          this.error_msg = "Unable to process your request. Please check internet connection."  
+        }  
     }
     );
   }
@@ -50,7 +58,6 @@ export class CustomerRegisterComponent implements OnInit {
   v_step2_msg = "";
   sendVCode(ext: string,phone_no: string){
     ext = ext.slice(ext.indexOf(" ")+1,ext.length);
-    let msg_var = "";
     this.httpClientService.SMSVerification(ext+phone_no)
     .subscribe( 
       data => { 
@@ -80,6 +87,5 @@ export class CustomerRegisterComponent implements OnInit {
           this.v_step2_msg = "Unable to process your request. Please check your code entered or internet connectivity.";
         
       })
-      console.log(this.v_step2_msg);
   }
 }

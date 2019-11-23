@@ -6,18 +6,20 @@
             <div class="card-body">
             <h5 class="card-title text-center font-weight-bold">LOG INTO YOUR ACCOUNT</h5>
             <form class="form-signin"  #businessLogin="ngForm" (ngSubmit)="businessLogin.form.valid && loginBusiness(businessLogin.value)">
-                     
-                    <div class="form-group">
-                    <input  class="form-control" placeholder="Username"  required [(ngModel)]="model.userName" name="userName" #userName="ngModel">
-                    </div>
-                    <div class="form-group">
-                    <input [type]="show1 ? 'text' : 'password'" class="form-control" placeholder="Password" required [(ngModel)]="model.password" name="password" #password="ngModel">
-                    <span toggle="#password-field" [class]="show1? 'fa fa-eye-slash field-icon' :'fa fa-eye field-icon' " (click)="showPassword1()"></span>
-                    </div>
-                    <div class="form-group my-4 text-center">
-                    <h6><small>For techincal difficulties or help with login send us an email to: booktheeventthikwa@gmail.com</small></h6>
-                    </div>
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" >Log In</button>
+                <div class="form-group">
+                <input  class="form-control" placeholder="Username"  required [(ngModel)]="model.userName" name="userName" #userName="ngModel">
+                </div>
+                <div class="form-group">
+                <input [type]="show1 ? 'text' : 'password'" class="form-control" placeholder="Password" required [(ngModel)]="model.password" name="password" #password="ngModel">
+                <span toggle="#password-field" [class]="show1? 'fa fa-eye-slash field-icon' :'fa fa-eye field-icon' " (click)="showPassword1()"></span>
+                </div>
+                <div style="color:red;" *ngIf="unp_exists">
+                <small>*{{error_msg}}</small>
+                </div>
+                <div class="form-group my-4 text-center">
+                <h6><small>For techincal difficulties or help with login send us an email to: contact@booktheevent.in</small></h6>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" >Log In</button>
             </form>        
             <hr class="my-4">
             <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><em class="fa fa-google mr-2"></em> Sign in with Google</button>
