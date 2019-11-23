@@ -466,7 +466,10 @@
                         </div>
                 </div>
         </div>
-        </div>       
+        </div>   
+        <div style="color:red;" *ngIf="user_exists">
+        <small>*{{error_msg}}</small>
+        </div>    
         <div class="row">
                 <div class="col-sm-12 form-group">
                         <label>Password</label>
@@ -627,7 +630,7 @@
         </div>
         <div class="row"  *ngIf="businessForm.form.valid && v_step2_msg=='OTP verified successfully and click on sign-up button to complete your business registration.'">
                 <br>
-                <button class="btn btn-lg btn-primary btn-block text-uppercase mx-auto" type="submit" (click)="doUpperCase();createBusiness(businessForm.value)">Sign Up</button>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase mx-auto" type="submit" (click)="doUpperCase();createBusiness(businessForm.value)" data-toggle="modal" data-target="#final_signup">Sign Up</button>
         </div> 
         </form>
         <hr class="my-4">
@@ -664,6 +667,21 @@
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-outline-success" data-dismiss="modal">Ok</button>
+        </div>
+        </div>
+</div>
+</div>
+<!-- Modal -->
+<div id="final_signup"  class="modal fade" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-sm">
+<!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-body my-3">
+        {{error_msg}}
+        </div>
+        <div class="modal-footer">
+        <button *ngIf="error_msg =='You are registered successfully.'"type="button" class="btn btn-outline-success" data-dismiss="modal" [routerLink]="'/login/business'">Login</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>    
         </div>
         </div>
 </div>

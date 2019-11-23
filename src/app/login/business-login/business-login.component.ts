@@ -23,16 +23,23 @@ export class BusinessLoginComponent implements OnInit {
   ngOnInit() {
   }
   model= new BusinessLogin(null,null);
-  
+  unp_exists = false;
+  error_msg = '';
   loginBusiness(userdata){ 
     this.httpClientService.LoginBusiness(userdata)
     .pipe(first())
     .subscribe(
       res => {
+      this.unp_exists = false;
       this.ngZone.run(() => this.router.navigateByUrl('/business'))
     },
     error => {
-      this.alertService.error('Username or password is incorrect.');
+      this.unp_exists = true;
+      if(error.error.message == "Invalid UserName / Password ")
+        this.error_msg = "Invalid UserName / Password.";
+      else 
+        this.error_msg = "Unable to process your request. Please check internet connection."  
+      
   });
   }
   show1: boolean;

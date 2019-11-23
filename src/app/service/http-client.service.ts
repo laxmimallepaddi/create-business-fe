@@ -43,11 +43,7 @@ export class HttpClientService {
   }
 
  CreateBusiness(data): Observable<Business> {
-  return this.httpClient.post<Business>('/api/business/', JSON.stringify(data), this.httpOptions)
-  .pipe(
-    retry(1),
-    catchError(this.errorHandl)
-  )
+  return this.httpClient.post<Business>('/api/business/', JSON.stringify(data), this.httpOptions);
 }  
 
 SearchFilter(data): Observable<Business> {
@@ -59,7 +55,6 @@ SearchFilter(data): Observable<Business> {
 }  
 
 LoginBusiness(data): Observable<Business> {
-  console.log(data);
   return this.httpClient.post<Business>('/api/business/login/', JSON.stringify(data), this.httpOptions)
   .pipe(map(user => {
     if (user) {
@@ -72,11 +67,7 @@ LoginBusiness(data): Observable<Business> {
 }  
 
 CreateCustomer(data): Observable<Customer> {
-  return this.httpClient.post<Customer>('/api/customer/', JSON.stringify(data), this.httpOptions)
-  .pipe(
-    retry(1),
-    catchError(this.errorHandl)
-  )
+  return this.httpClient.post<Customer>('/api/customer/', JSON.stringify(data), this.httpOptions);
 }  
 
 LoginCustomer(data): Observable<Customer> {
