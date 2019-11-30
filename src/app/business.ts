@@ -61,17 +61,13 @@ export enum BusinessType{
     "Fashion Services",
     "Fitness",
     "Gifting and Printing Services",
-    "Grocery Store",
     "Housekeeping Services",
-    "Insurance Agents",
     "Kids Zone",
     "Matrimonial Services",
     "Meat Providers",
     "Pandith Services",
-    "Pan Shop",
     "Photography",
     "Professionals",
-    "Real Estate Brokers",
     "Registration Agents",
     "Repair and Fix",
     "Security Services",
@@ -206,58 +202,40 @@ export function mapBusinessTypes(val: string){
                 "Flex Printing Services"
                 ];
         }
-        if(val == "12: Grocery Store" || val == "Grocery Store"){
-          list=["Kirana Supplies",
-                "Medical Supplies"
-                ];
-        }
-        if(val == "13: Housekeeping Services" || val == "Housekeeping Services"){
+        if(val == "12: Housekeeping Services" || val == "Housekeeping Services"){
           list=["Individual Maids",
                 "Housekeeping Staff Contractor"
                 ];
         }
-        if(val == "14: Insurance Agents" || val == "Insurance Agents"){
-          list=["All Types of Insurances",
-                "Life/Personal Insurance",
-                "Property Insurance",
-                "Health Insurance",
-                "Car/Bike",
-                "Other Insurances"
-              ];
-        }
-        if(val == "15: Kids Zone" || val == "Kids Zone"){
+        if(val == "13: Kids Zone" || val == "Kids Zone"){
           list=["Magicians",
                 "Gaming Equipment Providers",
                 "Stage Show Artist"
                 ];
         }
-        if(val == "16: Matrimonial Services" || val == "Matrimonial Services"){
+        if(val == "14: Matrimonial Services" || val == "Matrimonial Services"){
           list=["All types of Martrimonial Services"
         ];
         }
-        if(val == "17: Meat Providers" || val == "Meat Providers"){
+        if(val == "15: Meat Providers" || val == "Meat Providers"){
           list=["Chicken",
                 "Mutton",
                 "Fish",
                 "Other"
                 ];
         }
-        if(val == '18: Pandith Services' || val == 'Pandith Services'){
+        if(val == '16: Pandith Services' || val == 'Pandith Services'){
           list=['Wedding',
                 'Funeral'
                 ];
         }
-        if(val == '19: Pan Shop' || val == 'Pan Shop'){
-          list=['Speciality Pans'
-                ];
-        }
-        if(val == "20: Photography" || val == "Photography"){
+        if(val == "17: Photography" || val == "Photography"){
           list=["Photoshoot",
                 "Event",
                 "All Types of Photography"
                 ];
         }
-        if(val == "21: Professionals" || val == "Professionals"){
+        if(val == "18: Professionals" || val == "Professionals"){
           list=["Electrician",
                 "Plumber",
                 "Mechanic",
@@ -269,18 +247,12 @@ export function mapBusinessTypes(val: string){
                 "Charted Accountants(CAs)"
               ];
         }
-        if(val == "22: Real Estate Brokers" || val == "Real Estate Brokers"){
-          list=["Home",
-                "Open Plots",
-                "Agriculture Land"
-              ];
-        }
-        if(val == "23: Registration Agents" || val == "Registration Agents"){
+        if(val == "19: Registration Agents" || val == "Registration Agents"){
           list=["Company Registration Agents",
                 "GST Registration Agents"
               ];
         }
-        if(val == "24: Repair and Fix" || val == "Repair and Fix"){
+        if(val == "20: Repair and Fix" || val == "Repair and Fix"){
           list=["AC",
                 "Air Cooler",
                 "Mobiles",
@@ -296,13 +268,13 @@ export function mapBusinessTypes(val: string){
                 "Furniture Making and Repair"
               ];
         }
-        if(val == "25: Security Services" || val == "Security Services"){
+        if(val == "21: Security Services" || val == "Security Services"){
           list=[
               "Bouncers",
               "All type of Security Services"
                 ];  
         }
-        if(val == '26: Space Providers' || val == 'Space Providers'){
+        if(val == '22: Space Providers' || val == 'Space Providers'){
           list=["Hotel/Lodge",
                 "Resorts",
                 "Farmhouse",
@@ -311,18 +283,18 @@ export function mapBusinessTypes(val: string){
                 "PGs/Hostels for Men and Women"
             ];
         }
-        if(val == "27: Transportation" || val == "Transportation"){
+        if(val == "23: Transportation" || val == "Transportation"){
           list=["Packers and Movers",
                 "Vehicle for Events",
                 "Self Driving Cars"
                 ];
         }
-        if(val == "28: Vegetables/Fruits Store" || val == "Vegetables/Fruits Store"){
+        if(val == "24: Vegetables/Fruits Store" || val == "Vegetables/Fruits Store"){
           list=["Vegetables",
                 "Fruits"
                 ];
         }
-        if(val == "29: Water Tanker Suppliers" || val == "Water Tanker Suppliers"){
+        if(val == "25: Water Tanker Suppliers" || val == "Water Tanker Suppliers"){
           list=["Water Tankers",
                 "Water Bottles"
                 ];
