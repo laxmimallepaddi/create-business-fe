@@ -1,6 +1,6 @@
 import { Component, OnInit ,ElementRef, NgZone, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Business,BusinessType,mapBusinessTypes } from '../../business';
+import { Business,BusinessType,mapBusinessTypes,countryCodes } from '../../business';
 import { HttpClientService } from '../../service/http-client.service';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +14,7 @@ import { AlertService} from '../../service/alert.service';
 export class BusinessRegisterComponent implements OnInit,OnDestroy {
   htmlToAddPhoneNumber='';
   businesstypes=BusinessType;
+  countryCodes = countryCodes;
   phoneNumberCounter=1;
   addressCounter=1;
   replicateAddressCheckbox=true;
@@ -32,6 +33,14 @@ export class BusinessRegisterComponent implements OnInit,OnDestroy {
   b_type_keys() : Array<string> {
     var keys = Object.keys(this.businesstypes);
     return keys.slice(keys.length / 2);
+  }
+  countryCodes_keys() : Array<string> {
+    var keys = Object.keys(this.countryCodes);
+    return keys;
+  }
+  countryCodes_values() : Array<string> {
+    var values = Object.values(this.countryCodes);
+    return values;
   }
   
   constructor(
