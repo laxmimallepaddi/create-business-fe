@@ -229,7 +229,7 @@ addStars(ratingx: any,index_i:number,suffix:string){
   msg2 = "";
   data = {};
   data1 = {};  
-  doBooking(c_extno:number,c_phno: number, b_extno:number,b_phno: number){
+  doBooking(c_extno:string,c_phno: string, b_extno:string,b_phno: string){
     let message_c = "Thanks for using Book The Event. Business owner will contact you soon. Have a nice day.";
     let message_b = "Thanks for using Book The Event. Please reach out to the customer (+"+c_extno+c_phno+") for the lead. Have a nice day.";
     this.data = {"msg" : message_c, "phno": c_extno+c_phno+""};

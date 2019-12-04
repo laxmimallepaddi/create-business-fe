@@ -79,7 +79,7 @@
         <div class="col-sm-7">
                 <div class="tab-content" >
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <form class="form-signin" #businessForm="ngForm" (ngSubmit)="businessForm.form.valid && updateBusiness(businessForm.value)" novalidate>
+                        <form class="form-signin" #businessForm="ngForm" (ngSubmit)="businessForm.form.valid">
                         <div class="row" hidden>
                                 <div class="col-sm-6 form-group">
                                     <input type="text" class="form-control" required [(ngModel)]="model.businessId" name="businessId" #businessId="ngModel">
@@ -125,7 +125,7 @@
                                 <div class=" col-sm-6 form-group ">
                                         <label>Business Type</label>
                                         <select class="form-control custom-select" required (change)="filterServices($event);" [(ngModel)]="model.businessType" name="businessType" #businessType="ngModel">
-                                                <option [ngValue]="null" disabled>Select Business Type</option>
+                                                <option [ngValue]="null" disabled>--Select--</option>
                                                 <option *ngFor="let b_type of b_type_keys();" [ngValue]="b_type">{{b_type}}</option>
                                         </select>
                                         <div *ngIf="businessForm.submitted  && businessType.invalid" class="alert alert-danger">
@@ -254,51 +254,37 @@
                                 <div class=" col-sm-6 form-group ">
                                         <label>Pin Code</label>
                                         <input type="text" pattern="\d*" class="form-control address-2" [(ngModel)]="model.secondaryZipCode" name="secondaryZipCode" #secondaryZipCode="ngModel">
-                                        <div *ngIf="businessForm.submitted  && secondaryZipCode.invalid" class="alert alert-danger">
-                                        <div *ngIf="secondaryZipCode.errors.required">Pincode is required.</div>
-                                        </div>        
                                 </div>
                                 <div class=" col-sm-6 form-group ">
                                         <label>Country</label>
                                         <input type="text" class="form-control address-2"  [(ngModel)]="model.secondaryCountry" name="secondaryCountry" #secondaryCountry="ngModel" onblur ="this.value = this.value.toUpperCase();">
-                                        <div *ngIf="businessForm.submitted  && secondaryCountry.invalid" class="alert alert-danger">
-                                        <div *ngIf="secondaryCountry.errors.required">Country is required.</div>
-                                        </div>        
-                                </div>
+                               </div>
                         </div>                
                         <div class="row" *ngIf="addresstypevalue!= 'OFFICE'">
                                 <div class=" col-sm-6 form-group ">
                                         <label>State</label>
                                         <input type="text" class="form-control address-2" [(ngModel)]="model.secondaryState" name="secondaryState" #secondaryState="ngModel" onblur ="this.value = this.value.toUpperCase();">
-                                        <div *ngIf="businessForm.submitted  && secondaryState.invalid" class="alert alert-danger">
-                                        <div *ngIf="secondaryState.errors.required">State is required.</div>
-                                        </div>
                                 </div>  
                                 <div class=" col-sm-6 form-group ">
                                         <label>City</label>
                                         <input type="text" class="form-control address-2"  [(ngModel)]="model.secondaryCity" name="secondaryCity" #secondaryCity="ngModel" onblur ="this.value = this.value.toUpperCase();">
-                                        <div *ngIf="businessForm.submitted  && secondaryCity.invalid" class="alert alert-danger">
-                                        <div *ngIf="secondaryCity.errors.required">City is required.</div>
-                                        </div>
                                 </div>
                         </div>
                         <hr class="my-4">
                         <div class="row">
-                                <div class=" col-sm-12 form-group ">
-                                        <select class="form-control custom-select" (change)="onPhoneTypeChange($event);">
-                                                <option value="OFFICE">Office</option>
-                                                <option value="HOME">Home</option>
-                                                <option value="MOBILE">Mobile</option>
-                                        </select>         
+                                <div class="col-sm-12 form-group">        
+                                *You could add upto THREE Phone Number.
                                 </div>
                         </div>
-                        
-                        <div class="row" [hidden]="phonetypevalue != 'HOME'">
-                                <div class=" col-sm-2 form-group">
+                        <div class="row">
+                                <div class="col-sm-4 form-group">
                                         <label>Ext.</label>  
-                                        <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control" [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel">
-                                </div>        
-                                <div class=" col-sm-10 form-group">
+                                        <select class="form-control custom-select" required [(ngModel)]="model.primaryExtension" name="primaryExtension" #primaryExtension="ngModel">
+                                                <option [ngValue]="null" disabled>--Select--</option>
+                                                <option *ngFor="let b_type1 of countryCodes_values();let ix=index;" [ngValue]="b_type1">{{countryCodes_keys()[ix]}} +{{b_type1}}</option>
+                                                </select>
+                                </div> 
+                                <div class="col-sm-4 form-group">
                                         <label>Phone Number</label>  
                                         <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.primaryPhoneNumber" name="primaryPhoneNumber" #primaryPhoneNumber="ngModel" >
                                         <div *ngIf="businessForm.submitted  && primaryPhoneNumber.invalid" class="alert alert-danger">
@@ -306,47 +292,65 @@
                                         <div *ngIf="primaryPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
                                         </div>
                                 </div>
-                        </div>
-                        <div class="row" [hidden]="phonetypevalue != 'OFFICE'">
-                                <div class=" col-sm-2 form-group">
-                                        <label>Ext.</label>  
-                                        <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control" [(ngModel)]="model.secondaryExtension" name="secondaryExtension" #secondaryExtension="ngModel">
-                                        
-                                </div> 
-                                <div class=" col-sm-10 form-group">
-                                                <label>Phone Number</label>  
-                                                <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.secondaryPhoneNumber" name="secondaryPhoneNumber" #secondaryPhoneNumber="ngModel">
-                                                <div *ngIf="businessForm.submitted  && secondaryPhoneNumber.invalid" class="alert alert-danger">
-                                                <div *ngIf="secondaryPhoneNumber.errors.required">Phone Number is required.</div>
-                                                <div *ngIf="secondaryPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
-                                                </div>
-                                </div>
-                        </div>
-                        <div class="row" [hidden]="phonetypevalue != 'MOBILE'">
-                                <div class=" col-sm-2 form-group">
-                                        <label>Ext.</label>  
-                                        <input type="text" pattern="\d*" minlength="2" maxlength="2" class="form-control"  [(ngModel)]="model.thirdExtension" name="thirdExtension" #thirdExtension="ngModel">
-                                </div> 
-                                <div class=" col-sm-10 form-group">
-                                        <label>Phone Number</label>  
-                                        <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10" required [(ngModel)]="model.thirdPhoneNumber" name="thirdPhoneNumber" #thirdPhoneNumber="ngModel">
-                                        <div *ngIf="businessForm.submitted  && thirdPhoneNumber.invalid" class="alert alert-danger">
-                                        <div *ngIf="thirdPhoneNumber.errors.required">Phone Number is required.</div>
-                                        <div *ngIf="thirdPhoneNumber.errors.minlength">Phone Number is less than 10 digits.</div>
+                                <div class="col-sm-4 form-group "> 
+                                        <label>Phone Type</label>
+                                        <select type="text" class="form-control"  required  [(ngModel)]="model.primaryPhoneType" name="primaryPhoneType" #primaryPhoneType="ngModel" >input
+                                        <option [ngValue]="null" disabled>--Select--</option>
+                                        <option *ngFor="let b_typex of phoneType_keys();" [ngValue]="b_typex">{{b_typex}}</option>
+                                        </select>
+                                        <div *ngIf="businessForm.submitted  && primaryPhoneType.invalid" class="alert alert-danger">
+                                        <div *ngIf="primaryPhoneType.errors.required">
+                                        Phone Number Type is required.
+                                        </div>
                                         </div>
                                 </div>
+                        </div>        
+                        <div class="row">
+                                <div class="col-sm-4 form-group">
+                                        <label>Ext.</label>  
+                                        <select class="form-control custom-select"[(ngModel)]="model.secondaryExtension" name="secondaryExtension" #secondaryExtension="ngModel">
+                                                <option [ngValue]="null" disabled>--Select--</option>
+                                                <option *ngFor="let b_type1 of countryCodes_values();let ix=index;" [ngValue]="b_type1">{{countryCodes_keys()[ix]}} +{{b_type1}}</option>
+                                        </select>
+                                </div> 
+                                <div class="col-sm-4 form-group">
+                                                <label>Phone Number</label>  
+                                                <input type="text" pattern="\d*" minlength="10" maxlength="10" class="form-control" [(ngModel)]="model.secondaryPhoneNumber" name="secondaryPhoneNumber" #secondaryPhoneNumber="ngModel">
+                                </div>
+                                <div class="col-sm-4 form-group "> 
+                                        <label>Phone Type</label>
+                                        <select type="text" class="form-control"  [(ngModel)]="model.secondaryPhoneType" name="secondaryPhoneType" #secondaryPhoneType="ngModel">
+                                        <option [ngValue]="null" disabled>--Select--</option>
+                                        <option *ngFor="let b_typex of phoneType_keys();" [ngValue]="b_typex">{{b_typex}}</option>
+                                </select>
+                                </div>
                         </div>
+                        <div class="row">
+                                <div class="col-sm-4 form-group">
+                                        <label>Ext.</label>  
+                                        <select class="form-control custom-select"[(ngModel)]="model.thirdExtension" name="thirdExtension" #thirdExtension="ngModel">
+                                                <option [ngValue]="null" disabled>--Select--</option>
+                                                <option *ngFor="let b_type1 of countryCodes_values();let ix=index;" [ngValue]="b_type1">{{countryCodes_keys()[ix]}} +{{b_type1}}</option>
+                                        </select>
+                                </div> 
+                                <div class="col-sm-4 form-group">
+                                        <label>Phone Number</label>  
+                                        <input type="text" pattern="\d*" class="form-control" minlength="10" maxlength="10"[(ngModel)]="model.thirdPhoneNumber" name="thirdPhoneNumber" #thirdPhoneNumber="ngModel" >
+                                </div>
+                                <div class="col-sm-4 form-group "> 
+                                        <label>Phone Type</label>
+                                        <select type="text" class="form-control" [(ngModel)]="model.thirdPhoneType" name="thirdPhoneType" #thirdPhoneType="ngModel" >
+                                        <option [ngValue]="null" disabled>--Select--</option>
+                                        <option *ngFor="let b_typex of phoneType_keys();" [ngValue]="b_typex">{{b_typex}}</option>
+                                        </select>                
+                                </div>
+                        </div>        
                         <div class="row" hidden>  
                                 <div class="col-sm-12 form-group">
                                         <label>Username</label>  
                                         <input type="text" class="form-control" required [(ngModel)]="model.userName" name="userName" #userName="ngModel">
-                                        <div *ngIf="businessForm.submitted  && userName.invalid" class="alert alert-danger">
-                                        <div *ngIf="userName.errors.required">
-                                        User Name is required.
-                                        </div>
                                 </div>
-                        </div>
-                        </div>       
+                        </div>     
                         <div class="row" hidden>
                                 <div class="col-sm-12 form-group">
                                         <label>Password</label>
@@ -358,11 +362,12 @@
                                         </div>
                                 </div>
                         </div>
-                            <button class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit" (click)="doUpperCase();">Save</button>
+                        <button *ngIf="!businessForm.form.valid" class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit" >Save</button>
+                        <button *ngIf="businessForm.form.valid" class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="button" (click)="doUpperCase();updateBusiness(businessForm.value)" data-toggle="modal" data-target="#show_message">Save</button>
                         </form>
                 </div>
                 <div class="tab-pane fade show" id="change_password" role="tabpanel" aria-labelledby="change_password-tab">
-                        <form class="form-signin" id="pswd_form"  #passwordChangeForm="ngForm" (ngSubmit)="passwordChangeForm.form.valid && changePasswordBusiness(passwordChangeForm,passwordChangeForm.value)" [mustMatch]="['newPassword', 'confirmPassword']">
+                        <form class="form-signin" id="pswd_form"  #passwordChangeForm="ngForm" (ngSubmit)="passwordChangeForm.form.valid" [mustMatch]="['newPassword', 'confirmPassword']">
                         <div class="row" hidden>          
                         <input type="text" class="form-control" [(ngModel)]="model.businessId" name="businessId" #businessId="ngModel">
                         <input type="text" class="form-control"  [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel">
@@ -441,11 +446,25 @@
                                         <div *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div>
                                         </div>
                                 </div>
-                        </div>   
-                        <button class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit">Save</button>
+                        </div>  
+                        <button *ngIf="!passwordChangeForm.form.valid" class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="submit" >Save</button>
+                        <button *ngIf="passwordChangeForm.form.valid" class="btn btn-sm btn-primary btn-block text-uppercase mx-auto" type="button" (click)="changePasswordBusiness(passwordChangeForm,passwordChangeForm.value);" data-toggle="modal" data-target="#show_message">Save</button>
                         </form>
                 </div>
         </div>
         </div>
        </div>
+</div>
+<!-- Modal -->
+<div id="show_message"  class="modal fade" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-md">
+<!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-body my-3">
+                {{error_msg}}
+        <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Ok</button>
+        </div>
+        </div>
+</div>
 </div>
