@@ -56,9 +56,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   this.screenWidth = window.innerWidth;
   if(this.screenWidth <1200){ 
     document.getElementsByClassName('fast-search-icon')[0].setAttribute('hidden','hidden');
+    document.getElementsByClassName('fast-search-icon')[1].setAttribute('hidden','hidden');
         }    
   else{
-    document.getElementsByClassName('fast-search-icon')[0].removeAttribute('hidden');   
+    document.getElementsByClassName('fast-search-icon')[0].removeAttribute('hidden');  
+    document.getElementsByClassName('fast-search-icon')[1].removeAttribute('hidden');   
     }
   }
 }
