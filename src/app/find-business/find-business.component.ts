@@ -37,14 +37,15 @@ export class FindBusinessComponent implements OnInit {
       this.model.businessType = FooterComponent.businessTypeField;
     }
 
-  @ViewChild('filter_submit', {static: false}) filter_submit: ElementRef;
   ngOnInit() {
-    this.httpClientService.getAllBusiness().subscribe(
-      response =>this.handleSuccessfulResponse(response),
-     );
-    setTimeout(() => {
-    this.filter_submit.nativeElement.click();
-    }, 10);
+    var userdata = {
+      "businessType": this.model.businessType,
+      "primaryCountry": this.model.primaryCountry,
+      "primaryState": this.model.primaryState,
+      "primaryCity": this.model.primaryCity,
+      "primaryZipCode": this.model.primaryZipCode
+    };
+    this.filterBusiness(userdata);
   }
 
   ngOnDestroy() {
@@ -65,12 +66,11 @@ export class FindBusinessComponent implements OnInit {
     var keys = Object.keys(this.businesstypes);
     return keys.slice(keys.length / 2);
   }
-  model = new BusinessFilter(null,null);
+  model = new BusinessFilter();
   filterBusiness(userdata){ 
     this.httpClientService.SearchFilter(userdata).subscribe(res => {
       this.handleSuccessfulResponse(res);
     });
-    
   }
   
   screenWidth = 0;
