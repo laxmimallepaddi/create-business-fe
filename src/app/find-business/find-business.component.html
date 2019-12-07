@@ -37,7 +37,7 @@
             <div class="row">   
                 <div class="col-sm-4 mr-auto"></div>         
                 <div class="col-sm-4 mr-auto text-center">
-                    <button type="submit" class="btn btn-danger wrn-btn" (click)="doUpperCase();" #filter_submit>Search</button>
+                    <button type="submit" class="btn btn-danger wrn-btn" (click)="doUpperCase();filterBusiness(filterForm.value);" id="search-btn">Search</button>
                 </div>
                 <div class="col-sm-4 mr-auto"></div>    
             </div>
@@ -191,6 +191,17 @@
                 </div>    
             </div> 
 </div>
+<div class="col-sm-10 mx-auto pb-5"  *ngIf="business.length ===0">
+        <div class="card result-card" >
+            <div class="card-body">
+            <div class="row card-title ">
+                <div class="col-sm-12">
+                    <h5><a class="uppercase">NO RESULTS FOUND</a></h5> 
+                </div>
+            </div>
+            </div>
+        </div>  
+</div>             
 </div>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">

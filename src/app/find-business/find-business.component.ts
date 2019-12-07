@@ -37,14 +37,15 @@ export class FindBusinessComponent implements OnInit {
       this.model.businessType = FooterComponent.businessTypeField;
     }
 
-  @ViewChild('filter_submit', {static: false}) filter_submit: ElementRef;
   ngOnInit() {
-    this.httpClientService.getAllBusiness().subscribe(
-      response =>this.handleSuccessfulResponse(response),
-     );
-    setTimeout(() => {
-    this.filter_submit.nativeElement.click();
-    }, 10);
+    var userdata = {
+      "businessType": this.model.businessType,
+      "primaryCountry": this.model.primaryCountry,
+      "primaryState": this.model.primaryState,
+      "primaryCity": this.model.primaryCity,
+      "primaryZipCode": this.model.primaryZipCode
+    };
+    this.filterBusiness(userdata);
   }
 
   ngOnDestroy() {
@@ -65,12 +66,11 @@ export class FindBusinessComponent implements OnInit {
     var keys = Object.keys(this.businesstypes);
     return keys.slice(keys.length / 2);
   }
-  model = new BusinessFilter(null,null);
+  model = new BusinessFilter();
   filterBusiness(userdata){ 
     this.httpClientService.SearchFilter(userdata).subscribe(res => {
       this.handleSuccessfulResponse(res);
     });
-    
   }
   
   screenWidth = 0;
@@ -229,7 +229,7 @@ addStars(ratingx: any,index_i:number,suffix:string){
   msg2 = "";
   data = {};
   data1 = {};  
-  doBooking(c_extno:number,c_phno: number, b_extno:number,b_phno: number){
+  doBooking(c_extno:string,c_phno: string, b_extno:string,b_phno: string){
     let message_c = "Thanks for using Book The Event. Business owner will contact you soon. Have a nice day.";
     let message_b = "Thanks for using Book The Event. Please reach out to the customer (+"+c_extno+c_phno+") for the lead. Have a nice day.";
     this.data = {"msg" : message_c, "phno": c_extno+c_phno+""};

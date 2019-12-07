@@ -1,6 +1,6 @@
 import { Component, OnInit ,ElementRef, NgZone, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Business,BusinessType,mapBusinessTypes } from '../business';
+import { Business,BusinessType,mapBusinessTypes,countryCodes,phoneType } from '../business';
 import { HttpClientService } from '../service/http-client.service';
 import { Subscription } from 'rxjs';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -14,6 +14,8 @@ import { AlertService} from '../service/alert.service';
 export class BusinessProfileComponent implements OnInit,OnDestroy {
 
   businesstypes=BusinessType;
+  countryCodes = countryCodes;
+  phoneType = phoneType;
   phoneNumberCounter=1;
   addressCounter=1;
   replicateAddressCheckbox=true;
@@ -32,6 +34,18 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
 
   b_type_keys() : Array<string> {
     var keys = Object.keys(this.businesstypes);
+    return keys.slice(keys.length / 2);
+  }
+  countryCodes_keys() : Array<string> {
+    var keys = Object.keys(this.countryCodes);
+    return keys;
+  }
+  countryCodes_values() : Array<string> {
+    var values = Object.values(this.countryCodes);
+    return values;
+  }
+  phoneType_keys() : Array<string> {
+    var keys = Object.keys(this.phoneType);
     return keys.slice(keys.length / 2);
   }
 
@@ -86,32 +100,36 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
 
   editformsubmitted = false;
   onEditForm() { this.editformsubmitted = true; }
-
+  
+  error_msg = '';
   updateBusiness(userdata){ 
-    this.httpClientService.UpdateBusiness(userdata).subscribe(
-      res => {
-      this.alertService.success('Business details updated successful.', true);
+    console.log(userdata);
+    this.httpClientService.UpdateBusiness(userdata)
+    .subscribe(data => {
+      this.error_msg = "Your business details updated successfully.";
       this.ngZone.run(() => this.router.navigateByUrl('/business'));
     },
-    error => {
-      this.alertService.error('Username already exists.');
+      error => {
+        console.log(error);
+        this.error_msg = "Unable to process your request. Please check internet connection."  
+         
     }
     );
   }
-  
   changePasswordBusiness(f: NgForm, userdata){ 
     userdata.password = userdata.newPassword;
-    this.httpClientService.ChangeBusinessPassword(userdata).subscribe(
-      res => {
-          this.alertService.success('Business password changed successfully.', true);
-          
-          this.ngZone.run(() => this.router.navigateByUrl('/business'));
+    this.httpClientService.ChangeBusinessPassword(userdata)
+    .subscribe(data => {
+      this.error_msg = "Your password was updated successfully.";
+      this.ngZone.run(() => this.router.navigateByUrl('/business'));
           document.getElementById('new_password').setAttribute('readonly','readonly');
           document.getElementById('confirm_new_password').setAttribute('readonly','readonly');
           this.invalidpass=false;
-         },
-    error => {
-      this.alertService.error('Please check, unable to change password.');
+    },
+      error => {
+        console.log(error);
+        this.error_msg = "Unable to process your request. Please check internet connection."  
+         
     }
     );
   }

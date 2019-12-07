@@ -301,3 +301,47 @@ export function mapBusinessTypes(val: string){
         }
       return list;
       }
+
+export enum countryCodes{
+  "Australia"=	"61",
+  "Bangladesh"=	"880",
+  "Belgium"=	"32",
+  "Bhutan"=	"975",
+  "China"=	"86",
+  "Afghanistan"=	"93",
+  "Costa Rica"=	"506",
+  "Germany"=	"49",
+  "Hong Kong"=	"852",
+  "India"=	"91",
+  "Japan"=	"81",
+  "Kenya"=	"254",
+  "Malaysia"=	"60",
+  "Maldives"=	"960",
+  "Nepal"=	"977",
+  "Netherlands"=	"31",
+  "New Zealand"=	"64",
+  "Nigeria"=	"234",
+  "North Korea"=	"850",
+  "Pakistan"=	"92",
+  "Peru"=	"51",
+  "Philippines"=	"63",
+  "Russia"=	"7",
+  "Saudi Arabia"=	"966",
+  "Singapore"=	"65",
+  "South Africa"=	"27",
+  "South Korea"=	"82",
+  "Sri Lanka"=	"94",
+  "Switzerland"=	"41",
+  "Thailand"=	"66",
+  "Turkey"=	"90",
+  "United Kingdom"=	"44",
+  "United Arab Emirates"=	"971",
+  "USA"	="1",
+  "Zimbabwe"=	"263"
+}
+
+export enum phoneType{
+  "OFFICE",
+  "HOME",
+  "MOBILE"
+}

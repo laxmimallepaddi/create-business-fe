@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClientService } from '../../service/http-client.service';
 import { Customer } from '../../customer';
 import { AlertService} from '../../service/alert.service';
+import { countryCodes } from '../../business';
 
 @Component({
   selector: 'app-registercustomer-register',
@@ -11,6 +12,7 @@ import { AlertService} from '../../service/alert.service';
 })
 export class CustomerRegisterComponent implements OnInit {
   submitted = false;
+  countryCodes = countryCodes;
   constructor(
     public router: Router,
     public activatedroute: ActivatedRoute,
@@ -28,6 +30,16 @@ export class CustomerRegisterComponent implements OnInit {
   
   user_exists = false;
   error_msg = '';
+
+  countryCodes_keys() : Array<string> {
+    var keys = Object.keys(this.countryCodes);
+    return keys;
+  }
+  countryCodes_values() : Array<string> {
+    var values = Object.values(this.countryCodes);
+    return values;
+  }
+
   createCustomer(userdata){ 
     this.httpClientService.CreateCustomer(userdata)
     .subscribe(data => {

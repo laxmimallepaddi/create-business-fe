@@ -21,7 +21,7 @@ a, a:active, a:focus{
 	position:fixed;
 	width:60px;
 	height:60px;
-	bottom:10px;
+	bottom:100px;
 	right:0.35em;
 	background-color:#25d366;
 	color:#FFF;
@@ -38,7 +38,7 @@ a, a:active, a:focus{
 	position:fixed;
 	width:60px;
 	height:60px;
-	bottom:80px;
+	bottom:170px;
 	right:0.35em;
 	background-color:#639963;
 	color:rgb(0, 0, 0);
