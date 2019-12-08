@@ -91,8 +91,8 @@
                                     <li class="nav-item">
                                         <a class="nav-link active text-dark" id="about-tab{{i}}" href="#about{{i}}" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-pencil-square-o"></span><small class="icon font-weight-bold"> About</small></a>
                                     </li>
-                                    <li class="nav-item" *ngIf="!currentCustomer">
-                                        <a class="nav-link" id="contact-tab{{i}}" data-toggle="modal" data-target="#myModal_contact"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
+                                    <li class="nav-item" *ngIf="!currentCustomer"  data-toggle="modal" data-target="#myModal_contact">
+                                        <a class="nav-link text-dark disabled"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
                                     </li>
                                     <li class="nav-item" *ngIf="currentCustomer">
                                         <a class="nav-link text-dark" id="contact-tab{{i}}" href="#contact{{i}}" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
