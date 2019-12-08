@@ -91,7 +91,10 @@
                                     <li class="nav-item">
                                         <a class="nav-link active text-dark" id="about-tab{{i}}" href="#about{{i}}" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true"><span class="fa fa-pencil-square-o"></span><small class="icon font-weight-bold"> About</small></a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item" *ngIf="!currentCustomer"  data-toggle="modal" data-target="#myModal_contact">
+                                        <a class="nav-link text-dark disabled"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
+                                    </li>
+                                    <li class="nav-item" *ngIf="currentCustomer">
                                         <a class="nav-link text-dark" id="contact-tab{{i}}" href="#contact{{i}}" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
                                     </li>
                                     <li class="nav-item" *ngIf="currentCustomer">
@@ -123,7 +126,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="tab-pane fade" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab">
+                                                    <div class="tab-pane fade" id="contact{{i}}" role="tabpanel" aria-labelledby="contact-tab" *ngIf="currentCustomer">
                                                         <div class="row ml-2 text-wrap">
                                                             <div class="col-sm-2 capitalize font-weight-bold ml-auto">
                                                                 <label>Owner Name:</label>
@@ -209,7 +212,7 @@
 <!-- Modal content-->
     <div class="modal-content">
     <div class="modal-body my-3">
-            Please Sign Up Or Log In as Customer to add rating for the business.
+            Please Log In Or Sign Up as Customer to add rating for the business.
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/login/customer/'">Log In</button>
@@ -251,3 +254,20 @@
 
 </div>
 </div>
+<!-- Modal -->
+<div id="myModal_contact" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+    <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-body my-3">
+                Please  Log In Or Sign Up as Customer to see contact details of the business.
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/login/customer/'">Log In</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/register/customer/'">Sign Up</button>
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    
+    </div>
+    </div>
