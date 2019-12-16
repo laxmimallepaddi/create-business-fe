@@ -54,10 +54,13 @@
                         <div class="col-sm-10">
                             <h4 class="font-weight-bold"><a class="uppercase">{{businessi.businessName}}</a></h4> 
                         </div>
-                        <div class="col-sm-2 mx-auto">
-                            <button *ngIf="currentCustomer" type="submit" (click)="doBooking(currentCustomer.extension,currentCustomer.phoneNumber,businessi.primaryExtension,businessi.primaryPhoneNumber)" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalx">BOOK NOW</button> 
+                        <div class="col-sm-2 mx-auto" *ngIf="currentCustomer">
+                            <button type="submit" (click)="doBooking(currentCustomer.extension,currentCustomer.phoneNumber,businessi.primaryExtension,businessi.primaryPhoneNumber)" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalx">BOOK NOW</button> 
                         </div>
-                     </div>
+                        <div class="col-sm-2 mx-auto" data-toggle="modal" data-target="#myModal_book">
+                            <button *ngIf="!currentCustomer" type="submit" class="btn btn-outline-dark" >BOOK NOW</button> 
+                        </div>
+                    </div>
                     <div class="row"> 
                         <div class="col-sm-12">   
                             <div class="rating" title=" Sign Up or Sign In as a customer to provide the rating" >
@@ -96,6 +99,9 @@
                                     </li>
                                     <li class="nav-item" *ngIf="currentCustomer">
                                         <a class="nav-link text-dark" id="contact-tab{{i}}" href="#contact{{i}}" data-toggle="tab" role="tab" aria-controls="contact" aria-selected="false"><span class="fa fa-address-book"></span> <small class="icon font-weight-bold"> Contact Details</small></a>
+                                    </li>
+                                    <li class="nav-item" *ngIf="!currentCustomer"  data-toggle="modal" data-target="#myModal_rate">
+                                        <a class="nav-link text-dark disabled"><span class="fa fa-star"></span> <small class="icon font-weight-bold"> Rate Us</small></a>
                                     </li>
                                     <li class="nav-item" *ngIf="currentCustomer">
                                         <a class="nav-link text-dark" id="rate-tab{{i}}" href="#rate{{i}}" data-toggle="tab" role="tab" aria-controls="rate" aria-selected="false"><span class="fa fa-star"></span> <small class="icon font-weight-bold"> Rate Us</small></a>
@@ -256,18 +262,52 @@
 </div>
 <!-- Modal -->
 <div id="myModal_contact" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-md">
-    <!-- Modal content-->
-        <div class="modal-content">
-        <div class="modal-body my-3">
-                Please  Log In Or Sign Up as Customer to see contact details of the business.
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/login/customer/'">Log In</button>
-            <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/register/customer/'">Sign Up</button>
-            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-        </div>
-        </div>
-    
+<div class="modal-dialog modal-dialog-centered modal-md">
+<!-- Modal content-->
+    <div class="modal-content">
+    <div class="modal-body my-3">
+            Please  Log In Or Sign Up as Customer to see contact details of the business.
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/login/customer/'">Log In</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/register/customer/'">Sign Up</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
     </div>
     </div>
+
+</div>
+</div>
+<!-- Modal -->
+<div id="myModal_rate" class="modal fade" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-md">
+<!-- Modal content-->
+    <div class="modal-content">
+    <div class="modal-body my-3">
+            Please  Log In Or Sign Up as Customer to add rating to the business.
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/login/customer/'">Log In</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/register/customer/'">Sign Up</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+    </div>
+    </div>
+
+</div>
+</div>
+<!-- Modal -->
+<div id="myModal_book" class="modal fade" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-md">
+<!-- Modal content-->
+    <div class="modal-content">
+    <div class="modal-body my-3">
+            Please  Log In Or Sign Up as Customer to book the business.
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/login/customer/'">Log In</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" [routerLink]="'/register/customer/'">Sign Up</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+    </div>
+    </div>
+
+</div>
+</div>
