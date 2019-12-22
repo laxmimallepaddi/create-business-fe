@@ -1,19 +1,42 @@
-# base image
-FROM node:12.2.0
+### STAGE 1: Build ###
 
-# set working directory
-WORKDIR /app
+# We label our stage as ‘builder’
+FROM node:10-alpine as builder
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json package-lock.json ./
 
-# install and cache app dependencies
-COPY package.json /app/package.json
-RUN npm install
-RUN npm install -g @angular/cli@7.3.9
+COPY /etc/letsencrypt/live/booktheevent.in/fullchain.pem /etc/nginx/
 
-# add app
-COPY . /app
+COPY /etc/letsencrypt/live/booktheevent.in/privkey.pem /etc/nginx/
 
-# start app
-CMD ng serve --host 0.0.0.0 --disableHostCheck true 
+## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
+
+RUN npm ci && mkdir /ng-app && mv ./node_modules ./ng-app
+
+WORKDIR /ng-app
+
+COPY . .
+
+## Build the angular app in production mode and store the artifacts in dist folder
+
+RUN npm run ng build -- --output-path=dist
+
+
+### STAGE 2: Setup ###
+
+FROM nginx:1.14.1-alpine
+
+COPY /etc/letsencrypt/live/booktheevent.in/fullchain.pem /etc/nginx/
+
+COPY /etc/letsencrypt/live/booktheevent.in/privkey.pem /etc/nginx/
+
+## Copy our default nginx config
+COPY nginx/default.conf /etc/nginx/conf.d/
+
+## Remove default nginx website
+RUN rm -rf /usr/share/nginx/html/*
+
+## From ‘builder’ stage copy over the artifacts in dist folder to default nginx public folder
+COPY --from=builder /ng-app/dist /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]
