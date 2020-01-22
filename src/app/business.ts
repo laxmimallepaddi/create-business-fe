@@ -165,8 +165,8 @@ export function mapBusinessTypes(val: string){
                 "For North Indian"
                 ];
         }
-        if(val == "7: Decoration Department" || val == "Decoration Department"){
-          list=["Flowerist",
+        if(val == "7: Decoration Services" || val == "Decoration Services"){
+          list=["Florist",
                 "Stage decoration",
                 "Fireworks Providers",
                 "Lighting Providers"
