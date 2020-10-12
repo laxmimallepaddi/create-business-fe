@@ -66,4 +66,6 @@ ng v
 ```bash 
 ng serve 
 ```
-and go to [http://localhost:4200/](http://localhost:4200/) to launch.
+and go to [http://localhost:4200/](http://localhost:4200/) to launch
+.
+--END
